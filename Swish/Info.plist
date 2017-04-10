@@ -41,5 +41,16 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>swish</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string>studio.and.swish</string>
+		</dict>
+	</array>
 </dict>
 </plist>
