@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="W65-mW-h3c">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="zl5-8q-Hg9">
+            <objects>
+                <viewController id="W65-mW-h3c" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LpC-3a-eHk"/>
+                        <viewControllerLayoutGuide type="bottom" id="ftf-TZ-cUt"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FzA-Vv-Rhu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <segue destination="kbn-zo-LZK" kind="show" id="hVP-kH-ZSm"/>
+                        <segue destination="fFN-s1-p93" kind="show" id="rvu-vK-7I2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4nf-oa-h3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="263" y="120"/>
+        </scene>
+        <!--Likes-->
+        <scene sceneID="AXY-MQ-qP3">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Likes" id="kbn-zo-LZK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EAY-Nk-N8C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="938" y="31"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="ECo-Wc-QaO">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Search" id="fFN-s1-p93" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zQg-qL-1Kq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="948" y="213"/>
+        </scene>
+    </scenes>
+</document>
