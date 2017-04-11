@@ -18,7 +18,7 @@ class UserController {
     
     // NSURLSession to connect the endpoint
     
-    // NSURL to create url using the string 
+    // NSURL to create url using the string
     
     // create a task and put in the url. use an if else statement
     
