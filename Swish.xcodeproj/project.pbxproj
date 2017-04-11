@@ -16,6 +16,8 @@
 		5A604BB41E9C436B00EBF1D3 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB31E9C436B00EBF1D3 /* Search.storyboard */; };
 		5A604BB61E9C437200EBF1D3 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB51E9C437200EBF1D3 /* User.storyboard */; };
 		5A604BB81E9C437C00EBF1D3 /* Shot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB71E9C437C00EBF1D3 /* Shot.storyboard */; };
+		661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3D1E9C4BD00048E5EA /* UserController.swift */; };
+		661E6E401E9C4BE90048E5EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3F1E9C4BE90048E5EA /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		5A604BB31E9C436B00EBF1D3 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5A604BB51E9C437200EBF1D3 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		5A604BB71E9C437C00EBF1D3 /* Shot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shot.storyboard; sourceTree = "<group>"; };
+		661E6E3D1E9C4BD00048E5EA /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		661E6E3F1E9C4BE90048E5EA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		5A604BB91E9C443900EBF1D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				661E6E3F1E9C4BE90048E5EA /* User.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -116,6 +121,7 @@
 		5A604BBA1E9C444100EBF1D3 /* ModelController */ = {
 			isa = PBXGroup;
 			children = (
+				661E6E3D1E9C4BD00048E5EA /* UserController.swift */,
 			);
 			name = ModelController;
 			sourceTree = "<group>";
@@ -226,7 +232,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */,
 				5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */,
+				661E6E401E9C4BE90048E5EA /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +400,7 @@
 				5A604BAB1E9C41ED00EBF1D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
