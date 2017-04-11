@@ -404,6 +404,7 @@
 				5A604BAB1E9C41ED00EBF1D3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
