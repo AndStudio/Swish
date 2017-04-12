@@ -25,4 +25,9 @@ class UserController {
     
     static let accessToken = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
     static let baseURL = URL(string: "https://api.dribbble.com/v1/users/")
+    
+    static func loadUsers(completion: @escaping(([User]) -> Void)) {
+        guard baseURL != nil else {return }
+        _ = ["access_token":accessToken]
+    }
 }
