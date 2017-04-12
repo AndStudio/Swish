@@ -31,6 +31,9 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // FIXME: REMOVE THIS LINE BEFORE SHIPPING!
+        _ = Keychain.removeValue(forKey: "accessToken")
+        
         DispatchQueue.main.async {
             self.updateViews()
         }

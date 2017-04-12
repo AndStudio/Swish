@@ -10,7 +10,7 @@ import UIKit
 import OAuthSwift
 
 let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
-
+let accessTokenDeniedNotification = Notification.Name("Access Token Denied")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,6 +29,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 else { return false }
             
             NSLog("THIS IS THE FIRST CODE:\(code)")
+            
+            if code == "access_denied" {
+                
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: accessTokenDeniedNotification, object: self, userInfo: nil)
+                }
+                
+            }
             
             let componentsDictionary: [String:String] = [
                 "client_id":"7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762",
