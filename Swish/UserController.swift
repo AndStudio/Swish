@@ -23,11 +23,25 @@ import Foundation
 
 class UserController {
     
-    static let accessToken = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
-    static let baseURL = URL(string: "https://api.dribbble.com/v1/users/")
+    static let baseURL = URL(string: "https://dribbble.com/v1/users/1/shots")
     
-    static func loadUsers(completion: @escaping(([User]) -> Void)) {
-        guard baseURL != nil else {return }
+    static func fetchUser(for searchTerm: String, completion: @escaping(User?) -> Void) {
+        guard let unwrappedURL = baseURL else {completion(nil); return }
+        
+        let url = unwrappedURL.appendingPathComponent(searchTerm)
+        
+        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, error) in
+            if let error = error {
+                print(error.localizedDescription)
+                completion(nil)
+                return
+            }
+            guard let data = data else {completion(nil)
+                return}
+            
+            guard let jsonDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any] else { completion(nil)
+                return}
+        }
         _ = ["access_token":accessToken]
     }
 }
