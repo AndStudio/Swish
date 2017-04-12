@@ -18,9 +18,9 @@ import Foundation
 
 class UserController {
     
-    static let baseURL = URL(string: "https://dribbble.com/v1/users/1/shots")
+    static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")
     
-    static func fetchUser(completion: @escaping(User?) -> Void) {
+    static func fetchUser(userID: Int, completion: @escaping(User?) -> Void) {
         guard let unwrappedURL = baseURL else {completion(nil); return }
         
         let url = unwrappedURL.appendingPathComponent(searchTerm)

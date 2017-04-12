@@ -16,14 +16,15 @@
 		5A604BB41E9C436B00EBF1D3 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB31E9C436B00EBF1D3 /* Search.storyboard */; };
 		5A604BB61E9C437200EBF1D3 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB51E9C437200EBF1D3 /* User.storyboard */; };
 		5A604BB81E9C437C00EBF1D3 /* Shot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB71E9C437C00EBF1D3 /* Shot.storyboard */; };
-		661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3D1E9C4BD00048E5EA /* UserController.swift */; };
-		661E6E401E9C4BE90048E5EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3F1E9C4BE90048E5EA /* User.swift */; };
 		5A604BC01E9C6CAC00EBF1D3 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */; };
 		5A604BC21E9C6E0900EBF1D3 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */; };
 		5A604BC41E9C726300EBF1D3 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */; };
 		5A8786011E9D33F900CB8B6C /* DribbbleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */; };
 		5A8786361E9D4AA600CB8B6C /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8786271E9D479700CB8B6C /* OAuthSwift.framework */; };
 		5A8786371E9D4AA600CB8B6C /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8786271E9D479700CB8B6C /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3D1E9C4BD00048E5EA /* UserController.swift */; };
+		661E6E401E9C4BE90048E5EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3F1E9C4BE90048E5EA /* User.swift */; };
+		665984571E9EBF87001BB19F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665984561E9EBF87001BB19F /* UserViewController.swift */; };
 		967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D83C51E9D9F17001BE32E /* NetworkController.swift */; };
 /* End PBXBuildFile section */
 
@@ -112,13 +113,14 @@
 		5A604BB31E9C436B00EBF1D3 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5A604BB51E9C437200EBF1D3 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		5A604BB71E9C437C00EBF1D3 /* Shot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shot.storyboard; sourceTree = "<group>"; };
-		661E6E3D1E9C4BD00048E5EA /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
-		661E6E3F1E9C4BE90048E5EA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DribbbleApi.swift; sourceTree = "<group>"; };
 		5A87861C1E9D479700CB8B6C /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
+		661E6E3D1E9C4BD00048E5EA /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		661E6E3F1E9C4BE90048E5EA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		665984561E9EBF87001BB19F /* UserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		967D83C51E9D9F17001BE32E /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -226,6 +228,7 @@
 			children = (
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
+				665984561E9EBF87001BB19F /* UserViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -400,6 +403,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */,
+				665984571E9EBF87001BB19F /* UserViewController.swift in Sources */,
 				5A604BC41E9C726300EBF1D3 /* AuthViewController.swift in Sources */,
 				5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */,
 				661E6E401E9C4BE90048E5EA /* User.swift in Sources */,
