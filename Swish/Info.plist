@@ -46,7 +46,7 @@
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>swish</string>
+				<string>swish2</string>
 			</array>
 			<key>CFBundleURLName</key>
 			<string>studio.and.swish</string>

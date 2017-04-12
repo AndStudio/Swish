@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import OAuthSwift
 
 class AuthViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Properties
+    
     
     //MARK: - Outlets 
     
@@ -29,10 +31,27 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         
         updateViews()
         
-        if let url = URL(string: "https://dribbble.com/oauth/authorize") {
+        if let url = URL(string: "https://dribbble.com/oauth/authorize?client_id=7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762&scope=public+write") {
             let request = URLRequest(url: url)
             authWebView.loadRequest(request)
         }
+    }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        print("starting load of \(request.url!)")
+        return true
+    }
+    
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        print(#function)
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        print(#function)
+    }
+    
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        print("\(#function): \(error)")
     }
     
     //MARK: - Helpers

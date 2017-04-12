@@ -7,13 +7,54 @@
 //
 
 import UIKit
+import OAuthSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    
+    var userAccessCode: String?
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        
+        if (url.host == "oauth") {
+            let components = URLComponents(url: url, resolvingAgainstBaseURL: false)
+            guard
+                let code = components?.queryItems?.first?.value,
+                let baseURL = URL(string: "https://dribbble.com/oauth/token")
+                else { return false }
+            
+            NSLog("THIS IS THE FIRST CODE:\(code)")
+            
+            let componentsDictionary: [String:String] = [
+                "client_id":"7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762",
+                "client_secret":"8a8fad391aff41852cd8dd52d7f54f97e050014d3bfa1682538cd8ade9243be8",
+                "code":code
+            ]
+            
+            NetworkController.performRequest(for: baseURL, httpMethod: .Post, urlParameters: componentsDictionary, body: nil, completion: { (data, error) in
+                
+                if let error = error {
+                    NSLog("ERROR: \(error.localizedDescription)")
+                    //completion(error)
+                }
+                
+                guard
+                    let data = data,
+                    let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any]
+                else { return }
+                
+                let userAccessCode = json["access_token"]
+                self.userAccessCode = userAccessCode as? String
+                print("Access Code: \(String(describing: userAccessCode))")
+                
+            })
 
+        }
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
