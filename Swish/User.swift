@@ -60,7 +60,7 @@ class User {
     //        return URL(string: userAvatarURLString)
     //    }
     
-    //MARK: - initializer
+    //MARK: - memberwise initializer
     init(shotID: Int, title: String, description: String, viewCount: Int, likeCount: Int, createdDate: Date, imageLinkURL: URL, tags: [String], userID: Int, userName: String, userUserName: String, userURL: URL) {
         self.shotID = shotID
         self.title = title
