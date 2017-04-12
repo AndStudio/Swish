@@ -6,22 +6,23 @@
 //  Copyright © 2017 And. All rights reserved.
 //
 
+//URL
+// https://api.dribbble.com/v1/users/
+
+//Client ID
+//e97282047496bac5ee671f3dd82e7e44789a3a011f10d1c8ba375aab4f93097f
+
+//Client Secret
+//58770dac962283bdbd486ae4815d087654731bec8d3753a9e332c3069ebd5e8d
+
+//Client Access Token
+//70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184
+
+
 import Foundation
 
 class UserController {
     
-    //property for the access token
-    
-    // func that takes completion handler
-    
-    // create url string using the access token and append the accessToken at the end
-    
-    // NSURLSession to connect the endpoint
-    
-    // NSURL to create url using the string
-    
-    // create a task and put in the url. use an if else statement
-    
-    //implement the model.swift file information inside the else if before you return
-    
+    static let accessToken = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
+    static let baseURL = URL(string: "https://api.dribbble.com/v1/users/")
 }
