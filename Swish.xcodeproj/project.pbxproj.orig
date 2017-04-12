@@ -16,16 +16,16 @@
 		5A604BB41E9C436B00EBF1D3 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB31E9C436B00EBF1D3 /* Search.storyboard */; };
 		5A604BB61E9C437200EBF1D3 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB51E9C437200EBF1D3 /* User.storyboard */; };
 		5A604BB81E9C437C00EBF1D3 /* Shot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BB71E9C437C00EBF1D3 /* Shot.storyboard */; };
+<<<<<<< HEAD
+		5A6C9BC21E9C47F10072B472 /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A6C9BC11E9C47F10072B472 /* Shot.swift */; };
+=======
 		5A604BC01E9C6CAC00EBF1D3 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */; };
 		5A604BC21E9C6E0900EBF1D3 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */; };
 		5A604BC41E9C726300EBF1D3 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */; };
-		5A80040F1E9EBD3F005356CA /* Shot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A80040E1E9EBD3F005356CA /* Shot.swift */; };
-		5A8004171E9EBD89005356CA /* ImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8004161E9EBD89005356CA /* ImageController.swift */; };
-		5A8004211E9EC064005356CA /* ApiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8004201E9EC064005356CA /* ApiController.swift */; };
 		5A8786011E9D33F900CB8B6C /* DribbbleApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */; };
 		5A8786361E9D4AA600CB8B6C /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8786271E9D479700CB8B6C /* OAuthSwift.framework */; };
 		5A8786371E9D4AA600CB8B6C /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8786271E9D479700CB8B6C /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D83C51E9D9F17001BE32E /* NetworkController.swift */; };
+>>>>>>> develop
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,15 +113,15 @@
 		5A604BB31E9C436B00EBF1D3 /* Search.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		5A604BB51E9C437200EBF1D3 /* User.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		5A604BB71E9C437C00EBF1D3 /* Shot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Shot.storyboard; sourceTree = "<group>"; };
+<<<<<<< HEAD
+		5A6C9BC11E9C47F10072B472 /* Shot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
+=======
 		5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		5A80040E1E9EBD3F005356CA /* Shot.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Shot.swift; sourceTree = "<group>"; };
-		5A8004161E9EBD89005356CA /* ImageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageController.swift; sourceTree = "<group>"; };
-		5A8004201E9EC064005356CA /* ApiController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiController.swift; sourceTree = "<group>"; };
 		5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DribbbleApi.swift; sourceTree = "<group>"; };
 		5A87861C1E9D479700CB8B6C /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
-		967D83C51E9D9F17001BE32E /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+>>>>>>> develop
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,7 +203,7 @@
 		5A604BB91E9C443900EBF1D3 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5A80040E1E9EBD3F005356CA /* Shot.swift */,
+				5A6C9BC11E9C47F10072B472 /* Shot.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -211,7 +211,6 @@
 		5A604BBA1E9C444100EBF1D3 /* ModelController */ = {
 			isa = PBXGroup;
 			children = (
-				5A8004201E9EC064005356CA /* ApiController.swift */,
 			);
 			name = ModelController;
 			sourceTree = "<group>";
@@ -236,7 +235,6 @@
 			isa = PBXGroup;
 			children = (
 				5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */,
-				5A8004161E9EBD89005356CA /* ImageController.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -245,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */,
-				967D83C51E9D9F17001BE32E /* NetworkController.swift */,
 			);
 			name = Network;
 			sourceTree = "<group>";
@@ -402,15 +399,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5A8004171E9EBD89005356CA /* ImageController.swift in Sources */,
 				5A604BC41E9C726300EBF1D3 /* AuthViewController.swift in Sources */,
 				5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */,
-				967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */,
+<<<<<<< HEAD
+				5A6C9BC21E9C47F10072B472 /* Shot.swift in Sources */,
+=======
 				5A604BC21E9C6E0900EBF1D3 /* LaunchViewController.swift in Sources */,
-				5A80040F1E9EBD3F005356CA /* Shot.swift in Sources */,
 				5A604BC01E9C6CAC00EBF1D3 /* Appearance.swift in Sources */,
 				5A8786011E9D33F900CB8B6C /* DribbbleApi.swift in Sources */,
-				5A8004211E9EC064005356CA /* ApiController.swift in Sources */,
+>>>>>>> develop
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
