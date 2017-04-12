@@ -6,11 +6,10 @@
 //  Copyright © 2017 And. All rights reserved.
 //
 
-//URL
-// https://api.dribbble.com/v1/users/
+// use url with queries
+// https://api.dribbble.com/v1/users/1/shots?
+// access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd
 
-//Client Access Token
-//70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184
 
 // create baseURL, create func with @escaping completion, cal the NetworkController, unwrap the base url, append the url, unwrap the data and error, turn data into jsonDictionary, call the images and unwrap
 
@@ -21,7 +20,7 @@ class UserController {
     
     static let baseURL = URL(string: "https://dribbble.com/v1/users/1/shots")
     
-    static func fetchUser(for searchTerm: String, completion: @escaping(User?) -> Void) {
+    static func fetchUser(completion: @escaping(User?) -> Void) {
         guard let unwrappedURL = baseURL else {completion(nil); return }
         
         let url = unwrappedURL.appendingPathComponent(searchTerm)
