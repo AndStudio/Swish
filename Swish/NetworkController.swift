@@ -12,7 +12,8 @@ class NetworkController {
     
     // MARK: Properties
     
-    static var accessToken: String?
+    //static var accessToken: String?
+    static var accessToken = "a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd"
     
     enum HTTPMethod: String {
         case Get = "GET"
