@@ -46,20 +46,6 @@ class User {
     let userURL: URL
     
     
-    // FIXME: - set up image properties
-    
-    //    let shotImageURLString: String
-    //    var shotImage: UIImage?
-    //    var shotImageURL: URL? {
-    //        return URL(string: shotImageURLString)
-    //    }
-    //
-    //    let userAvatarURLString: String
-    //    var userAvatar: UIImage?
-    //    var userAvatarURL: URL? {
-    //        return URL(string: userAvatarURLString)
-    //    }
-    
     //MARK: - memberwise initializer
     init(shotID: Int, title: String, description: String, viewCount: Int, likeCount: Int, createdDate: Date, imageLinkURL: URL, tags: [String], userID: Int, userName: String, userUserName: String, userURL: URL) {
         self.shotID = shotID
