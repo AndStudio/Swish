@@ -12,6 +12,8 @@ class NetworkController {
     
     // MARK: Properties
     
+    static var accessToken: String?
+    
     enum HTTPMethod: String {
         case Get = "GET"
         case Put = "PUT"

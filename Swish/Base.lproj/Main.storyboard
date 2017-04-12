@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HBN-xH-w9B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HBN-xH-w9B">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -54,7 +54,7 @@
                     <connections>
                         <outlet property="signInButton" destination="n84-EM-L3E" id="sfj-mf-wGt"/>
                         <outlet property="titleLabelOutlet" destination="kQM-RB-Gld" id="vtk-do-pwZ"/>
-                        <segue destination="F4E-wD-xva" kind="show" id="Szt-6b-ZpJ"/>
+                        <segue destination="F4E-wD-xva" kind="show" identifier="toSwipeVC" id="Szt-6b-ZpJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -107,7 +107,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HBN-xH-w9B" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" translucent="NO" id="kys-LD-rRD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="kys-LD-rRD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.9150804877281189" green="0.29784509539604187" blue="0.53169256448745728" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

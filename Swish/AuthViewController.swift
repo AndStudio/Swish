@@ -35,6 +35,12 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
             let request = URLRequest(url: url)
             authWebView.loadRequest(request)
         }
+        
+        //selector is a functino that handles what should be done when the notification is recieved
+
+        
+        // Observer is where the selector lives
+        NotificationCenter.default.addObserver(self, selector: #selector(accessTokenWasRecievedFrom(notification:)), name: accessTokenRecievedNotification, object: nil)
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -63,5 +69,17 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         navigationController?.navigationBar.tintColor = .white
         
     }
+    
+    func accessTokenWasRecievedFrom(notification: Notification) {
+
+        guard let accessToken = notification.userInfo?["accessToken"] as? String else { return }
+        print(accessToken)
+        Keychain.set(accessToken, forKey: "accessToken")
+        
+        _ = navigationController?.popViewController(animated: true)
+        
+    }    
+
+    
 
 }

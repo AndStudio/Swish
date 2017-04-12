@@ -9,6 +9,9 @@
 import UIKit
 import OAuthSwift
 
+let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -42,13 +45,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard
                     let data = data,
-                    let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any]
+                    let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
+                    let userAccessCode = json["access_token"] as? String
                 else { return }
                 
-                let userAccessCode = json["access_token"]
-                self.userAccessCode = userAccessCode as? String
+                self.userAccessCode = userAccessCode
                 print("Access Code: \(String(describing: userAccessCode))")
                 
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: accessTokenRecievedNotification, object: self, userInfo: ["accessToken":userAccessCode])
+                }
             })
 
         }

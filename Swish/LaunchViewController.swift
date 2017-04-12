@@ -14,14 +14,13 @@ class LaunchViewController: UIViewController {
     
     //MARK: - Outlets
     
-    
-    //MARK: - Properties
-    
     @IBOutlet weak var titleLabelOutlet: UILabel!
     @IBOutlet weak var signInButton: UIButton!
     
+    //MARK: - Properties
+
     
-    //MARK: - UI Actions 
+    //MARK: - UI Actions
     
     @IBAction func signInButtonTapped(_ sender: Any) {
     }
@@ -31,10 +30,20 @@ class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
+        
+        DispatchQueue.main.async {
+            self.updateViews()
+        }
         
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if Keychain.value(forKey: "accessToken") != nil {
+            NetworkController.accessToken = Keychain.value(forKey: "accessToken")
+            self.performSegue(withIdentifier: "toSwipeVC", sender: self)
+        }
+    } 
     
     //MARK: - Helpers
     
@@ -52,6 +61,8 @@ class LaunchViewController: UIViewController {
         signInButton.clipsToBounds = true
         
     }
+    
+
     
     
 }

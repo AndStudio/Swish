@@ -23,6 +23,7 @@
 		5A8786361E9D4AA600CB8B6C /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8786271E9D479700CB8B6C /* OAuthSwift.framework */; };
 		5A8786371E9D4AA600CB8B6C /* OAuthSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5A8786271E9D479700CB8B6C /* OAuthSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D83C51E9D9F17001BE32E /* NetworkController.swift */; };
+		96A276A01E9E97B7006C21F0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A2769F1E9E97B7006C21F0 /* Keychain.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DribbbleApi.swift; sourceTree = "<group>"; };
 		5A87861C1E9D479700CB8B6C /* OAuthSwift.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = OAuthSwift.xcodeproj; path = "OAuthSwift-master/OAuthSwift.xcodeproj"; sourceTree = "<group>"; };
 		967D83C51E9D9F17001BE32E /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
+		96A2769F1E9E97B7006C21F0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */,
+				96A2769F1E9E97B7006C21F0 /* Keychain.swift */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 					5A604B961E9C41ED00EBF1D3 = {
 						CreatedOnToolsVersion = 8.3.1;
 						DevelopmentTeam = BP324SX4AT;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -399,6 +403,7 @@
 				5A604BC21E9C6E0900EBF1D3 /* LaunchViewController.swift in Sources */,
 				5A604BC01E9C6CAC00EBF1D3 /* Appearance.swift in Sources */,
 				5A8786011E9D33F900CB8B6C /* DribbbleApi.swift in Sources */,
+				96A276A01E9E97B7006C21F0 /* Keychain.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,11 +537,14 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = BP324SX4AT;
 				INFOPLIST_FILE = Swish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.and.Swish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -546,11 +554,13 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = BP324SX4AT;
 				INFOPLIST_FILE = Swish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.and.Swish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
