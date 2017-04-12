@@ -9,6 +9,9 @@
 import UIKit
 import OAuthSwift
 
+let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
+let accessTokenDeniedNotification = Notification.Name("Access Token Denied")
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -27,6 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             
             NSLog("THIS IS THE FIRST CODE:\(code)")
             
+            if code == "access_denied" {
+                
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: accessTokenDeniedNotification, object: self, userInfo: nil)
+                }
+                
+            }
+            
             let componentsDictionary: [String:String] = [
                 "client_id":"7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762",
                 "client_secret":"8a8fad391aff41852cd8dd52d7f54f97e050014d3bfa1682538cd8ade9243be8",
@@ -42,13 +53,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 guard
                     let data = data,
-                    let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any]
+                    let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
+                    let userAccessCode = json["access_token"] as? String
                 else { return }
                 
-                let userAccessCode = json["access_token"]
-                self.userAccessCode = userAccessCode as? String
+                self.userAccessCode = userAccessCode
                 print("Access Code: \(String(describing: userAccessCode))")
                 
+                DispatchQueue.main.async {
+                    NotificationCenter.default.post(name: accessTokenRecievedNotification, object: self, userInfo: ["accessToken":userAccessCode])
+                }
             })
 
         }

@@ -31,10 +31,15 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         
         updateViews()
         
+        // FIXME: Change clientID to not use David's app registered with Dribble
         if let url = URL(string: "https://dribbble.com/oauth/authorize?client_id=7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762&scope=public+write") {
             let request = URLRequest(url: url)
             authWebView.loadRequest(request)
         }
+        
+        // Observer is where the selector lives
+        NotificationCenter.default.addObserver(self, selector: #selector(accessTokenWasRecievedFrom(notification:)), name: accessTokenRecievedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(accessTokenWasDenied), name: accessTokenDeniedNotification, object: nil)
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -63,5 +68,31 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         navigationController?.navigationBar.tintColor = .white
         
     }
+    
+    func accessTokenWasRecievedFrom(notification: Notification) {
+
+        guard let accessToken = notification.userInfo?["accessToken"] as? String else { return }
+        print(accessToken)
+        _ = Keychain.set(accessToken, forKey: "accessToken")
+        
+        _ = navigationController?.popViewController(animated: true)
+        
+    }
+    
+    func accessTokenWasDenied() {
+        let deniedAlertController = UIAlertController(title: "Deny Access?", message: "To use Swish you must allow us to access your Dribbble account", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) in })
+        let denyAction = UIAlertAction(title: "Deny", style: .default, handler: { (_) in
+            _ = self.navigationController?.popViewController(animated: true)
+        })
+        
+        deniedAlertController.addAction(cancelAction)
+        deniedAlertController.addAction(denyAction)
+        
+        present(deniedAlertController, animated: true, completion: nil)
+    }
+
+    
 
 }
