@@ -23,7 +23,7 @@ class User {
     
     
     
-    //MARK: - properties for users
+    //MARK: - properties for Users
     
     let userID: Int
     let userName: String
@@ -63,7 +63,7 @@ class User {
             
             else { return nil }
         
-        
+        // initialize the failable/assign the values
         self.userID = userID
         self.userName = userName
         self.userUserName = userUserName
