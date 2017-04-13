@@ -43,12 +43,37 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         // send selected shot to ShotDetailViewController
     }
     
+    //MARK: Pagination Properties and Functions
+    let threshold: CGFloat = 100
+    var page: Int = 1
+    var isLoadingShots = false
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // when the user scrolls to a certain distance from the bottom of the content view a new API call will be made to append the next set of shots to the shot array
+        
+        let contentOffset = scrollView.contentOffset.y
+        let maximumPossibleOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        let offsetDifference = maximumPossibleOffset - contentOffset
+        
+        if !isLoadingShots && (offsetDifference < threshold) {
+            self.page += 1
+            fetchLikedShots()
+            
+            self.isLoadingShots = false
+        }
+    }
+    
     // API Call to get liked Shots
-    func fetchLikedShots() {
-        //https://api.dribbble.com/v1/user/likes?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd
+    // Add a completion to the function and have the collection view reload the data
+    func fetchLikedShots(/*completion: @escaping ([Shot]) -> Void*/) {
+        // Example endpoint: https://api.dribbble.com/v1/user/likes?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
         
         guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/likes") else { return }
-        let urlParameters = ["access_token": NetworkController.accessToken] as? [String:String]
+        let urlParameters = [
+            "access_token": NetworkController.accessToken,
+            "per_page":"20",
+            "page":String(self.page)
+            ] as? [String:String]
         
         NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
             if error != nil {
@@ -60,10 +85,27 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
             guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { return }
             let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
             
-            self.shots = likedShotsArray
+            self.shots.append(contentsOf: likedShotsArray)
             
+            DispatchQueue.main.async {
+                collectionView.reloadData()
+            }
         }
         
     }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
