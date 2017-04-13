@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--User View Controller-->
+        <!--User Detail View Controller-->
         <scene sceneID="DgS-S8-lpa">
             <objects>
-                <viewController id="b8H-7D-one" customClass="UserViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="b8H-7D-one" customClass="UserDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vUt-TI-pHS"/>
                         <viewControllerLayoutGuide type="bottom" id="xwR-cd-SZy"/>

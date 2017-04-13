@@ -1,5 +1,5 @@
 //
-//  UserViewController.swift
+//  UserDetailViewController.swift
 //  Swish
 //
 //  Created by Clay Mills on 4/12/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserViewController: UIViewController {
+class UserDetailViewController: UIViewController {
 
     var userAvatar = UIImage()
     
