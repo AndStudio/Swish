@@ -19,7 +19,8 @@ class Shot {
     private let viewCountKey =  "views_count"
     private let likeCountKey =  "likes_count"
     private let createdDateKey =  "created_at"
-    private let imageKey =  "normal"
+    private let normalImageKey =  "normal"
+    private let teaserImageKey = "teaser"
     private let tagsKey =  "tags"
     
     //MARK: - properties
@@ -31,10 +32,14 @@ class Shot {
     let likeCount: Int
     let createdDate: String
     let tags: [String]
-    let imageURL: String
+    let normalImageURL: String
+    let teaserImageURL: String
     
-    var image: UIImage?
-//    var user: User?
+    var normalImage: UIImage?
+    var teaserImage: UIImage?
+    var user: User?
+    
+    
     
     //MARK: - failable initializer
     
@@ -48,8 +53,9 @@ class Shot {
             let createdDate = dictionary[createdDateKey] as? String,
             let tags = dictionary[tagsKey] as? [String],
             let imageDictionary = dictionary["images"] as? [String: Any],
-            let imageURL = imageDictionary[imageKey] as? String
-            
+            let normalImageURL = imageDictionary[normalImageKey] as? String,
+            let teaserImageURL = imageDictionary[teaserImageKey] as? String
+        
             else { return nil }
         
         self.shotID = shotID
@@ -59,12 +65,11 @@ class Shot {
         self.likeCount = likeCount
         self.createdDate = createdDate
         self.tags = tags
-        self.imageURL = imageURL
+        self.normalImageURL = normalImageURL
+        self.teaserImageURL = teaserImageURL
         
-//        if let userData = dictionary["user"] as? [String: Any] {
-//            self.user = User(data: userData)
-//        }
-        
+        if let userData = dictionary["user"] as? [String: Any] {
+            self.user = User(dictionary: userData)
+        }
     }
-    
 }
