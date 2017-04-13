@@ -16,27 +16,27 @@
 
 import Foundation
 
-class UserController {
-    
-    static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")
-    
-    static func fetchUser(userID: Int, completion: @escaping(User?) -> Void) {
-        guard let unwrappedURL = baseURL else {completion(nil); return }
-        
-        let url = unwrappedURL.appendingPathComponent(searchTerm)
-        
-        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, error) in
-            if let error = error {
-                print(error.localizedDescription)
-                completion(nil)
-                return
-            }
-            guard let data = data else {completion(nil)
-                return}
-            
-            guard let jsonDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any] else { completion(nil)
-                return}
-        }
-        _ = ["access_token":accessToken]
-    }
-}
+//class UserController {
+//    
+//    static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")
+//    
+//    static func fetchUser(userID: Int, completion: @escaping(User?) -> Void) {
+//        guard let unwrappedURL = baseURL else {completion(nil); return }
+//        
+////        let url = unwrappedURL.appendingPathComponent(searchTerm)
+//        
+//        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, error) in
+//            if let error = error {
+//                print(error.localizedDescription)
+//                completion(nil)
+//                return
+//            }
+//            guard let data = data else {completion(nil)
+//                return}
+//            
+//            guard let jsonDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any] else { completion(nil)
+//                return}
+//        }
+////        _ = ["access_token":accessToken]
+//    }
+//}
