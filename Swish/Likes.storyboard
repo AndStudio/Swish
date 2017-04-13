@@ -55,6 +55,8 @@
                                         <connections>
                                             <outlet property="shotImageView" destination="Hne-8b-yTM" id="oBT-kr-cp6"/>
                                             <outlet property="shotLabel" destination="iRl-3x-cfT" id="tPt-lR-11C"/>
+                                            <outlet property="shotTeaserImageView" destination="Hne-8b-yTM" id="WOj-0b-VZ1"/>
+                                            <outlet property="shotTitleLabel" destination="iRl-3x-cfT" id="n95-FI-mGX"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -63,7 +65,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="Xpg-hO-XkR" id="rEp-UE-kiw"/>
+                        <outlet property="collectionView" destination="Xpg-hO-XkR" id="89a-DG-qjv"/>
                         <segue destination="Bpc-x8-7UM" kind="show" id="zvL-3J-YEW"/>
                     </connections>
                 </viewController>

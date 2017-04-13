@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 class AuthViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Properties
