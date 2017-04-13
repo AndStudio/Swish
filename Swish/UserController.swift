@@ -29,7 +29,7 @@ class UserController {
             }
             
             guard let data = data,
-                let responseDataString = String(data: data, encoding: .utf8) else {
+                let _ = String(data: data, encoding: .utf8) else {
                     print("")
                     completion([])
                     return}
