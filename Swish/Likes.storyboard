@@ -50,11 +50,17 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4e-D6-AfY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="155"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Button"/>
+                                                    <connections>
+                                                        <segue destination="Bpc-x8-7UM" kind="show" id="9jb-Uz-sgz"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="shotImageView" destination="Hne-8b-yTM" id="oBT-kr-cp6"/>
-                                            <outlet property="shotLabel" destination="iRl-3x-cfT" id="tPt-lR-11C"/>
                                             <outlet property="shotTeaserImageView" destination="Hne-8b-yTM" id="WOj-0b-VZ1"/>
                                             <outlet property="shotTitleLabel" destination="iRl-3x-cfT" id="n95-FI-mGX"/>
                                         </connections>
@@ -66,7 +72,6 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Xpg-hO-XkR" id="89a-DG-qjv"/>
-                        <segue destination="Bpc-x8-7UM" kind="show" identifier="toShotDetailVC" id="zvL-3J-YEW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBm-qO-Drb" userLabel="First Responder" sceneMemberID="firstResponder"/>
