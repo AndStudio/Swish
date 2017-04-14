@@ -247,12 +247,9 @@
 			children = (
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
-<<<<<<< HEAD
 				665984561E9EBF87001BB19F /* UserDetailViewController.swift */,
-=======
 				665984561E9EBF87001BB19F /* UserViewController.swift */,
 				96AF3E451E9FCF2D002A79DD /* LikesViewController.swift */,
->>>>>>> develop
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
