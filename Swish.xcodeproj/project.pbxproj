@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A3E258A1E9FEFBD00810CCB /* ShotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E25891E9FEFBD00810CCB /* ShotDetailViewController.swift */; };
+		5A3E258C1EA062A600810CCB /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E258B1EA062A600810CCB /* UIImage+Gif.swift */; };
 		5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604B9A1E9C41ED00EBF1D3 /* AppDelegate.swift */; };
 		5A604BA01E9C41ED00EBF1D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604B9E1E9C41ED00EBF1D3 /* Main.storyboard */; };
 		5A604BA21E9C41ED00EBF1D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A604BA11E9C41ED00EBF1D3 /* Assets.xcassets */; };
@@ -107,6 +109,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A3E25891E9FEFBD00810CCB /* ShotDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotDetailViewController.swift; sourceTree = "<group>"; };
+		5A3E258B1EA062A600810CCB /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+Gif.swift"; path = "../Pods/SwiftGifOrigin/SwiftGifCommon/UIImage+Gif.swift"; sourceTree = "<group>"; };
 		5A604B971E9C41ED00EBF1D3 /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A604B9A1E9C41ED00EBF1D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5A604B9F1E9C41ED00EBF1D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -246,6 +250,7 @@
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
 				665984561E9EBF87001BB19F /* UserViewController.swift */,
+				5A3E25891E9FEFBD00810CCB /* ShotDetailViewController.swift */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -253,6 +258,7 @@
 		5A604BBD1E9C445C00EBF1D3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5A3E258B1EA062A600810CCB /* UIImage+Gif.swift */,
 				5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */,
 				5A8004161E9EBD89005356CA /* ImageController.swift */,
 				96A2769F1E9E97B7006C21F0 /* Keychain.swift */,
@@ -493,6 +499,8 @@
 				5A8004171E9EBD89005356CA /* ImageController.swift in Sources */,
 				661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */,
 				665984571E9EBF87001BB19F /* UserViewController.swift in Sources */,
+				5A3E258C1EA062A600810CCB /* UIImage+Gif.swift in Sources */,
+				5A3E258A1E9FEFBD00810CCB /* ShotDetailViewController.swift in Sources */,
 				5A604BC41E9C726300EBF1D3 /* AuthViewController.swift in Sources */,
 				5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */,
 				661E6E401E9C4BE90048E5EA /* User.swift in Sources */,
