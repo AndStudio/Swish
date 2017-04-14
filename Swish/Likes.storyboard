@@ -66,17 +66,17 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Xpg-hO-XkR" id="89a-DG-qjv"/>
-                        <segue destination="Bpc-x8-7UM" kind="show" id="zvL-3J-YEW"/>
+                        <segue destination="Bpc-x8-7UM" kind="show" identifier="toShotDetailVC" id="zvL-3J-YEW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBm-qO-Drb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="368.80000000000001" y="353.9730134932534"/>
         </scene>
-        <!--Shot-->
+        <!--ShotDetailView-->
         <scene sceneID="i90-3d-xni">
             <objects>
-                <viewControllerPlaceholder storyboardName="Shot" id="Bpc-x8-7UM" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ShotDetailView" id="Bpc-x8-7UM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilw-Bm-AUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1015" y="354"/>

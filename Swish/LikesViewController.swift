@@ -24,7 +24,12 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         collectionView.delegate = self
         collectionView.dataSource = self
         
-        fetchLikedShots()
+        ApiController.fetchLikedShots(page: String(page)) { (shots) in
+            self.shots = shots
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     // MARK: Delegat and Data Source Functions
@@ -40,9 +45,18 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     // MARK: - Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // send selected shot to ShotDetailViewController
-    }
+    // FIXME: Link it to the correct VC
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "toShotDetailVC" {
+//            guard
+//                let index = collectionView.indexPathsForSelectedItems?.first,
+//                let destinationVC = segue.destination as? ShotDetailViewController
+//                else { return }
+//            
+//            let shot = shots[index.row]
+//            destinationVC.shot = shot
+//        }
+//    }
     
     //MARK: Pagination Properties and Functions
     let threshold: CGFloat = 100
@@ -58,39 +72,14 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         if !isLoadingShots && (offsetDifference < threshold) {
             self.page += 1
-            fetchLikedShots()
-        }
-    }
-    
-    // API Call to get liked Shots
-    func fetchLikedShots(completion: @escaping () -> Void) {
-        // Example endpoint: https://api.dribbble.com/v1/user/likes?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
-        
-        guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/likes") else { return }
-        let urlParameters = ["access_token": NetworkController.accessToken,
-                             "per_page":"20",
-                             "page":String(self.page)] as? [String:String]
-        
-        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
-            if error != nil {
-                NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
-            }
-            
-            guard let data = data else { return }
-            
-            guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { return }
-            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
-            
-            completion(
-                self.shots.append(contentsOf: likedShotsArray),
+            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+                self.shots.append(contentsOf: shots)
                 DispatchQueue.main.async {
-                    collectionView.reloadData()
-                    self.isLoadingShots = false
-                })
+                    self.collectionView.reloadData()
+                }
+            })
         }
-        
     }
-
 }
 
 

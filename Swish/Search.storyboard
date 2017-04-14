@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pHz-TJ-Hn4">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pHz-TJ-Hn4">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -31,10 +31,10 @@
             </objects>
             <point key="canvasLocation" x="674" y="-105"/>
         </scene>
-        <!--Shot-->
+        <!--ShotDetailView-->
         <scene sceneID="oQ6-Pd-nbd">
             <objects>
-                <viewControllerPlaceholder storyboardName="Shot" id="wYX-fz-3sY" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ShotDetailView" id="wYX-fz-3sY" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sfh-u5-Mze" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1399" y="-221"/>

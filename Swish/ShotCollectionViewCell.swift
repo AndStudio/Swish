@@ -18,14 +18,14 @@ class LikedShotCollectionViewCell: UICollectionViewCell {
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
-                updateViews()
+                self.updateViews()
             }
         }
     }
     
     func updateViews() {
         shotTeaserImageView.image = shot?.teaserImage
-        shotTitleLabel = shot?.title
+        shotTitleLabel.text = shot?.title
     }
 
     
