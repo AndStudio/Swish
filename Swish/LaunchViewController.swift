@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import OAuthSwift
 
 class LaunchViewController: UIViewController {
 

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import OAuthSwift
 
 let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
 let accessTokenDeniedNotification = Notification.Name("Access Token Denied")
