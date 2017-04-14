@@ -11,8 +11,7 @@ import UIKit
 
 class User {
     
-    //MARK: - properties keys
-    
+    //properties keys
     private let userIDKey =  "id"
     private let userNameKey =  "name"
     private let userUserNameKey =  "username"
@@ -21,9 +20,7 @@ class User {
     private let likeCountKey =  "likes_count"
     private let userAvatarKey = "avatar_url"
     
-    
-    //MARK: - properties for Users
-    
+    //properties for Users
     let userID: Int
     let userName: String
     let userUserName: String
@@ -34,8 +31,7 @@ class User {
     var userAvatar: UIImage?
     
     
-    
-    //MARK: - memberwise initializer
+    // memberwise initializer
     init(userID: Int, userName: String, userUserName: String, userURL: URL, shotsURL: URL, likeCount: Int, createdDate: Date, userAvatar: UIImage) {
         self.userID = userID
         self.userName = userName
@@ -44,22 +40,20 @@ class User {
         self.shotsURL = shotsURL
         self.likeCount = likeCount
         self.userAvatar = userAvatar
-        
+    
     }
     
-    //MARK: - failable initializer
-    
+    //failable initializer
     init?(dictionary: [String: Any]) {
-        
         let userDictionary = dictionary["user"] as? [String: Any]
         
-        guard let userID = dictionary[userIDKey] as? Int,
+        guard let userID = userDictionary?[userIDKey] as? Int,
             let userName = userDictionary?[userNameKey] as? String,
             let userUserName = userDictionary?[userUserNameKey] as? String,
             let userURL = userDictionary?[userURLKey] as? URL,
             let shotsURL = userDictionary?[shotsURLKey] as? URL,
-            let likeCount = dictionary[likeCountKey] as? Int,
-            let userAvatar = dictionary[userAvatarKey] as? UIImage
+            let likeCount = userDictionary?[likeCountKey] as? Int,
+            let userAvatar = userDictionary?[userAvatarKey] as? UIImage
             
             else { return nil }
         
