@@ -6,6 +6,7 @@
 //  Copyright © 2017 And. All rights reserved.
 //
 
+
 import UIKit
 
 class LikesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
@@ -58,22 +59,17 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         if !isLoadingShots && (offsetDifference < threshold) {
             self.page += 1
             fetchLikedShots()
-            
-            self.isLoadingShots = false
         }
     }
     
     // API Call to get liked Shots
-    // Add a completion to the function and have the collection view reload the data
-    func fetchLikedShots(/*completion: @escaping ([Shot]) -> Void*/) {
+    func fetchLikedShots(completion: @escaping () -> Void) {
         // Example endpoint: https://api.dribbble.com/v1/user/likes?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
         
         guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/likes") else { return }
-        let urlParameters = [
-            "access_token": NetworkController.accessToken,
-            "per_page":"20",
-            "page":String(self.page)
-            ] as? [String:String]
+        let urlParameters = ["access_token": NetworkController.accessToken,
+                             "per_page":"20",
+                             "page":String(self.page)] as? [String:String]
         
         NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
             if error != nil {
@@ -85,11 +81,12 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
             guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { return }
             let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
             
-            self.shots.append(contentsOf: likedShotsArray)
-            
-            DispatchQueue.main.async {
-                collectionView.reloadData()
-            }
+            completion(
+                self.shots.append(contentsOf: likedShotsArray),
+                DispatchQueue.main.async {
+                    collectionView.reloadData()
+                    self.isLoadingShots = false
+                })
         }
         
     }
