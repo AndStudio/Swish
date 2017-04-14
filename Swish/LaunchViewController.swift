@@ -42,8 +42,9 @@ class LaunchViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        guard let keychainValue = Keychain.value(forKey: "accessToken") else { return }
         if Keychain.value(forKey: "accessToken") != nil {
-            NetworkController.accessToken = Keychain.value(forKey: "accessToken")
+            NetworkController.accessToken = keychainValue
             self.performSegue(withIdentifier: "toSwipeVC", sender: self)
         }
     } 
