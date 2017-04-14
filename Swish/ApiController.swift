@@ -10,7 +10,7 @@ import Foundation
 class ApiController {
     
     static let accessToken = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
-//    static let accessToken = NetworkController.accessToken
+    //    static let accessToken = NetworkController.accessToken
     static let baseURL = URL(string: "https://api.dribbble.com/v1/shots/")
     
     static func loadShots(completion: @escaping (([Shot]) -> Void)) {
@@ -24,24 +24,32 @@ class ApiController {
                 return
             }
             guard let data = data,
-                let dictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String: Any],
-                let shot = Shot(dictionary: dictionary),
-                let shotsArray = dictionary["shots"] as? [[String: Any]]
-                
+                let shotsDictionaryArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String: Any]]
+            
                 else { completion([]); return }
             
+            let shots = shotsDictionaryArray.flatMap({ Shot(dictionary: $0) })
             
-            let shots = shotsArray.flatMap({ Shot(dictionary: $0) })
-            
-            ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                shot.normalImage = image
+            for shot in shots {
                 
-            })
-            ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
-                shot.teaserImage = image
-            })
-            DispatchQueue.main.async {
-                completion(shots)
+                if shot.hiDpiImageURL == nil {
+                    
+                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                        shot.largeImage = image
+                    })
+                } else {
+                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                        shot.largeImage = image
+                    })
+                }
+                
+                ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
+                    shot.teaserImage = image
+                })
+                DispatchQueue.main.async {
+                    completion(shots)
+                }
             }
         }
     }

@@ -21,6 +21,7 @@ class Shot {
     private let createdDateKey =  "created_at"
     private let normalImageKey =  "normal"
     private let teaserImageKey = "teaser"
+    private let hiDpiImageKey = "hidpi"
     private let tagsKey =  "tags"
     
     //MARK: - properties
@@ -34,8 +35,9 @@ class Shot {
     let tags: [String]
     let normalImageURL: String
     let teaserImageURL: String
+    let hiDpiImageURL: String?
     
-    var normalImage: UIImage?
+    var largeImage: UIImage?
     var teaserImage: UIImage?
     var user: User?
     
@@ -56,7 +58,6 @@ class Shot {
             let imageDictionary = shotDictionary["images"] as? [String: Any],
             let normalImageURL = imageDictionary[normalImageKey] as? String,
             let teaserImageURL = imageDictionary[teaserImageKey] as? String
-        
             else { return nil }
         
         self.shotID = shotID
@@ -68,6 +69,7 @@ class Shot {
         self.tags = tags
         self.normalImageURL = normalImageURL
         self.teaserImageURL = teaserImageURL
+        self.hiDpiImageURL = imageDictionary[hiDpiImageKey] as? String
         
         if let userData = dictionary["user"] as? [String: Any] {
             self.user = User(dictionary: userData)
