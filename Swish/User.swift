@@ -16,11 +16,10 @@ class User {
     private let userIDKey =  "id"
     private let userNameKey =  "name"
     private let userUserNameKey =  "username"
-    private let userURLKey =  ""
-    private let shotsURLKey = ""
+    private let userURLKey =  "html_url"
+    private let shotsURLKey = "shots_url"
     private let likeCountKey =  "likes_count"
-    private let imageLinkURLKey =  "html_url"
-    
+    private let userAvatarKey = "avatar_url"
     
     
     //MARK: - properties for Users
@@ -31,19 +30,20 @@ class User {
     let userURL: URL
     let shotsURL: URL
     let likeCount: Int
-    let imageLinkURL: URL
+    
+    var userAvatar: UIImage?
     
     
     
     //MARK: - memberwise initializer
-    init(userID: Int, userName: String, userUserName: String, userURL: URL, shotsURL: URL, likeCount: Int, createdDate: Date, imageLinkURL: URL) {
+    init(userID: Int, userName: String, userUserName: String, userURL: URL, shotsURL: URL, likeCount: Int, createdDate: Date, userAvatar: UIImage) {
         self.userID = userID
         self.userName = userName
         self.userUserName = userUserName
         self.userURL = userURL
         self.shotsURL = shotsURL
         self.likeCount = likeCount
-        self.imageLinkURL = imageLinkURL
+        self.userAvatar = userAvatar
         
     }
     
@@ -59,7 +59,7 @@ class User {
             let userURL = userDictionary?[userURLKey] as? URL,
             let shotsURL = userDictionary?[shotsURLKey] as? URL,
             let likeCount = dictionary[likeCountKey] as? Int,
-            let imageLinkURL = dictionary[imageLinkURLKey] as? URL
+            let userAvatar = dictionary[userAvatarKey] as? UIImage
             
             else { return nil }
         
@@ -70,7 +70,7 @@ class User {
         self.userURL = userURL
         self.shotsURL = shotsURL
         self.likeCount = likeCount
-        self.imageLinkURL = imageLinkURL
+        self.userAvatar = userAvatar
     }
 
     

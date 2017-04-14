@@ -10,4 +10,23 @@ import UIKit
 
 class LikedShotCollectionViewCell: UICollectionViewCell {
     
+    // MARK: IBOutlets
+    @IBOutlet weak var shotTeaserImageView: UIImageView!
+    @IBOutlet weak var shotTitleLabel: UILabel!
+    
+    // MARK: Properties
+    var shot: Shot? {
+        didSet {
+            DispatchQueue.main.async {
+                updateViews()
+            }
+        }
+    }
+    
+    func updateViews() {
+        shotTeaserImageView.image = shot?.teaserImage
+        shotTitleLabel = shot?.title
+    }
+
+    
 }
