@@ -77,10 +77,10 @@
             </objects>
             <point key="canvasLocation" x="168.80000000000001" y="92.203898050974516"/>
         </scene>
-        <!--Shot-->
+        <!--ShotDetailView-->
         <scene sceneID="4cN-Om-s3A">
             <objects>
-                <viewControllerPlaceholder storyboardName="Shot" id="cvn-wv-nXw" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="ShotDetailView" id="cvn-wv-nXw" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bbv-TX-BgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="815" y="92"/>

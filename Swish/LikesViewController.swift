@@ -88,7 +88,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
             self.shots.append(contentsOf: likedShotsArray)
             
             DispatchQueue.main.async {
-                collectionView.reloadData()
+                self.collectionView.reloadData()
             }
         }
         
