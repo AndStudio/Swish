@@ -66,6 +66,7 @@ class ApiController {
             let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
             
             completion(likedShotsArray)
+            
         }
         
     }

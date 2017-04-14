@@ -40,14 +40,6 @@
                                     <segue destination="exb-TL-nNF" kind="show" id="TMx-y4-oad"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZb-Rd-No4">
-                                <rect key="frame" x="125" y="68" width="85" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="LIKES"/>
-                                <connections>
-                                    <segue destination="NfW-ej-TVg" kind="show" id="krR-kg-rrn"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -101,14 +93,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Iac-Iw-x1F" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="985" y="770"/>
-        </scene>
-        <!--Likes-->
-        <scene sceneID="4mZ-tN-BVY">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Likes" id="NfW-ej-TVg" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ixS-c3-8tJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1694" y="-127"/>
         </scene>
         <!--Swipe-->
         <scene sceneID="Uqi-bc-okt">
