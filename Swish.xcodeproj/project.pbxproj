@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A2A17F71EA28C1D00158E55 /* SwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A2A17F61EA28C1D00158E55 /* SwipeViewController.swift */; };
 		5A3E258A1E9FEFBD00810CCB /* ShotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E25891E9FEFBD00810CCB /* ShotDetailViewController.swift */; };
 		5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A604B9A1E9C41ED00EBF1D3 /* AppDelegate.swift */; };
 		5A604BA01E9C41ED00EBF1D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5A604B9E1E9C41ED00EBF1D3 /* Main.storyboard */; };
@@ -49,6 +50,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5A2A17F61EA28C1D00158E55 /* SwipeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeViewController.swift; sourceTree = "<group>"; };
 		5A3E25891E9FEFBD00810CCB /* ShotDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotDetailViewController.swift; sourceTree = "<group>"; };
 		5A604B971E9C41ED00EBF1D3 /* Swish.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Swish.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5A604B9A1E9C41ED00EBF1D3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
+				5A2A17F61EA28C1D00158E55 /* SwipeViewController.swift */,
 				665984561E9EBF87001BB19F /* UserDetailViewController.swift */,
 				5A3E25891E9FEFBD00810CCB /* ShotDetailViewController.swift */,
 				96AF3E451E9FCF2D002A79DD /* LikesViewController.swift */,
@@ -312,6 +315,7 @@
 				967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */,
 				5A604BC21E9C6E0900EBF1D3 /* LaunchViewController.swift in Sources */,
 				963C597B1EA16BD40015A139 /* UIImage+gif.swift in Sources */,
+				5A2A17F71EA28C1D00158E55 /* SwipeViewController.swift in Sources */,
 				5A80040F1E9EBD3F005356CA /* Shot.swift in Sources */,
 				5A604BC01E9C6CAC00EBF1D3 /* Appearance.swift in Sources */,
 				96AF3E471E9FCF2D002A79DD /* LikesViewController.swift in Sources */,

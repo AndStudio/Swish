@@ -39,6 +39,7 @@ class ShotDetailViewController: UIViewController {
     }
     
     var shot: Shot?
+    
     func updateViews() {
         var userUserName: String
         guard let shot = shot , let user = shot.user else { return }

@@ -12,7 +12,6 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
     
     //MARK: - Properties
     
-    
     //MARK: - Outlets 
     
     @IBOutlet weak var authWebView: UIWebView!
