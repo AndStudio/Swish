@@ -23,26 +23,9 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlA-WQ-6q9">
                                 <rect key="frame" x="67.5" y="213" width="240" height="240"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cvl-WG-zap">
-                                        <rect key="frame" x="98.5" y="-37" width="42" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ra9-FA-OcZ">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="240"/>
-                                    </imageView>
-                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstItem="Ra9-FA-OcZ" firstAttribute="centerX" secondItem="GlA-WQ-6q9" secondAttribute="centerX" id="9x7-fx-mB4"/>
-                                    <constraint firstItem="Ra9-FA-OcZ" firstAttribute="centerY" secondItem="GlA-WQ-6q9" secondAttribute="centerY" id="BXj-K9-aGw"/>
-                                    <constraint firstItem="Cvl-WG-zap" firstAttribute="centerX" secondItem="Ra9-FA-OcZ" secondAttribute="centerX" id="Bdd-5Z-G7d"/>
                                     <constraint firstAttribute="height" constant="240" id="E7y-Ud-ncK"/>
-                                    <constraint firstItem="Ra9-FA-OcZ" firstAttribute="width" secondItem="GlA-WQ-6q9" secondAttribute="width" id="Ec0-XR-H35"/>
-                                    <constraint firstItem="Ra9-FA-OcZ" firstAttribute="height" secondItem="GlA-WQ-6q9" secondAttribute="height" id="dkb-Hx-e1H"/>
-                                    <constraint firstItem="Cvl-WG-zap" firstAttribute="bottom" secondItem="Ra9-FA-OcZ" secondAttribute="top" constant="-16" id="fN3-aW-zjM"/>
                                     <constraint firstAttribute="width" constant="240" id="hbB-yd-wDh"/>
                                 </constraints>
                             </view>
@@ -54,8 +37,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="shotImageView" destination="Ra9-FA-OcZ" id="VQe-QN-QOw"/>
-                        <outlet property="titleLabel" destination="Cvl-WG-zap" id="8es-Zy-6f5"/>
                         <segue destination="kbn-zo-LZK" kind="show" id="hVP-kH-ZSm"/>
                         <segue destination="fFN-s1-p93" kind="show" id="rvu-vK-7I2"/>
                     </connections>
