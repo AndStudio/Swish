@@ -22,22 +22,20 @@ class LaunchViewController: UIViewController {
     //MARK: - UI Actions
     
     @IBAction func signInButtonTapped(_ sender: Any) {
+        
     }
     
     //MARK: - View lifecyle
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // FIXME: REMOVE THIS LINE BEFORE SHIPPING!
-        _ = Keychain.removeValue(forKey: "accessToken")
+//        _ = Keychain.removeValue(forKey: "accessToken")
         
         DispatchQueue.main.async {
             self.updateViews()
         }
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,8 +63,5 @@ class LaunchViewController: UIViewController {
         signInButton.clipsToBounds = true
         
     }
-    
-
-    
     
 }
