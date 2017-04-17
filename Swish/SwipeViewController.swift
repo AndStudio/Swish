@@ -25,6 +25,7 @@ class SwipeViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
 
     
+    
     //MARK: - View lifecycle
 
     override func viewDidLoad() {
@@ -46,6 +47,17 @@ class SwipeViewController: UIViewController {
         
         emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
         self.view.addSubview(emojiOptionsOverlay)
+        
+        // likes button
+        
+        let emojiPadding: CGFloat = 20
+        
+        let likesButton: UIButton = UIButton(frame: CGRect(x: view.frame.width - emojiPadding - 50, y: 30, width: 35, height: 35))
+        likesButton.setImage(UIImage(named: "likedCards"), for: .normal)
+        likesButton.addTarget(self, action: #selector(likesButtonTapped), for: .touchUpInside)
+        likesButton.tag = 1
+        self.view.addSubview(likesButton)
+        self.view.bringSubview(toFront: likesButton)
         
     }
     
@@ -310,11 +322,12 @@ extension SwipeViewController {
     
     func setUpDummyUI() {
         // menu icon
-        let menuIconImageView = UIImageView(image: UIImage(named: "leaderBoard"))
+        let menuIconImageView = UIImageView(image: UIImage(named: "menuFat"))
         menuIconImageView.contentMode = .scaleAspectFit
         menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
         menuIconImageView.isUserInteractionEnabled = false
         self.view.addSubview(menuIconImageView)
+        
         
         // title label
         let titleLabel = UILabel()
@@ -346,6 +359,22 @@ extension SwipeViewController {
         smileArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) + 20, y: self.view.frame.height - 120, width: 75, height: 75)
         smileArrowImageView.isUserInteractionEnabled = false
         self.view.addSubview(smileArrowImageView)
+    }
+    
+    // likes button segue
+    
+    func likesButtonTapped(sender: UIButton!) {
+        let buttonSendTag: UIButton = sender
+        if buttonSendTag.tag == 1 {
+            
+            guard let vc = UIStoryboard(name: "Likes", bundle: nil).instantiateViewController(withIdentifier: "likes") as? LikesViewController else {
+                print("probelem instantiting view controller for likes")
+                return
+            }
+        
+            self.performSegue(withIdentifier: "likes", sender: self)
+            
+        }
     }
 }
 
