@@ -46,17 +46,17 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     // MARK: - Navigation
     // FIXME: Link it to the correct VC
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toShotDetailVC" {
-//            guard
-//                let index = collectionView.indexPathsForSelectedItems?.first,
-//                let destinationVC = segue.destination as? ShotDetailViewController
-//                else { return }
-//            
-//            let shot = shots[index.row]
-//            destinationVC.shot = shot
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toShotDetailVC" {
+            guard
+                let index = collectionView.indexPathsForSelectedItems?.first,
+                let destinationVC = segue.destination as? ShotDetailViewController
+                else { return }
+            
+            let shot = shots[index.row]
+            destinationVC.shot = shot
+        }
+    }
     
     //MARK: Pagination Properties and Functions
     let threshold: CGFloat = 100
@@ -84,7 +84,8 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
 
 
 
-
+// GIT TEST
+// Another GIT TEST
 
 
 
