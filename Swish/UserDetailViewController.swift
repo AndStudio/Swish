@@ -22,20 +22,15 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICol
 //        collectionView.DataSource = self
 //        collectionView.Delegate = self
         
+        // adjust to fetch all shots, not just liked shots
         ApiController.loadShots { (shots) in
+            self.shots = shots
             DispatchQueue.main.async {
-                self.shots = shots
+   //             self.collectionView.reloadData()
             }
         }
 
         
-        // adjust to fetch all shots, not just liked shots
-//        ApiController.loadShots(page: String()) { (shots) in
-//            self.shots = shots
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
-//        }
 
     }
     
