@@ -14,8 +14,12 @@ class SwipeViewController: UIViewController {
     
     static let shared = SwipeViewController()
     
-    var shots = [Shot]()
+    var shots: [Shot] = []
     var cards = [ShotCard]()
+    
+    let threshold: CGFloat = 100
+    var page: Int = 1
+    var isLoadingShots = false
     
     var emojiOptionsOverlay: EmojiOptionsOverlay!
     
@@ -25,7 +29,6 @@ class SwipeViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
 
     
-    
     //MARK: - View lifecycle
 
     override func viewDidLoad() {
@@ -33,10 +36,11 @@ class SwipeViewController: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         
-        view.backgroundColor = Colors.dribbbleGray
-        
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
-        setUpDummyUI()
+        
+        setUpUI()
+        
+        // create the card UI
         
         for _ in 1...20 {
             let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
@@ -48,17 +52,37 @@ class SwipeViewController: UIViewController {
         emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
         self.view.addSubview(emojiOptionsOverlay)
         
-        // likes button
+        ApiController.loadShots { (shots) in
+            self.shots = shots
+            
+            DispatchQueue.main.async {
+                // reload and update stuff
+            }
+        }
         
-        let emojiPadding: CGFloat = 20
+        self.incrementShotLoading()
         
-        let likesButton: UIButton = UIButton(frame: CGRect(x: view.frame.width - emojiPadding - 50, y: 30, width: 35, height: 35))
-        likesButton.setImage(UIImage(named: "likedCards"), for: .normal)
-        likesButton.addTarget(self, action: #selector(likesButtonTapped), for: .touchUpInside)
-        likesButton.tag = 1
-        self.view.addSubview(likesButton)
-        self.view.bringSubview(toFront: likesButton)
+    }
+    
+    //MARK: - Pagination 
+    
+    func incrementShotLoading() {
+        // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
         
+        if !isLoadingShots && (shots.count <= 4) {
+            self.page += 1
+            
+            ApiController.loadShots(completion: { (shots) in
+                
+                for shot in shots {
+                    self.shots.append(shot)
+                }
+                
+                DispatchQueue.main.async {
+                    //reload data or something
+                }
+            })
+        }
     }
     
     // Scale and alpha of successive cards visible to the user
@@ -297,6 +321,7 @@ class SwipeViewController: UIViewController {
                 }
             })
         } else {
+            
             // fallback for earlier versions
             UIView.animate(withDuration: 0.2, delay: 1.5, options: [.curveEaseIn], animations: {
                 self.cards[0].alpha = 0.0
@@ -305,10 +330,13 @@ class SwipeViewController: UIViewController {
             })
         }
     }
+    
+    
+    
 }
 
 
-//MARK: - Not related to cards logic code
+//MARK: - Not related to cards logic
 
 extension SwipeViewController {
     
@@ -320,7 +348,21 @@ extension SwipeViewController {
     
     // Blank UI 
     
-    func setUpDummyUI() {
+    func setUpUI() {
+        
+        view.backgroundColor = Colors.dribbbleGray
+        
+        // likes button 
+        
+        let emojiPadding: CGFloat = 20
+        
+        let likesButton: UIButton = UIButton(frame: CGRect(x: view.frame.width - emojiPadding - 50, y: 30, width: 35, height: 35))
+        likesButton.setImage(UIImage(named: "likedCards"), for: .normal)
+        likesButton.addTarget(self, action: #selector(likesButtonTapped), for: .touchUpInside)
+        likesButton.tag = 1
+        self.view.addSubview(likesButton)
+        self.view.bringSubview(toFront: likesButton)
+        
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menuFat"))
         menuIconImageView.contentMode = .scaleAspectFit
@@ -377,6 +419,7 @@ extension SwipeViewController {
         }
     }
 }
+
 
 
 

@@ -84,10 +84,6 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
 
 
 
-// GIT TEST
-// Another GIT TEST
-
-
 
 
 
