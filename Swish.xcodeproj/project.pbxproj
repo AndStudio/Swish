@@ -110,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				5A604BAD1E9C433500EBF1D3 /* Storyboards */,
-				66C5FC6B1EA504D8007B28AB /* View */,
 				5A604BBC1E9C445600EBF1D3 /* ViewControllers */,
 				5A604BBB1E9C444F00EBF1D3 /* Views */,
 				5A604BBA1E9C444100EBF1D3 /* ModelController */,
@@ -175,6 +174,7 @@
 		5A604BBB1E9C444F00EBF1D3 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				66C5FC691EA504C1007B28AB /* UserProfileCollectionReusableView.swift */,
 				96AF3E441E9FCF2D002A79DD /* ShotCollectionViewCell.swift */,
 			);
 			name = Views;
@@ -210,14 +210,6 @@
 				967D83C51E9D9F17001BE32E /* NetworkController.swift */,
 			);
 			name = Network;
-			sourceTree = "<group>";
-		};
-		66C5FC6B1EA504D8007B28AB /* View */ = {
-			isa = PBXGroup;
-			children = (
-				66C5FC691EA504C1007B28AB /* UserProfileCollectionReusableView.swift */,
-			);
-			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
