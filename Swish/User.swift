@@ -28,7 +28,7 @@ class User {
     let shotsURL: URL
     let likeCount: Int
     
-    var userAvatar: UIImage?
+    let userAvatar: UIImage?
     
     
     // memberwise initializer
