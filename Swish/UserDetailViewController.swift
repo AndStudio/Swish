@@ -8,19 +8,44 @@
 
 import UIKit
 
-class UserDetailViewController: UIViewController {
+private let reuseIdentifier = "userShotCell"
+
+class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
     var userAvatar = UIImage()
+    var shots: [Shot] = []
     
+        
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+//        collectionView.DataSource = self
+//        collectionView.Delegate = self
+        
+        // adjust to fetch all shots, not just liked shots
+        ApiController.loadShots { (shots) in
+            self.shots = shots
+            DispatchQueue.main.async {
+   //             self.collectionView.reloadData()
+            }
+        }
+
+        
 
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return shots.count
     }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? UICollectionViewCell else { return UICollectionViewCell() }
+        
+        let shot = shots[indexPath.row]
+        return cell
+    }
+
+
 
 
     /*

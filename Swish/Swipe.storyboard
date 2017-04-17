@@ -37,7 +37,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="kbn-zo-LZK" kind="show" id="hVP-kH-ZSm"/>
+                        <segue destination="kbn-zo-LZK" kind="show" identifier="likes" id="hVP-kH-ZSm"/>
                         <segue destination="fFN-s1-p93" kind="show" id="rvu-vK-7I2"/>
                     </connections>
                 </viewController>
