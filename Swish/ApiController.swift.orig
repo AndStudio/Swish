@@ -15,11 +15,7 @@ class ApiController {
     
     static func loadShots(completion: @escaping (([Shot]) -> Void)) {
         guard let url = baseURL  else { return }
-<<<<<<< HEAD
-        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "10"]
-=======
-        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "20"]
->>>>>>> adfc516910b7795b6350786ccaab7260c77a9022
+        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "1"]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
             if let error = error {
@@ -34,6 +30,7 @@ class ApiController {
             
             let shots = shotsDictionaryArray.flatMap({ Shot(dictionary: $0) })
             
+<<<<<<< HEAD
             let group = DispatchGroup()
             
             for shot in shots {
@@ -57,6 +54,28 @@ class ApiController {
                     shot.teaserImage = image
                     group.leave()
                 })
+=======
+//            for shot in shots {
+//                
+//                if shot.hiDpiImageURL == nil {
+//                    
+//                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+//                        shot.largeImage = image
+//                    })
+//                } else {
+//                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+//                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+//                        shot.largeImage = image
+//                    })
+//                }
+//                
+//                ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
+//                    shot.teaserImage = image
+//                })
+                DispatchQueue.main.async {
+                    completion(shots)
+                
+>>>>>>> develop
             }
             
             group.notify(queue: DispatchQueue.main, execute: { 
@@ -81,10 +100,26 @@ static func fetchLikedShots(page: String, completion: @escaping ([Shot]) -> Void
         
         guard let data = data else { completion([]); return }
         
+<<<<<<< HEAD
         guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
         let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
         
         completion(likedShotsArray)
+=======
+        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+            if error != nil {
+                NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
+            }
+            
+            guard let data = data else { completion([]); return }
+            
+            guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
+            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            
+            completion(likedShotsArray)
+            
+        }
+>>>>>>> develop
         
     }
     
