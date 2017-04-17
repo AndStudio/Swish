@@ -38,10 +38,10 @@ class ShotDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ApiController.loadShots { (shots) in
-            guard let shot = shots.first else { return }
-            self.shot = shot
-        }
-        //        updateViews()
+         guard let shot = shots.first else { return }
+         self.shot = shot
+    }
+        
         views()
         
     }

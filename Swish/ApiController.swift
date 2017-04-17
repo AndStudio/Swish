@@ -15,7 +15,7 @@ class ApiController {
     
     static func loadShots(completion: @escaping (([Shot]) -> Void)) {
         guard let url = baseURL  else { return }
-        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "1"]
+        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "10"]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
             if let error = error {
