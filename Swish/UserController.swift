@@ -20,9 +20,9 @@ class UserController {
     static func fetchUserWith(userID: Int, completion: @escaping([User]) -> Void) {
         guard let url = baseURL else { completion([])
             return}
-        let parameters = ["count":"\(userID)"]
+        let urlParameter = ["count":"\(userID)"]
         
-        NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: parameters, body: nil) { (data, error) in
+        NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameter, body: nil) { (data, error) in
             
             if let error = error {
                 print(error.localizedDescription)

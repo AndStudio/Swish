@@ -23,9 +23,10 @@ class UserProfileCollectionReusableView: UICollectionReusableView {
     }
     func updateViews() {
         guard let user = users else {return}
-       // userAvatarImageView.image(forURL: (user.imageURL)) { (image) in
-        //    self.userAvatarImageView.image = image
         userNameLabel.text = user.userUserName
-        nameLabel.text = user.userName 
+        nameLabel.text = user.userName
+        ImageController.image(forURL: (user.userURL)) { (image) in
+            self.userAvatarImageView.image = image
+        }
     }
 }

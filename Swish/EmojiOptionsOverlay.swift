@@ -36,9 +36,12 @@ class EmojiOptionsOverlay: UIView {
         heartEmoji.frame = CGRect(x: frame.width - emojiPadding - 50, y: 30, width: 35, height: 35)
         heartEmoji.layer.zPosition = CGFloat(FLT_MAX)
         self.addSubview(heartEmoji)
+        
         darkHeartEmoji.frame = heartEmoji.frame
         darkHeartEmoji.layer.zPosition = CGFloat(FLT_MAX)
-        self.addSubview(darkHeartEmoji)
+//        self.addSubview(darkHeartEmoji)
+        
+        
         
         // initial state
         like1Emoji.alpha = emojiInitialAlpha
@@ -53,6 +56,7 @@ class EmojiOptionsOverlay: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     
     // MARK: Smiley Emojis
     

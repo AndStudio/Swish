@@ -12,7 +12,7 @@
         <!--Likes View Controller-->
         <scene sceneID="39l-2j-G9y">
             <objects>
-                <viewController id="bx8-Dc-IQ2" customClass="LikesViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="likes" id="bx8-Dc-IQ2" customClass="LikesViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jlK-bc-Lw9"/>
                         <viewControllerLayoutGuide type="bottom" id="oLJ-Vf-iij"/>
