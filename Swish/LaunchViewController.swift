@@ -53,6 +53,7 @@ class LaunchViewController: UIViewController {
     func updateViews() {
         
         // set up button and title label 
+        titleLabelOutlet.text = "testing this "
         
         self.view.backgroundColor = Colors.primaryPink
         titleLabelOutlet.textColor = Colors.secondaryPink

@@ -27,6 +27,4 @@ class LikedShotCollectionViewCell: UICollectionViewCell {
         shotTeaserImageView.image = shot?.teaserImage
         shotTitleLabel.text = shot?.title
     }
-
-    
 }
