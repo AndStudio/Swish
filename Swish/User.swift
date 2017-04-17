@@ -21,18 +21,18 @@ class User {
     private let userAvatarKey = "avatar_url"
     
     //properties for Users
-    let userID: Int
-    let userName: String
-    let userUserName: String
-    let userURL: URL
-    let shotsURL: URL
-    let likeCount: Int
+    var userID: Int
+    var userName: String
+    var userUserName: String
+    var userURL: String
+    var shotsURL: String
+    var likeCount: Int
     
     var userAvatar: UIImage?
     
     
     // memberwise initializer
-    init(userID: Int, userName: String, userUserName: String, userURL: URL, shotsURL: URL, likeCount: Int, createdDate: Date, userAvatar: UIImage) {
+    init(userID: Int, userName: String, userUserName: String, userURL: String, shotsURL: String, likeCount: Int, createdDate: Date, userAvatar: UIImage) {
         self.userID = userID
         self.userName = userName
         self.userUserName = userUserName
@@ -50,8 +50,8 @@ class User {
         guard let userID = userDictionary?[userIDKey] as? Int,
             let userName = userDictionary?[userNameKey] as? String,
             let userUserName = userDictionary?[userUserNameKey] as? String,
-            let userURL = userDictionary?[userURLKey] as? URL,
-            let shotsURL = userDictionary?[shotsURLKey] as? URL,
+            let userURL = userDictionary?[userURLKey] as? String,
+            let shotsURL = userDictionary?[shotsURLKey] as? String,
             let likeCount = userDictionary?[likeCountKey] as? Int,
             let userAvatar = userDictionary?[userAvatarKey] as? UIImage
             
