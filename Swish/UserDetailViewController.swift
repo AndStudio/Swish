@@ -8,6 +8,7 @@
 
 import UIKit
 
+private let reuseIdentifier = "userShotCell"
 
 class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
 
@@ -21,8 +22,15 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICol
 //        collectionView.DataSource = self
 //        collectionView.Delegate = self
         
+        ApiController.loadShots { (shots) in
+            DispatchQueue.main.async {
+                self.shots = shots
+            }
+        }
+
+        
         // adjust to fetch all shots, not just liked shots
-//        ApiController.fetchLikedShots(page: String(page)) { (shots) in
+//        ApiController.loadShots(page: String()) { (shots) in
 //            self.shots = shots
 //            DispatchQueue.main.async {
 //                self.collectionView.reloadData()
@@ -36,9 +44,9 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? UICollectionViewCell else { return UICollectionViewCell() }
         
-        cell.shot = shots[indexPath.row]
+        let shot = shots[indexPath.row]
         return cell
     }
 
