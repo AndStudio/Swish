@@ -38,7 +38,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "shotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "likedShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
         
         cell.shot = shots[indexPath.row]
         return cell
@@ -82,10 +82,6 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
 }
 
-
-
-// GIT TEST
-// Another GIT TEST
 
 
 

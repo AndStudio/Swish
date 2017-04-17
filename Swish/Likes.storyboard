@@ -12,7 +12,7 @@
         <!--Likes View Controller-->
         <scene sceneID="39l-2j-G9y">
             <objects>
-                <viewController id="bx8-Dc-IQ2" customClass="LikesViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="likes" id="bx8-Dc-IQ2" customClass="LikesViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jlK-bc-Lw9"/>
                         <viewControllerLayoutGuide type="bottom" id="oLJ-Vf-iij"/>
@@ -32,7 +32,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="shotCell" id="KAc-bx-8WX" customClass="LikedShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LikedShotCell" id="KAc-bx-8WX" customClass="LikedShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="166" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
