@@ -12,51 +12,14 @@ class ShotCard: CardView {
     
     //MARK: - Properties 
     
-    var shots = [Shot]()
+    var shots = SwipeViewController.shared.shots
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        // get the shot info
-        
-        ApiController.loadShots { (shots) in
-            DispatchQueue.main.async {
-                self.shots = shots
-                updateViews()
-            }
-        }
-        
-        func updateViews() {
-            guard let shot = shots.first,
-                let shotPictureURL = URL(string: "\(shot.normalImageURL)") else { return }
-            
-            let session = URLSession(configuration: .default)
-            
-            let downloadPicTask = session.dataTask(with: shotPictureURL) { (data, response, error) in
-                if let error = error {
-                    print("Error downloading shot pic \(error)")
-                } else {
-                    if let response = response as? HTTPURLResponse {
-                        print("Downloaded shot pic with code \(response.statusCode)")
-                        if let imageData = data {
-                            
-                            let image = UIImage(data: imageData)
-                            shot.largeImage = image
-                            
-                        } else {
-                            print("Couldnt get image")
-                        }
-                    } else {
-                        print("Couldnt get response code for some reason")
-                    }
-                }
-            }
-            
-            downloadPicTask.resume()
-            
+
             // set stuff
             
-            let imageView = UIImageView(image: UIImage(named: "manor-icon"))
+            let imageView = UIImageView(image: UIImage(named: "company"))
             imageView.contentMode = .scaleAspectFill
             imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
             imageView.layer.cornerRadius = 5
@@ -86,8 +49,7 @@ class ShotCard: CardView {
             usernameLabel.textAlignment = .left
             usernameLabel.frame = CGRect(x: 16, y: titleLabel.frame.maxY + 4, width: 300, height: 24)
             self.addSubview(usernameLabel)
-            
-        }
+
     }
     
     required init?(coder aDecoder: NSCoder) {
