@@ -41,7 +41,7 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dM3-IP-D0R">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dM3-IP-D0R" customClass="UserProfileCollectionReusableView" customModule="Swish" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="163"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -64,6 +64,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <connections>
+                                        <outlet property="nameLabel" destination="SFG-O0-M3g" id="9bl-Rx-xl9"/>
+                                        <outlet property="userAvatarImageView" destination="6Wl-u9-qO6" id="ohG-10-m0U"/>
+                                        <outlet property="userNameLabel" destination="2dM-2Y-kk4" id="jiV-d2-3sR"/>
+                                    </connections>
                                 </collectionReusableView>
                             </collectionView>
                         </subviews>

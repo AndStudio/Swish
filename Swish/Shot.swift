@@ -42,20 +42,18 @@ class Shot {
     var user: User?
     
     
-    
     //MARK: - failable initializer
     
     init?(dictionary: [String: Any]) {
         
-        guard let shotDictionary = dictionary["shot"] as? [String:Any],
-            let shotID = shotDictionary[shotIDKey] as? Int,
-            let title = shotDictionary[titleKey] as? String,
-            let description = shotDictionary[descriptionKey] as? String,
-            let viewCount = shotDictionary[viewCountKey] as? Int,
-            let likeCount = shotDictionary[likeCountKey] as? Int,
-            let createdDate = shotDictionary[createdDateKey] as? String,
-            let tags = shotDictionary[tagsKey] as? [String],
-            let imageDictionary = shotDictionary["images"] as? [String: Any],
+        guard let shotID = dictionary[shotIDKey] as? Int,
+            let title = dictionary[titleKey] as? String,
+            let description = dictionary[descriptionKey] as? String,
+            let viewCount = dictionary[viewCountKey] as? Int,
+            let likeCount = dictionary[likeCountKey] as? Int,
+            let createdDate = dictionary[createdDateKey] as? String,
+            let tags = dictionary[tagsKey] as? [String],
+            let imageDictionary = dictionary["images"] as? [String: Any],
             let normalImageURL = imageDictionary[normalImageKey] as? String,
             let teaserImageURL = imageDictionary[teaserImageKey] as? String
             else { return nil }

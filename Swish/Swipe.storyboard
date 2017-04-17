@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Swipe View Controller-->
         <scene sceneID="zl5-8q-Hg9">
             <objects>
-                <viewController id="W65-mW-h3c" sceneMemberID="viewController">
+                <viewController id="W65-mW-h3c" customClass="SwipeViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LpC-3a-eHk"/>
                         <viewControllerLayoutGuide type="bottom" id="ftf-TZ-cUt"/>
@@ -21,23 +21,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="TEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="drm-ra-Ksb">
-                                <rect key="frame" x="166" y="276" width="41" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vH1-ng-wQx">
-                                <rect key="frame" x="161" y="92" width="46" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="qAI-YQ-KqP" kind="show" id="G9f-96-ZI5"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlA-WQ-6q9">
+                                <rect key="frame" x="67.5" y="213" width="240" height="240"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="E7y-Ud-ncK"/>
+                                    <constraint firstAttribute="width" constant="240" id="hbB-yd-wDh"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="GlA-WQ-6q9" firstAttribute="centerY" secondItem="FzA-Vv-Rhu" secondAttribute="centerY" id="Fhm-ra-uZO"/>
+                            <constraint firstItem="GlA-WQ-6q9" firstAttribute="centerX" secondItem="FzA-Vv-Rhu" secondAttribute="centerX" id="JYT-J8-qzs"/>
+                        </constraints>
                     </view>
                     <connections>
                         <segue destination="kbn-zo-LZK" kind="show" id="hVP-kH-ZSm"/>
@@ -47,14 +44,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4nf-oa-h3q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="263" y="120"/>
-        </scene>
-        <!--Likes-->
-        <scene sceneID="W94-MN-7Vc">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Likes" id="qAI-YQ-KqP" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hvp-su-5mc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="881" y="-116"/>
         </scene>
         <!--Likes-->
         <scene sceneID="AXY-MQ-qP3">
