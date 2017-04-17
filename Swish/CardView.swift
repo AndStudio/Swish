@@ -9,11 +9,11 @@
 import UIKit
 
 public enum CardOption: String {
-    case like1 = "I love it!"
+    case like1 = "Swish! 😍"
     case like2 = "I do like it"
     case like3 = "It's fine"
     
-    case dislike1 = "Terrible!"
+    case dislike1 = "Airball 💩"
     case dislike2 = "I do not"
     case dislike3 = "Not enough"
 }

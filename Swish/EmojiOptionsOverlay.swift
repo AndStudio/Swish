@@ -16,15 +16,11 @@ class EmojiOptionsOverlay: UIView {
     let emojiInitialAlpha: CGFloat = 0.45
     
     let like1Emoji = UIImageView(image: UIImage(named: "like1"))
-    let like2Emoji = UIImageView(image: UIImage(named: "like2"))
-    let like3Emoji = UIImageView(image: UIImage(named: "like3"))
     
     let dislike1Emoji = UIImageView(image: UIImage(named: "dislike1"))
-    let dislike2Emoji = UIImageView(image: UIImage(named: "dislike2"))
-    let dislike3Emoji = UIImageView(image: UIImage(named: "dislike3"))
     
-    let heartEmoji = UIImageView(image: UIImage(named: "heart"))
-    let darkHeartEmoji = UIImageView(image: UIImage(named: "heart_dark"))
+    let heartEmoji = UIImageView(image: UIImage(named: "likeCardsHighlight"))
+    let darkHeartEmoji = UIImageView(image: UIImage(named: "likedCards"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,22 +30,10 @@ class EmojiOptionsOverlay: UIView {
         like1Emoji.frame = CGRect(x: frame.width - emojiPadding - emojiSize.width, y: (frame.height/2) - (emojiSize.height * 1.5) - emojiPadding, width: emojiSize.width, height: emojiSize.height)
         self.addSubview(like1Emoji)
         
-        like2Emoji.frame = CGRect(x: frame.width - emojiPadding - emojiSize.width, y: (frame.height/2) - (emojiSize.height * 0.5), width: emojiSize.width, height: emojiSize.height)
-        self.addSubview(like2Emoji)
-        
-        like3Emoji.frame = CGRect(x: frame.width - emojiPadding - emojiSize.width, y: (frame.height/2) + (emojiSize.height * 0.5) + emojiPadding, width: emojiSize.width, height: emojiSize.height)
-        self.addSubview(like3Emoji)
-        
         dislike1Emoji.frame = CGRect(x: emojiPadding, y: (frame.height/2) - (emojiSize.height * 1.5) - emojiPadding, width: emojiSize.width, height: emojiSize.height)
         self.addSubview(dislike1Emoji)
         
-        dislike2Emoji.frame = CGRect(x: emojiPadding, y: (frame.height/2) - (emojiSize.height * 0.5), width: emojiSize.width, height: emojiSize.height)
-        self.addSubview(dislike2Emoji)
-        
-        dislike3Emoji.frame = CGRect(x: emojiPadding, y: (frame.height/2) + (emojiSize.height * 0.5) + emojiPadding, width: emojiSize.width, height: emojiSize.height)
-        self.addSubview(dislike3Emoji)
-        
-        heartEmoji.frame = CGRect(x: frame.width - emojiPadding - 50, y: 30, width: 35, height: 30)
+        heartEmoji.frame = CGRect(x: frame.width - emojiPadding - 50, y: 30, width: 35, height: 35)
         heartEmoji.layer.zPosition = CGFloat(FLT_MAX)
         self.addSubview(heartEmoji)
         darkHeartEmoji.frame = heartEmoji.frame
@@ -60,20 +44,8 @@ class EmojiOptionsOverlay: UIView {
         like1Emoji.alpha = emojiInitialAlpha
         like1Emoji.frame.origin.x += emojiInitialOffset
         
-        like2Emoji.alpha = emojiInitialAlpha
-        like2Emoji.frame.origin.x += emojiInitialOffset
-        
-        like3Emoji.alpha = emojiInitialAlpha
-        like3Emoji.frame.origin.x += emojiInitialOffset
-        
         dislike1Emoji.alpha = emojiInitialAlpha
         dislike1Emoji.frame.origin.x -= emojiInitialOffset
-        
-        dislike2Emoji.alpha = emojiInitialAlpha
-        dislike2Emoji.frame.origin.x -= emojiInitialOffset
-        
-        dislike3Emoji.alpha = emojiInitialAlpha
-        dislike3Emoji.frame.origin.x -= emojiInitialOffset
         
         heartEmoji.isHidden = true
     }
@@ -99,15 +71,9 @@ class EmojiOptionsOverlay: UIView {
             }
             
             like1Emoji.alpha = emojiInitialAlpha
-            like2Emoji.alpha = emojiInitialAlpha
-            like3Emoji.alpha = emojiInitialAlpha
             switch option {
             case .like1:
                 like1Emoji.alpha = 1
-            case .like2:
-                like2Emoji.alpha = 1
-            case .like3:
-                like3Emoji.alpha = 1
             default:
                 break
             }
@@ -122,15 +88,9 @@ class EmojiOptionsOverlay: UIView {
             }
             
             dislike1Emoji.alpha = emojiInitialAlpha
-            dislike2Emoji.alpha = emojiInitialAlpha
-            dislike3Emoji.alpha = emojiInitialAlpha
             switch option {
             case .dislike1:
                 dislike1Emoji.alpha = 1
-            case .dislike2:
-                dislike2Emoji.alpha = 1
-            case .dislike3:
-                dislike3Emoji.alpha = 1
             default:
                 break
             }
@@ -152,8 +112,6 @@ class EmojiOptionsOverlay: UIView {
         isHidingLikeEmojis = true
         UIView.animate(withDuration: 0.2, delay: 0.0,  options: [], animations: {
             self.like1Emoji.frame.origin.x += self.emojiInitialOffset
-            self.like2Emoji.frame.origin.x += self.emojiInitialOffset
-            self.like3Emoji.frame.origin.x += self.emojiInitialOffset
         }) { (_) in
             self.isHidingLikeEmojis = false
         }
@@ -166,8 +124,6 @@ class EmojiOptionsOverlay: UIView {
         isShowingLikeEmojis = true
         UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: [], animations: {
             self.like1Emoji.frame.origin.x -= self.emojiInitialOffset
-            self.like2Emoji.frame.origin.x -= self.emojiInitialOffset
-            self.like3Emoji.frame.origin.x -= self.emojiInitialOffset
         }) { (_) in
             self.isShowingLikeEmojis = false
         }
@@ -180,8 +136,6 @@ class EmojiOptionsOverlay: UIView {
         isHidingDislikeEmojis = true
         UIView.animate(withDuration: 0.2, delay: 0.0, options: [], animations: {
             self.dislike1Emoji.frame.origin.x -= self.emojiInitialOffset
-            self.dislike2Emoji.frame.origin.x -= self.emojiInitialOffset
-            self.dislike3Emoji.frame.origin.x -= self.emojiInitialOffset
         }) { (_) in
             self.isHidingDislikeEmojis = false
         }
@@ -194,8 +148,6 @@ class EmojiOptionsOverlay: UIView {
         isShowingDislikeEmojis = true
         UIView.animate(withDuration: 0.25, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.0, options: [], animations: {
             self.dislike1Emoji.frame.origin.x += self.emojiInitialOffset
-            self.dislike2Emoji.frame.origin.x += self.emojiInitialOffset
-            self.dislike3Emoji.frame.origin.x += self.emojiInitialOffset
         }) { (_) in
             self.isShowingDislikeEmojis = false
         }

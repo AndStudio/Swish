@@ -16,5 +16,6 @@ struct Colors {
     static let highlightBlue = UIColor.init(red: 83/255.0, green: 154/255.0, blue: 195/255.0, alpha: 1)
     static let backgroundGray = UIColor.init(red: 245/255.0, green: 245/255.0, blue: 245/255.0, alpha: 1)
     static let dribbbleGray = UIColor.init(red: 242/255.0, green: 242/255.0, blue: 242/255.0, alpha: 1)
+    static let dribbbleDarkGray = UIColor.init(red: 68/255.0, green: 68/255.0, blue: 68/255.0, alpha: 1)
     
 }

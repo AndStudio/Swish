@@ -56,7 +56,7 @@ class ShotCard: CardView {
             
             // set stuff
             
-            let imageView = UIImageView(image: UIImage(named: "\(shot.largeImage ?? #imageLiteral(resourceName: "default_image"))"))
+            let imageView = UIImageView(image: UIImage(named: "manor-icon"))
             imageView.contentMode = .scaleAspectFill
             imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
             imageView.layer.cornerRadius = 5
@@ -69,22 +69,22 @@ class ShotCard: CardView {
             
             // title
             let title = shots.first?.title ?? "title"
-            let username = shots.first?.user?.userName ?? "username"
+            let username = shots.first?.description ?? "username"
             
             let titleLabel = UILabel()
             titleLabel.text = "\(title)"
-            titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 24)
-            titleLabel.textColor = Colors.highlightBlue
+            titleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 20)
+            titleLabel.textColor = Colors.dribbbleDarkGray
             titleLabel.textAlignment = .left
-            titleLabel.frame = CGRect(x: 12, y: imageView.frame.maxY + 15, width: 200, height: 24)
+            titleLabel.frame = CGRect(x: 16, y: imageView.frame.maxY + 18, width: 300, height: 28)
             self.addSubview(titleLabel)
             
             let usernameLabel = UILabel()
             usernameLabel.text = "\(username)"
-            usernameLabel.font = UIFont(name: "AvenirNext", size: 14)
-            usernameLabel.textColor = UIColor.lightGray
+            usernameLabel.font = UIFont(name: "AvenirHeavy", size: 14)
+            usernameLabel.textColor = Colors.highlightBlue
             usernameLabel.textAlignment = .left
-            usernameLabel.frame = CGRect(x: 12, y: titleLabel.frame.maxY + 10, width: 120, height: 24)
+            usernameLabel.frame = CGRect(x: 16, y: titleLabel.frame.maxY + 4, width: 300, height: 24)
             self.addSubview(usernameLabel)
             
         }

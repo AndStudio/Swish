@@ -125,16 +125,8 @@ class SwipeViewController: UIViewController {
                     } else {
                         emojiOptionsOverlay.updateHeartEmoji(isFilled: true, isFocused: false)
                     }
-                    
-                } else if cards[0].center.y > (self.view.center.y + optionLength) {
-                    cards[0].showOptionLabel(option: .like3)
-                    emojiOptionsOverlay.showEmoji(for: .like3)
-                    emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
-                } else {
-                    cards[0].showOptionLabel(option: .like2)
-                    emojiOptionsOverlay.showEmoji(for: .like2)
-                    emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 }
+                
             } else if cards[0].center.x < (self.view.center.x - requiredOffsetFromCenter) {
                 
                 emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
@@ -142,13 +134,8 @@ class SwipeViewController: UIViewController {
                 if cards[0].center.y < (self.view.center.y - optionLength) {
                     cards[0].showOptionLabel(option: .dislike1)
                     emojiOptionsOverlay.showEmoji(for: .dislike1)
-                } else if cards[0].center.y > (self.view.center.y + optionLength) {
-                    cards[0].showOptionLabel(option: .dislike3)
-                    emojiOptionsOverlay.showEmoji(for: .dislike3)
-                } else {
-                    cards[0].showOptionLabel(option: .dislike2)
-                    emojiOptionsOverlay.showEmoji(for: .dislike2)
                 }
+                
             } else {
                 cards[0].hideOptionLabel()
                 emojiOptionsOverlay.hideFaceEmojis()
@@ -323,7 +310,7 @@ extension SwipeViewController {
     
     func setUpDummyUI() {
         // menu icon
-        let menuIconImageView = UIImageView(image: UIImage(named: "menu_icon"))
+        let menuIconImageView = UIImageView(image: UIImage(named: "leaderBoard"))
         menuIconImageView.contentMode = .scaleAspectFit
         menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
         menuIconImageView.isUserInteractionEnabled = false
@@ -333,11 +320,18 @@ extension SwipeViewController {
         let titleLabel = UILabel()
         titleLabel.text = "Swish"
         titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont(name: "AvenirNext-Bold", size: 19)
+        titleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
         titleLabel.textColor = Colors.primaryPink
         titleLabel.textAlignment = .center
         titleLabel.frame = CGRect(x: (self.view.frame.width / 2) - 90, y: 17, width: 180, height: 60)
-        self.view.addSubview(titleLabel)
+//        self.view.addSubview(titleLabel)
+        
+        // logo 
+        let swishLogoView = UIImageView(image: UIImage(named: "swish"))
+        swishLogoView.contentMode = .scaleAspectFill
+        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 30, width: 45, height: 30)
+        swishLogoView.isUserInteractionEnabled = false
+        self.view.addSubview(swishLogoView)
         
         // <- ☹️
         let frownArrowImageView = UIImageView(image: UIImage(named: "frown_arrow"))
