@@ -50,11 +50,12 @@ class SwipeViewController: UIViewController {
         
         ApiController.loadShots { (shots) in
             self.shots = shots
-            
+            guard shots.count > 0 else { return }
             DispatchQueue.main.async {
-                for i in 0...19 {
+                for i in 1...shots.count {
+                    
                     let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-                    card.shot = shots[i]
+                    card.shot = shots[i - 1]
                     self.cards.append(card)
                 }
                 
