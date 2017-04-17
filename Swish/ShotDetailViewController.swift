@@ -9,7 +9,7 @@
 import UIKit
 
 class ShotDetailViewController: UIViewController {
-
+    
     //MARK: - outlets
     @IBOutlet weak var creationDateLabel: UILabel!
     @IBOutlet weak var shotDescriptionTextView: UITextView!
@@ -27,8 +27,8 @@ class ShotDetailViewController: UIViewController {
     
     //MARK: - actions
     @IBAction func ShareButtonTapped(_ sender: Any) {
-       
-        guard let shot = shot?.largeImage else { return }
+        
+        guard let shot = self.shotImageView.image else { return }
         
         let activiityViewController = UIActivityViewController(activityItems: [shot], applicationActivities: nil)
         
@@ -41,49 +41,47 @@ class ShotDetailViewController: UIViewController {
             guard let shot = shots.first else { return }
             self.shot = shot
         }
-        updateViews()
+        //        updateViews()
         views()
         
     }
-  
+    
     
     var shot: Shot? {
         didSet {
             updateViews()
-
+            
         }
     }
     
     func updateViews() {
         
         
-//        var userUserName: String
+        //        var userUserName: String
         guard let shot = shot  else { return }
         self.shotDescriptionTextView.text = shot.description
-//        if shot.user?.userUserName == nil {
-//            userUserName = ""
-//        }  else {
-//            userUserName = "| \(user.userUserName)"
-//        }
-//        self.userNameLabel.text = "\(user.userName) \(userUserName)"
-//        self.userAvatarImageView.image = user.userAvatar
+        //        if shot.user?.userUserName == nil {
+        //            userUserName = ""
+        //        }  else {
+        //            userUserName = "| \(user.userUserName)"
+        //        }
+        //        self.userNameLabel.text = "\(user.userName) \(userUserName)"
+        //        self.userAvatarImageView.image = user.userAvatar
         self.tagsTextView.text = "\(shot.tags)"
         self.likeCountLabel.text = "\(shot.likeCount)"
         self.viewCountLabel.text = "\(shot.viewCount)"
         self.creationDateLabel.text = shot.createdDate
-            
-            if shot.hiDpiImageURL == nil {
-                ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                    shot.largeImage = image
-                })
-            } else {
-                guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
-                ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                    shot.largeImage = image
-                })
-            }
         
-        self.shotImageView.image = shot.largeImage
+        if shot.hiDpiImageURL == nil {
+            ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                self.shotImageView.image = image
+            })
+        } else {
+            guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+            ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                self.shotImageView.image = image
+            })
+        }
     }
     
     func views() {
@@ -104,5 +102,5 @@ class ShotDetailViewController: UIViewController {
         userAvatarImageView.clipsToBounds = true
         
     }
-
+    
 }
