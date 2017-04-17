@@ -12,6 +12,8 @@ class SwipeViewController: UIViewController {
     
     //MARK: - Properties 
     
+    //dont shot these [Shot]
+    
     static let shared = SwipeViewController()
     
     var shots: [Shot] = []
@@ -42,13 +44,7 @@ class SwipeViewController: UIViewController {
         
         // create the card UI
         
-        for _ in 1...20 {
-            let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-            cards.append(card)
-        }
-        
-        layoutCards()
-        
+      
         emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
         self.view.addSubview(emojiOptionsOverlay)
         
@@ -56,6 +52,14 @@ class SwipeViewController: UIViewController {
             self.shots = shots
             
             DispatchQueue.main.async {
+                for i in 0...19 {
+                    let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+                    card.shot = shots[i]
+                    self.cards.append(card)
+                }
+                
+                self.layoutCards()
+                
                 // reload and update stuff
             }
         }
@@ -69,7 +73,7 @@ class SwipeViewController: UIViewController {
     func incrementShotLoading() {
         // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
         
-        if !isLoadingShots && (shots.count <= 4) {
+        if !isLoadingShots && (shots.count <= 5) {
             self.page += 1
             
             ApiController.loadShots(completion: { (shots) in

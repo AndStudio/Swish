@@ -12,44 +12,51 @@ class ShotCard: CardView {
     
     //MARK: - Properties 
     
-    var shots = SwipeViewController.shared.shots
+    var shot: Shot? {
+        didSet {
+            updateViews()
+        }
+    }
+    
+    func updateViews() {
+        
+        // set stuff
+        
+        guard let shot = shot else { return }
+        let imageView = UIImageView(image: shot.largeImage)
+        imageView.contentMode = .scaleAspectFill
+        imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+        
+        imageView.frame = CGRect(x: 12, y: 12, width: self.frame.width - 24, height: self.frame.height - 103)
+        self.addSubview(imageView)
+        
+        // text labels
+        
+        // title
+        let title = shot.title 
+        let username = shot.description 
+        
+        let titleLabel = UILabel()
+        titleLabel.text = "\(title)"
+        titleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 20)
+        titleLabel.textColor = Colors.dribbbleDarkGray
+        titleLabel.textAlignment = .left
+        titleLabel.frame = CGRect(x: 16, y: imageView.frame.maxY + 18, width: 300, height: 28)
+        self.addSubview(titleLabel)
+        
+        let usernameLabel = UILabel()
+        usernameLabel.text = "\(username)"
+        usernameLabel.font = UIFont(name: "AvenirHeavy", size: 14)
+        usernameLabel.textColor = Colors.highlightBlue
+        usernameLabel.textAlignment = .left
+        usernameLabel.frame = CGRect(x: 16, y: titleLabel.frame.maxY + 4, width: 300, height: 24)
+        self.addSubview(usernameLabel)
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-
-            // set stuff
-            
-            let imageView = UIImageView(image: UIImage(named: "company"))
-            imageView.contentMode = .scaleAspectFill
-            imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
-            imageView.layer.cornerRadius = 5
-            imageView.layer.masksToBounds = true
-            
-            imageView.frame = CGRect(x: 12, y: 12, width: self.frame.width - 24, height: self.frame.height - 103)
-            self.addSubview(imageView)
-            
-            // text labels
-            
-            // title
-            let title = shots.first?.title ?? "title"
-            let username = shots.first?.description ?? "username"
-            
-            let titleLabel = UILabel()
-            titleLabel.text = "\(title)"
-            titleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 20)
-            titleLabel.textColor = Colors.dribbbleDarkGray
-            titleLabel.textAlignment = .left
-            titleLabel.frame = CGRect(x: 16, y: imageView.frame.maxY + 18, width: 300, height: 28)
-            self.addSubview(titleLabel)
-            
-            let usernameLabel = UILabel()
-            usernameLabel.text = "\(username)"
-            usernameLabel.font = UIFont(name: "AvenirHeavy", size: 14)
-            usernameLabel.textColor = Colors.highlightBlue
-            usernameLabel.textAlignment = .left
-            usernameLabel.frame = CGRect(x: 16, y: titleLabel.frame.maxY + 4, width: 300, height: 24)
-            self.addSubview(usernameLabel)
-
     }
     
     required init?(coder aDecoder: NSCoder) {
