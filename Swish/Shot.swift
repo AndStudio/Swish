@@ -73,4 +73,34 @@ class Shot {
             self.user = User(dictionary: userData)
         }
     }
+    
+    init?(likeDictionary: [String:Any]) {
+        guard let shotDictionary = likeDictionary["shot"] as? [String:Any],
+            let shotID = shotDictionary[shotIDKey] as? Int,
+            let title = shotDictionary[titleKey] as? String,
+            let description = shotDictionary[descriptionKey] as? String,
+            let viewCount = shotDictionary[viewCountKey] as? Int,
+            let likeCount = shotDictionary[likeCountKey] as? Int,
+            let createdDate = shotDictionary[createdDateKey] as? String,
+            let tags = shotDictionary[tagsKey] as? [String],
+            let imageDictionary = shotDictionary["images"] as? [String: Any],
+            let normalImageURL = imageDictionary[normalImageKey] as? String,
+            let teaserImageURL = imageDictionary[teaserImageKey] as? String
+            else { return nil }
+        
+        self.shotID = shotID
+        self.title = title
+        self.description = description
+        self.viewCount = viewCount
+        self.likeCount = likeCount
+        self.createdDate = createdDate
+        self.tags = tags
+        self.normalImageURL = normalImageURL
+        self.teaserImageURL = teaserImageURL
+        self.hiDpiImageURL = imageDictionary[hiDpiImageKey] as? String
+        
+        if let userData = shotDictionary["user"] as? [String: Any] {
+            self.user = User(dictionary: userData)
+        }
+    }
 }

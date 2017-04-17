@@ -71,7 +71,7 @@ class ApiController {
             guard let data = data else { completion([]); return }
             
             guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
-            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
+            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
             
             completion(likedShotsArray)
             
