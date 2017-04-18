@@ -54,7 +54,7 @@
                     <connections>
                         <outlet property="signInButton" destination="n84-EM-L3E" id="sfj-mf-wGt"/>
                         <outlet property="titleLabelOutlet" destination="kQM-RB-Gld" id="vtk-do-pwZ"/>
-                        <segue destination="F4E-wD-xva" kind="show" identifier="toSwipeVC" id="Szt-6b-ZpJ"/>
+                        <segue destination="F4E-wD-xva" kind="presentation" identifier="toSwipeVC" id="Szt-6b-ZpJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
