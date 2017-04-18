@@ -23,17 +23,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GlA-WQ-6q9">
                                 <rect key="frame" x="67.5" y="213" width="240" height="240"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="240" id="E7y-Ud-ncK"/>
                                     <constraint firstAttribute="width" constant="240" id="hbB-yd-wDh"/>
                                 </constraints>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backboard" translatesAutoresizingMaskIntoConstraints="NO" id="7AS-R3-jvo">
+                                <rect key="frame" x="67.5" y="213" width="240" height="240"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="7AS-R3-jvo" firstAttribute="height" secondItem="GlA-WQ-6q9" secondAttribute="height" id="2CR-lY-HiF"/>
+                            <constraint firstItem="7AS-R3-jvo" firstAttribute="centerX" secondItem="GlA-WQ-6q9" secondAttribute="centerX" id="4IR-XI-z5x"/>
                             <constraint firstItem="GlA-WQ-6q9" firstAttribute="centerY" secondItem="FzA-Vv-Rhu" secondAttribute="centerY" id="Fhm-ra-uZO"/>
                             <constraint firstItem="GlA-WQ-6q9" firstAttribute="centerX" secondItem="FzA-Vv-Rhu" secondAttribute="centerX" id="JYT-J8-qzs"/>
+                            <constraint firstItem="7AS-R3-jvo" firstAttribute="width" secondItem="GlA-WQ-6q9" secondAttribute="width" id="fIc-uX-TNE"/>
+                            <constraint firstItem="7AS-R3-jvo" firstAttribute="centerY" secondItem="GlA-WQ-6q9" secondAttribute="centerY" id="xZB-RZ-Y0L"/>
                         </constraints>
                     </view>
                     <connections>
@@ -62,4 +68,7 @@
             <point key="canvasLocation" x="948" y="213"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="backboard" width="356" height="319"/>
+    </resources>
 </document>

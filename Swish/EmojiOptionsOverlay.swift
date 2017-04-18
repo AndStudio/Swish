@@ -19,7 +19,7 @@ class EmojiOptionsOverlay: UIView {
     
     let dislike1Emoji = UIImageView(image: UIImage(named: "dislike1"))
     
-    let heartEmoji = UIImageView(image: UIImage(named: "likeCardsHighlight"))
+    let heartEmoji = UIImageView(image: UIImage(named: "heartSwish"))
     let darkHeartEmoji = UIImageView(image: UIImage(named: "likedCards"))
     
     override init(frame: CGRect) {
