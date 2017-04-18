@@ -35,8 +35,8 @@ class ShotCard: CardView {
         // text labels
         
         // title
-        let title = shot.title 
-        let username = shot.description 
+        let title = shot.title
+        guard let username = shot.user?.userName else { return }
         
         let titleLabel = UILabel()
         titleLabel.text = "\(title)"
@@ -47,7 +47,7 @@ class ShotCard: CardView {
         self.addSubview(titleLabel)
         
         let usernameLabel = UILabel()
-        usernameLabel.text = "\(username)"
+        usernameLabel.text = "by "+"\(username)"
         usernameLabel.font = UIFont(name: "AvenirHeavy", size: 14)
         usernameLabel.textColor = Colors.highlightBlue
         usernameLabel.textAlignment = .left
