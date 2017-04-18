@@ -16,11 +16,13 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     
     // MARK: IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
-
+    
     // MARK: Lifecycle Functions
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        navigationController?.isNavigationBarHidden = true
+        
         collectionView.delegate = self
         collectionView.dataSource = self
         
@@ -59,29 +61,47 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     //MARK: Pagination Properties and Functions
-    let threshold: CGFloat = 100
+    let threshold: CGFloat = 300
     var page: Int = 1
     var isLoadingShots = false
+    var maxPage: Int = 1
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // when the user scrolls to a certain distance from the bottom of the content view a new API call will be made to append the next set of shots to the shot array
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        // when the user scrolls to a certain distance from the bottom of the content view a new API call will be made to append the next set of shots to the shot array
+//        
+//        let contentOffset = scrollView.contentOffset.y
+//        let maximumPossibleOffset = scrollView.contentSize.height - scrollView.frame.size.height
+//        let offsetDifference = maximumPossibleOffset - contentOffset
+//        
+//        if !isLoadingShots && (offsetDifference < threshold) {
+//            self.page += 1
+//            isLoadingShots = true
+//            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+//                self.shots.append(contentsOf: shots)
+//                DispatchQueue.main.async {
+//                    self.collectionView.reloadData()
+//                    self.isLoadingShots = false
+//                }
+//            })
+//        }
+//    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
-        let contentOffset = scrollView.contentOffset.y
-        let maximumPossibleOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        let offsetDifference = maximumPossibleOffset - contentOffset
         
-        if !isLoadingShots && (offsetDifference < threshold) {
-            self.page += 1
+        if indexPath.row == (self.shots.count - 5) {
             ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
                 self.shots.append(contentsOf: shots)
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
+                    self.isLoadingShots = false
                 }
             })
         }
     }
 }
 
+//GIT Test
 
 
 
@@ -91,4 +111,4 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
 
 
 
-
+  

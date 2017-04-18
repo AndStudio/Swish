@@ -53,7 +53,6 @@
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4e-D6-AfY">
                                                     <rect key="frame" x="0.0" y="0.0" width="166" height="155"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <state key="normal" title="Button"/>
                                                     <connections>
                                                         <segue destination="Bpc-x8-7UM" kind="show" id="9jb-Uz-sgz"/>
                                                     </connections>
