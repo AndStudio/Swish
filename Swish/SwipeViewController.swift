@@ -10,13 +10,14 @@ import UIKit
 
 class SwipeViewController: UIViewController {
     
-    //MARK: - Properties 
-    
-    //dont shot these [Shot]
+    //MARK: - Properties
     
     static let shared = SwipeViewController()
     
     var shots: [Shot] = []
+    
+    var doNotShowShots: [String] = []
+    
     var cards = [ShotCard]()
     
     let threshold: CGFloat = 100
@@ -25,14 +26,14 @@ class SwipeViewController: UIViewController {
     
     var emojiOptionsOverlay: EmojiOptionsOverlay!
     
-    //MARK: - Outlets 
+    //MARK: - Outlets
     
     @IBOutlet weak var shotImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-
+    
     
     //MARK: - View lifecycle
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,32 +45,47 @@ class SwipeViewController: UIViewController {
         
         // create the card UI
         
-      
         emojiOptionsOverlay = EmojiOptionsOverlay(frame: self.view.frame)
         self.view.addSubview(emojiOptionsOverlay)
         
-        ApiController.loadShots { (shots) in
-            self.shots = shots
-            guard shots.count > 0 else { return }
-            DispatchQueue.main.async {
-                for i in 1...shots.count {
-                    
-                    let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-                    card.shot = shots[i - 1]
-                    self.cards.append(card)
+        // load shots into card view
+        ApiController.fetchLikedShots(page: String(page)) { (shots) in
+            self.doNotShowShots = shots.map({"\($0.shotID)"})
+            
+            ApiController.loadShots { (shots) in
+                
+                for shot in shots {
+                    if !self.doNotShowShots.contains("\(shot.shotID)") {
+                        self.shots.append(shot)
+                    }
                 }
                 
-                self.layoutCards()
-                
-                // reload and update stuff
+                guard shots.count > 0 else { return }
+                DispatchQueue.main.async {
+                    for i in 1...shots.count {
+                        
+                        let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+                        card.shot = shots[i - 1]
+                        self.cards.append(card)
+                    }
+                    
+                    self.layoutCards()
+                    
+                    // reload and update stuff
+                }
             }
+            
+            // fetch liked shots and build dont show shots array. Need to handle for >100 liked shots
+            
+            
+            
         }
         
         self.incrementShotLoading()
         
     }
     
-    //MARK: - Pagination 
+    //MARK: - Pagination
     
     func incrementShotLoading() {
         // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
@@ -102,6 +118,7 @@ class SwipeViewController: UIViewController {
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleCardPan)))
+        firstCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openCardDetail)))
         
         // the next 3 cards in the deck
         for i in 1...3 {
@@ -137,7 +154,18 @@ class SwipeViewController: UIViewController {
     var dynamicAnimator: UIDynamicAnimator!
     var cardAttachmentBehavior: UIAttachmentBehavior!
     
-    // handle pan 
+    // handle pan
+    
+    func openCardDetail(sender: UITapGestureRecognizer) {
+        guard let vc = UIStoryboard(name: "ShotDetailView", bundle: nil).instantiateViewController(withIdentifier: "ShotDetail") as? ShotDetailViewController,
+            let shot = cards[0].shot
+        else { return }
+        
+        vc.shot = shot
+        
+        self.present(vc, animated: true, completion: nil)
+        
+    }
     
     func handleCardPan(sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
@@ -248,9 +276,36 @@ class SwipeViewController: UIViewController {
         }
     }
     
+    //MARK: - remove old card and like shot
+    
     func removeOldFrontCard() {
-        cards[0].removeFromSuperview()
-        cards.remove(at: 0)
+        //FIXME: need to workon swipe logic to make sure it only likes it if user swipes to the right
+        
+        guard let shotId = cards[0].shot?.shotID else { return }
+        let shotIdString = "\(shotId)"
+        
+        if cards[0].center.x > self.view.center.x {
+            //Like shot and remove the card
+            ApiController.like(shotId: shotIdString) { (success) in
+                
+                self.doNotShowShots.append(shotIdString)
+                DispatchQueue.main.async {
+                    
+                    self.cards[0].removeFromSuperview()
+                }
+                self.cards.remove(at: 0)
+            }
+            
+        } else {
+            
+            self.doNotShowShots.append(shotIdString)
+            
+            self.cards[0].removeFromSuperview()
+            self.cards.remove(at: 0)
+            
+        }
+        
+        layoutCards()
     }
     
     func showNextCard() {
@@ -347,13 +402,13 @@ extension SwipeViewController {
         }
     }
     
-    // Blank UI 
+    // Blank UI
     
     func setUpUI() {
         
         view.backgroundColor = Colors.dribbbleGray
         
-        // likes button 
+        // likes button
         
         let emojiPadding: CGFloat = 20
         
@@ -369,7 +424,7 @@ extension SwipeViewController {
         menuIconImageView.contentMode = .scaleAspectFit
         menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
         menuIconImageView.isUserInteractionEnabled = false
-//        self.view.addSubview(menuIconImageView)
+        //        self.view.addSubview(menuIconImageView)
         
         
         // title label
@@ -380,9 +435,9 @@ extension SwipeViewController {
         titleLabel.textColor = Colors.primaryPink
         titleLabel.textAlignment = .center
         titleLabel.frame = CGRect(x: (self.view.frame.width / 2) - 90, y: 17, width: 180, height: 60)
-//        self.view.addSubview(titleLabel)
+        //        self.view.addSubview(titleLabel)
         
-        // logo 
+        // logo
         let swishLogoView = UIImageView(image: UIImage(named: "swish2"))
         swishLogoView.contentMode = .scaleAspectFill
         swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 30, width: 45, height: 30)
@@ -414,7 +469,7 @@ extension SwipeViewController {
                 print("probelem instantiting view controller for likes")
                 return
             }
-        
+            
             self.performSegue(withIdentifier: "likes", sender: self)
             
         }

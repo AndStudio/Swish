@@ -11,19 +11,18 @@ import UIKit
 class ShotDetailViewController: UIViewController {
     
     //MARK: - outlets
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var creationDateLabel: UILabel!
     @IBOutlet weak var shotDescriptionTextView: UITextView!
     @IBOutlet weak var userNameButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var userAvatarImageView: UIImageView!
-    @IBOutlet weak var tagsTextView: UITextView!
     @IBOutlet weak var likeCountLabel: UILabel!
     @IBOutlet weak var viewCountLabel: UILabel!
     @IBOutlet weak var shotImageView: UIImageView!
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var viewLabel: UILabel!
-    @IBOutlet weak var tagsLabel: UILabel!
     
     //MARK: - actions
     @IBAction func ShareButtonTapped(_ sender: Any) {
@@ -35,13 +34,21 @@ class ShotDetailViewController: UIViewController {
         present(activiityViewController, animated: true, completion: nil)
     }
     
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        ApiController.loadShots { (shots) in
-            guard let shot = shots.first else { return }
-            self.shot = shot
-        }
+        
+        
+//        ApiController.loadShots { (shots) in
+//            guard let shot = shots.first else { return }
+//            self.shot = shot
+//        }
         
         views()
         
@@ -50,8 +57,9 @@ class ShotDetailViewController: UIViewController {
     
     var shot: Shot? {
         didSet {
-            updateViews()
-            
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
         }
     }
     
@@ -63,9 +71,9 @@ class ShotDetailViewController: UIViewController {
         guard let user = shot.user else { return }
         self.shotDescriptionTextView.text = shot.description
        
-        self.userNameLabel.text = "\(user.userName) | \(user.userUserName)"
+        self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
         self.userAvatarImageView.image = shot.user?.userAvatar
-        self.tagsTextView.text = "\(shot.tags)"
+        self.titleLabel.text = shot.title
         self.likeCountLabel.text = "\(shot.likeCount)"
         self.viewCountLabel.text = "\(shot.viewCount)"
         self.creationDateLabel.text = shot.createdDate
@@ -88,19 +96,29 @@ class ShotDetailViewController: UIViewController {
     func views() {
         shareButton.backgroundColor = Colors.primaryPink
         shareButton.setTitleColor(.white, for: .normal)
-        tagsTextView.textColor = Colors.dribbbleDarkGray
         shotDescriptionTextView.textColor = Colors.dribbbleDarkGray
         creationDateLabel.textColor = Colors.dribbbleDarkGray
         viewLabel.textColor = Colors.dribbbleDarkGray
         viewCountLabel.textColor = Colors.dribbbleDarkGray
         likeLabel.textColor = Colors.dribbbleDarkGray
         likeCountLabel.textColor = Colors.dribbbleDarkGray
-        tagsLabel.textColor = Colors.dribbbleDarkGray
+        userNameLabel.textColor = Colors.dribbbleDarkGray
+        shotDescriptionTextView.text = ""
+        creationDateLabel.text = ""
+        titleLabel.text = ""
+        userNameLabel.text = ""
+        viewCountLabel.text = ""
+        likeCountLabel.text = ""
+        creationDateLabel.text = ""
+        
         
         
         //make the userAvatarImage round
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
         userAvatarImageView.clipsToBounds = true
+        
+        shareButton.layer.cornerRadius = 5
+        shareButton.clipsToBounds = true
         
     }
     

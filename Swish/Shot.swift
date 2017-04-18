@@ -60,10 +60,10 @@ class Shot {
         
         self.shotID = shotID
         self.title = title
-        self.description = description
+        self.description = Formatters.stripHTML(description as NSString)
         self.viewCount = viewCount
         self.likeCount = likeCount
-        self.createdDate = createdDate
+        self.createdDate = Formatters.formatDate(createdDate)
         self.tags = tags
         self.normalImageURL = normalImageURL
         self.teaserImageURL = teaserImageURL
