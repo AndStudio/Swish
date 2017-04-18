@@ -21,36 +21,35 @@ class UserDetailViewController: UIViewController {
 //        collectionView.Delegate = self
         
         // fetch all shots
-//        ApiController.loadShots(page: String()) { (shots) in
-//            self.shots = shots
-//            DispatchQueue.main.async {
-//                self.collectionView.reloadData()
-//            }
-//        }
+        ApiController.loadShots(page: String()) { (shots) in
+            self.shots = shots
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
         }
 //    
-//    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
-//        return shots.count
-//    }
-//    
-//    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
-//    
-//        let shot = shots[indexPath.row]
-//        return cell
-//    }
+    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
+        return shots.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.reuseIdentifier(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+    
+        let shot = shots[indexPath.row]
+        return cell
+    }
 
 
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+ 
     
 }

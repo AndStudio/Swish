@@ -106,7 +106,7 @@
                                     <constraint firstAttribute="height" constant="76" id="0lB-94-tCH"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="zSr-IY-IF9" kind="presentation" id="U8y-kn-lMo"/>
+                                    <segue destination="zSr-IY-IF9" kind="presentation" identifier="" id="U8y-kn-lMo"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qDk-4w-5lj">
