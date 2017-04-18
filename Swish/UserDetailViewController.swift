@@ -8,8 +8,7 @@
 
 import UIKit
 
-class UserDetailViewController: UIViewController {
-// UICollectionViewDelegate, UICollectionViewDataSource
+class UserDetailViewController: UIViewController, UICollectionViewDelegate {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
@@ -22,7 +21,7 @@ class UserDetailViewController: UIViewController {
 //        collectionView.Delegate = self
 //        
 //        // fetch all shots
-//        ApiController.loadShots(page: String()) { (shots) in
+//        ApiController.loadShots(page: String(page)) { (shots) in
 //            self.shots = shots
 //            DispatchQueue.main.async {
 //                self.collectionView.reloadData()
