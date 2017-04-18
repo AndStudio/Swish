@@ -39,10 +39,10 @@ class ShotDetailViewController: UIViewController {
         navigationController?.isNavigationBarHidden = false
         
         
-        ApiController.loadShots { (shots) in
-            guard let shot = shots.first else { return }
-            self.shot = shot
-        }
+//        ApiController.loadShots { (shots) in
+//            guard let shot = shots.first else { return }
+//            self.shot = shot
+//        }
         
         views()
         
