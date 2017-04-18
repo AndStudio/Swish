@@ -15,6 +15,8 @@ import Foundation
 
 class UserController {
     
+    static let shared = UserController()
+    
     static let accessToken = "a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd"
     
     static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")

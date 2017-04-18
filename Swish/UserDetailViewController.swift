@@ -9,7 +9,7 @@
 import UIKit
 
 class UserDetailViewController: UIViewController {
-// UICollectionViewDelegate, UICollectionViewDataSource {
+// UICollectionViewDelegate, UICollectionViewDataSource
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
