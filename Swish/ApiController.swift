@@ -11,10 +11,12 @@ class ApiController {
     
     static let accessToken = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
 //    static let accessToken = NetworkController.accessToken
+    
     static let baseURL = URL(string: "https://api.dribbble.com/v1/shots/")
     
     static func loadShots(completion: @escaping (([Shot]) -> Void)) {
         guard let url = baseURL  else { return }
+
         let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "20"]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in

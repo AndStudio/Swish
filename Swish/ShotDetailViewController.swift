@@ -37,11 +37,12 @@ class ShotDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = false
         ApiController.loadShots { (shots) in
             guard let shot = shots.first else { return }
             self.shot = shot
         }
-        //        updateViews()
+        
         views()
         
     }
@@ -57,21 +58,18 @@ class ShotDetailViewController: UIViewController {
     func updateViews() {
         
         
-        //        var userUserName: String
-        guard let shot = shot  else { return }
+//        var userUserName: String
+        guard let shot = shot else { return }
+        guard let user = shot.user else { return }
         self.shotDescriptionTextView.text = shot.description
-        //        if shot.user?.userUserName == nil {
-        //            userUserName = ""
-        //        }  else {
-        //            userUserName = "| \(user.userUserName)"
-        //        }
-        //        self.userNameLabel.text = "\(user.userName) \(userUserName)"
-        //        self.userAvatarImageView.image = user.userAvatar
+       
+        self.userNameLabel.text = "\(user.userName) | \(user.userUserName)"
+        self.userAvatarImageView.image = shot.user?.userAvatar
         self.tagsTextView.text = "\(shot.tags)"
         self.likeCountLabel.text = "\(shot.likeCount)"
         self.viewCountLabel.text = "\(shot.viewCount)"
         self.creationDateLabel.text = shot.createdDate
-        
+
         if shot.hiDpiImageURL == nil {
             ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
                 self.shotImageView.image = image
@@ -81,6 +79,9 @@ class ShotDetailViewController: UIViewController {
             ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
                 self.shotImageView.image = image
             })
+        }
+        ImageController.image(forURL: user.userAvatarURL) { (image) in
+            self.userAvatarImageView.image = image
         }
     }
     
