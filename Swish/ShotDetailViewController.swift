@@ -44,12 +44,6 @@ class ShotDetailViewController: UIViewController {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
         
-        
-//        ApiController.loadShots { (shots) in
-//            guard let shot = shots.first else { return }
-//            self.shot = shot
-//        }
-        
         views()
         
     }
@@ -65,16 +59,14 @@ class ShotDetailViewController: UIViewController {
     
     func updateViews() {
         
-        
-//        var userUserName: String
         guard
             let shot = shot,
-            let user = shot.user,
-            let description = shot.description
+            let user = shot.user
             else { return }
         
+        let description = shot.description ?? ""
+        
         self.shotDescriptionTextView.text = description
-       
         self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
         self.userAvatarImageView.image = shot.user?.userAvatar
         self.titleLabel.text = shot.title
