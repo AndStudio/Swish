@@ -18,53 +18,37 @@ class User {
     private let userURLKey =  "html_url"
     private let shotsURLKey = "shots_url"
     private let likeCountKey =  "likes_count"
-    private let userAvatarKey = "avatar_url"
+    private let userAvatarURLKey = "avatar_url"
     
     //properties for Users
     var userID: Int
     var userName: String
     var userUserName: String
-    var userURL: String
+    var userAvatarURL: String
     var shotsURL: String
     var likeCount: Int
     
     var userAvatar: UIImage?
     
-    
-    // memberwise initializer
-    init(userID: Int, userName: String, userUserName: String, userURL: String, shotsURL: String, likeCount: Int, createdDate: Date, userAvatar: UIImage) {
-        self.userID = userID
-        self.userName = userName
-        self.userUserName = userUserName
-        self.userURL = userURL
-        self.shotsURL = shotsURL
-        self.likeCount = likeCount
-        self.userAvatar = userAvatar
-    
-    }
-    
     //failable initializer
     init?(dictionary: [String: Any]) {
-        let userDictionary = dictionary["user"] as? [String: Any]
         
-        guard let userID = userDictionary?[userIDKey] as? Int,
-            let userName = userDictionary?[userNameKey] as? String,
-            let userUserName = userDictionary?[userUserNameKey] as? String,
-            let userURL = userDictionary?[userURLKey] as? String,
-            let shotsURL = userDictionary?[shotsURLKey] as? String,
-            let likeCount = userDictionary?[likeCountKey] as? Int,
-            let userAvatar = userDictionary?[userAvatarKey] as? UIImage
-            
+        guard let userID = dictionary[userIDKey] as? Int,
+            let userName = dictionary[userNameKey] as? String,
+            let userUserName = dictionary[userUserNameKey] as? String,
+            let userAvatarURL = dictionary[userAvatarURLKey] as? String,
+            let shotsURL = dictionary[shotsURLKey] as? String,
+            let likeCount = dictionary[likeCountKey] as? Int
             else { return nil }
         
         // initialize the failable/assign the values
         self.userID = userID
         self.userName = userName
         self.userUserName = userUserName
-        self.userURL = userURL
+        self.userAvatarURL = userAvatarURL
         self.shotsURL = shotsURL
         self.likeCount = likeCount
-        self.userAvatar = userAvatar
+        
     }
 
     

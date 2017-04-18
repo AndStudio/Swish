@@ -25,7 +25,7 @@ class UserProfileCollectionReusableView: UICollectionReusableView {
         guard let user = users else {return}
         userNameLabel.text = user.userUserName
         nameLabel.text = user.userName
-        ImageController.image(forURL: (user.userURL)) { (image) in
+        ImageController.image(forURL: (user.userAvatarURL)) { (image) in
             self.userAvatarImageView.image = image
         }
     }
