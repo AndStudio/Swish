@@ -9,6 +9,7 @@
 import UIKit
 import ImageIO
 
+
 extension UIImage {
     
     public class func gif(data: Data) -> UIImage? {

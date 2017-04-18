@@ -305,7 +305,7 @@ class SwipeViewController: UIViewController {
             
         }
         
-        
+        layoutCards()
     }
     
     func showNextCard() {

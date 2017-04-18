@@ -130,6 +130,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
+<<<<<<< HEAD
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nUw-48-kEd">
                                 <rect key="frame" x="16" y="390.5" width="343" height="76"/>
                                 <constraints>
@@ -139,6 +140,8 @@
                                     <segue destination="zSr-IY-IF9" kind="presentation" identifier="" id="U8y-kn-lMo"/>
                                 </connections>
                             </button>
+=======
+>>>>>>> develop
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="qDk-4w-5lj">
                                 <rect key="frame" x="16" y="356" width="95.5" height="20.5"/>
                                 <subviews>
