@@ -141,7 +141,7 @@ class SwipeViewController: UIViewController {
     
     func handleCardPan(sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
-        let optionLength: CGFloat = 60
+        let optionLength: CGFloat = 1
         // distance user must pan right or left to trigger an option
         let requiredOffsetFromCenter: CGFloat = 15
         
@@ -253,7 +253,6 @@ class SwipeViewController: UIViewController {
         cards.remove(at: 0)
     }
     
-    
     func showNextCard() {
         let animationDuration: TimeInterval = 0.2
         // 1. animate each card to move forward one by one
@@ -335,9 +334,6 @@ class SwipeViewController: UIViewController {
             })
         }
     }
-    
-    
-    
 }
 
 
@@ -373,7 +369,7 @@ extension SwipeViewController {
         menuIconImageView.contentMode = .scaleAspectFit
         menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
         menuIconImageView.isUserInteractionEnabled = false
-        self.view.addSubview(menuIconImageView)
+//        self.view.addSubview(menuIconImageView)
         
         
         // title label
@@ -387,7 +383,7 @@ extension SwipeViewController {
 //        self.view.addSubview(titleLabel)
         
         // logo 
-        let swishLogoView = UIImageView(image: UIImage(named: "swish"))
+        let swishLogoView = UIImageView(image: UIImage(named: "swish2"))
         swishLogoView.contentMode = .scaleAspectFill
         swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 30, width: 45, height: 30)
         swishLogoView.isUserInteractionEnabled = false
