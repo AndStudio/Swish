@@ -50,18 +50,12 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y4e-D6-AfY">
-                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="155"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <segue destination="Bpc-x8-7UM" kind="show" id="9jb-Uz-sgz"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </view>
                                         <connections>
                                             <outlet property="shotTeaserImageView" destination="Hne-8b-yTM" id="WOj-0b-VZ1"/>
                                             <outlet property="shotTitleLabel" destination="iRl-3x-cfT" id="n95-FI-mGX"/>
+                                            <segue destination="Bpc-x8-7UM" kind="show" identifier="toShotDetailVC" id="k8H-zJ-YIT"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

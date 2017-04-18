@@ -65,27 +65,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     var page: Int = 1
     var isLoadingShots = false
     var maxPage: Int = 1
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        // when the user scrolls to a certain distance from the bottom of the content view a new API call will be made to append the next set of shots to the shot array
-//        
-//        let contentOffset = scrollView.contentOffset.y
-//        let maximumPossibleOffset = scrollView.contentSize.height - scrollView.frame.size.height
-//        let offsetDifference = maximumPossibleOffset - contentOffset
-//        
-//        if !isLoadingShots && (offsetDifference < threshold) {
-//            self.page += 1
-//            isLoadingShots = true
-//            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
-//                self.shots.append(contentsOf: shots)
-//                DispatchQueue.main.async {
-//                    self.collectionView.reloadData()
-//                    self.isLoadingShots = false
-//                }
-//            })
-//        }
-//    }
-    
+
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let authenticatedUser = UserController.currentUser else { return }
         let doubleCount = Double(authenticatedUser.likeCount)
@@ -98,25 +78,17 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
                 let oldShotsEndIndex = self.shots.endIndex
                 self.shots.append(contentsOf: shots)
                 DispatchQueue.main.async {
-                    let newShotsEndIndex = self.shots.endIndex - 1
-                    let newShotsIndexPaths = (oldShotsEndIndex...newShotsEndIndex).map({IndexPath(item: $0, section: 0)})
-                    
-                    self.collectionView.insertItems(at: newShotsIndexPaths)
-                    self.isLoadingShots = false
+                    if self.page < self.maxPage {
+                        let newShotsEndIndex = self.shots.endIndex - 1
+                        let newShotsIndexPaths = (oldShotsEndIndex...newShotsEndIndex).map({IndexPath(item: $0, section: 0)})
+                        
+                        self.collectionView.insertItems(at: newShotsIndexPaths)
+                        self.isLoadingShots = false
+                        
+                    }
                 }
             })
         }
     }
 }
 
-//GIT Test
-
-
-
-
-
-
-
-
-
-  

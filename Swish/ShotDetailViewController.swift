@@ -67,9 +67,13 @@ class ShotDetailViewController: UIViewController {
         
         
 //        var userUserName: String
-        guard let shot = shot else { return }
-        guard let user = shot.user else { return }
-        self.shotDescriptionTextView.text = shot.description
+        guard
+            let shot = shot,
+            let user = shot.user,
+            let description = shot.description
+            else { return }
+        
+        self.shotDescriptionTextView.text = description
        
         self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
         self.userAvatarImageView.image = shot.user?.userAvatar
