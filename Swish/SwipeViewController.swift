@@ -118,6 +118,7 @@ class SwipeViewController: UIViewController {
         firstCard.layer.zPosition = CGFloat(cards.count)
         firstCard.center = self.view.center
         firstCard.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleCardPan)))
+        firstCard.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(openCardDetail)))
         
         // the next 3 cards in the deck
         for i in 1...3 {
@@ -154,6 +155,17 @@ class SwipeViewController: UIViewController {
     var cardAttachmentBehavior: UIAttachmentBehavior!
     
     // handle pan
+    
+    func openCardDetail(sender: UITapGestureRecognizer) {
+        guard let vc = UIStoryboard(name: "ShotDetailView", bundle: nil).instantiateViewController(withIdentifier: "ShotDetail") as? ShotDetailViewController,
+            let shot = cards[0].shot
+        else { return }
+        
+        vc.shot = shot
+        
+        self.present(vc, animated: true, completion: nil)
+        
+    }
     
     func handleCardPan(sender: UIPanGestureRecognizer) {
         // change this to your discretion - it represents how far the user must pan up or down to change the option
