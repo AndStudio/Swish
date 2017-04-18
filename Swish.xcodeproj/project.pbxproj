@@ -38,6 +38,7 @@
 		96A276A01E9E97B7006C21F0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A2769F1E9E97B7006C21F0 /* Keychain.swift */; };
 		96AF3E461E9FCF2D002A79DD /* ShotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF3E441E9FCF2D002A79DD /* ShotCollectionViewCell.swift */; };
 		96AF3E471E9FCF2D002A79DD /* LikesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF3E451E9FCF2D002A79DD /* LikesViewController.swift */; };
+		96DDF2441EA6BD4E006DBD1D /* ShotDetailView.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 96DDF2431EA6BD4E006DBD1D /* ShotDetailView.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -87,6 +88,7 @@
 		96A2769F1E9E97B7006C21F0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		96AF3E441E9FCF2D002A79DD /* ShotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCollectionViewCell.swift; sourceTree = "<group>"; };
 		96AF3E451E9FCF2D002A79DD /* LikesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LikesViewController.swift; sourceTree = "<group>"; };
+		96DDF2431EA6BD4E006DBD1D /* ShotDetailView.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ShotDetailView.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +152,7 @@
 				5A604BB31E9C436B00EBF1D3 /* Search.storyboard */,
 				5A604BB51E9C437200EBF1D3 /* User.storyboard */,
 				66C4809D1EA6B9AA00C0E077 /* ShotDetailView.storyboard */,
+				96DDF2431EA6BD4E006DBD1D /* ShotDetailView.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				5A604BB21E9C436200EBF1D3 /* Likes.storyboard in Resources */,
 				5A604BA01E9C41ED00EBF1D3 /* Main.storyboard in Resources */,
 				66C4809E1EA6B9AA00C0E077 /* ShotDetailView.storyboard in Resources */,
+				96DDF2441EA6BD4E006DBD1D /* ShotDetailView.storyboard in Resources */,
 				5A604BB41E9C436B00EBF1D3 /* Search.storyboard in Resources */,
 				5A604BB61E9C437200EBF1D3 /* User.storyboard in Resources */,
 				5A604BB01E9C435900EBF1D3 /* Swipe.storyboard in Resources */,

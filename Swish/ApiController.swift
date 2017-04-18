@@ -7,16 +7,18 @@
 //
 
 import Foundation
+import UIKit
+
 class ApiController {
     
     static let accessToken = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
-//    static let accessToken = NetworkController.accessToken
+    //    static let accessToken = NetworkController.accessToken
     
     static let baseURL = URL(string: "https://api.dribbble.com/v1/shots/")
     
     static func loadShots(completion: @escaping (([Shot]) -> Void)) {
         guard let url = baseURL  else { return }
-
+        
         let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "20"]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
@@ -57,42 +59,50 @@ class ApiController {
                 })
             }
             
-            group.notify(queue: DispatchQueue.main, execute: { 
+            group.notify(queue: DispatchQueue.main, execute: {
                 completion(shots)
             })
         }
     }
-
-// MARK: Fetch current users liked shots
-static func fetchLikedShots(page: String, completion: @escaping ([Shot]) -> Void) {
-    // Example endpoint: https://api.dribbble.com/v1/user/likes?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
     
-    guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/likes") else { return }
-    let urlParameters = ["access_token": NetworkController.accessToken,
-                         "per_page":"20",
-                         "page":page] as? [String:String]
-    
-    NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
-        if error != nil {
-            NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
+    // MARK: Fetch current users liked shots
+    static func fetchLikedShots(page: String, completion: @escaping ([Shot]) -> Void) {
+        // Example endpoint: https://api.dribbble.com/v1/user/likes?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
+        
+        guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/likes") else { return }
+        let urlParameters = ["access_token": NetworkController.accessToken,
+                             "per_page":"20",
+                             "page":page] as? [String:String]
+        
+        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+            if error != nil {
+                NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
+            }
+            
+            guard let data = data else { completion([]); return }
+            
+            guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
+            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            
+            completion(likedShotsArray)
+            
         }
-        
-        guard let data = data else { completion([]); return }
-        
-        guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
-        let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
-        
-        completion(likedShotsArray)
-        
     }
-}
-
-    //MARK: - Like a shot 
-    /* 
+    
+    //MARK: - Like a shot
+    /*
      Liking a shot requires the user to be authenticated to write.
-     -parameter shotID: id of the shot to be liked 
+     -parameter shotID: id of the shot to be liked
      -parameter completionHandler: return and error, JSON, NSURLREsponse, status code of the response and a Bool indicating whether the attempt was successful or not.
      */
+    
+    func fetchTeaserImage(forShot shot: Shot, completion: @escaping (UIImage?) -> Void) {
+        let teaserImageURL = shot.teaserImageURL
+        ImageController.image(forURL: teaserImageURL) { (image) in
+            guard let image = image else { completion(nil); return }
+            completion(image)
+        }
+    }
     
     static func like(shotId: String, completion: @escaping (_ success: Bool) -> Void) {
         
@@ -121,7 +131,7 @@ static func fetchLikedShots(page: String, completion: @escaping ([Shot]) -> Void
         }
     }
     
-    //MARK: - Check if shot liked 
+    //MARK: - Check if shot liked
     
     static func checkIfShotliked(shotId: String, completion: @escaping (_ liked: Bool) -> Void) {
         
@@ -139,14 +149,7 @@ static func fetchLikedShots(page: String, completion: @escaping ([Shot]) -> Void
             
             guard let data = data else { return }
             
-            
         }
     }
+    
 }
-
-
-
-
-
-
-
