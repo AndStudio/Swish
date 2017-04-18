@@ -9,18 +9,19 @@
 import UIKit
 
 class UserDetailViewController: UIViewController {
+// UICollectionViewDelegate, UICollectionViewDataSource {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
-    
+    var collectionView = UICollectionView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        collectionView.DataSource = self
 //        collectionView.Delegate = self
-        
-        // fetch all shots
+//        
+//        // fetch all shots
 //        ApiController.loadShots(page: String()) { (shots) in
 //            self.shots = shots
 //            DispatchQueue.main.async {
