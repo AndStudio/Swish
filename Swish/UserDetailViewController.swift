@@ -8,9 +8,7 @@
 
 import UIKit
 
-private let reuseIdentifier = "userShotCell"
-
-class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICollectionViewDataSource {
+class UserDetailViewController: UIViewController {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
@@ -22,28 +20,25 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICol
 //        collectionView.DataSource = self
 //        collectionView.Delegate = self
         
-        // adjust to fetch all shots, not just liked shots
-        ApiController.loadShots { (shots) in
-            self.shots = shots
-            DispatchQueue.main.async {
-   //             self.collectionView.reloadData()
-            }
+        // fetch all shots
+//        ApiController.loadShots(page: String()) { (shots) in
+//            self.shots = shots
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
         }
-
-        
-
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return shots.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? UICollectionViewCell else { return UICollectionViewCell() }
-        
-        let shot = shots[indexPath.row]
-        return cell
-    }
+//    
+//    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
+//        return shots.count
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+//    
+//        let shot = shots[indexPath.row]
+//        return cell
+//    }
 
 
 
@@ -57,5 +52,5 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate,UICol
         // Pass the selected object to the new view controller.
     }
     */
-
+    
 }
