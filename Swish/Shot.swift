@@ -76,18 +76,25 @@ class Shot {
             let title = shotDictionary[titleKey] as? String,
             let viewCount = shotDictionary[viewCountKey] as? Int,
             let likeCount = shotDictionary[likeCountKey] as? Int,
-            let createdDate = shotDictionary[createdDateKey] as? String,
             let imageDictionary = shotDictionary["images"] as? [String: Any],
             let normalImageURL = imageDictionary[normalImageKey] as? String,
             let teaserImageURL = imageDictionary[teaserImageKey] as? String
             else { return nil }
         
+        
+            let unformattedDescription = shotDictionary[descriptionKey] as? NSString ?? ""
+        guard let unformattedDate = shotDictionary[createdDateKey] as? String else { return nil }
+        
+        
+        let formattedDescription = Formatters.stripHTML(unformattedDescription)
+        let formattedDate = Formatters.formatDate(unformattedDate)
+        
         self.shotID = shotID
         self.title = title
-        self.description = shotDictionary[descriptionKey] as? String
+        self.description = formattedDescription
         self.viewCount = viewCount
         self.likeCount = likeCount
-        self.createdDate = createdDate
+        self.createdDate = formattedDate
         self.normalImageURL = normalImageURL
         self.teaserImageURL = teaserImageURL
         self.hiDpiImageURL = imageDictionary[hiDpiImageKey] as? String
