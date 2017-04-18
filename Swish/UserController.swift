@@ -17,33 +17,33 @@ class UserController {
     
     static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")
     
-    static func fetchUserWith(userID: Int, completion: @escaping([User]) -> Void) {
-        guard let url = baseURL else { completion([])
+    static func loadUserWith(userUserName: String, completion: @escaping(User?) -> Void) {
+        guard let url = baseURL else { completion(nil)
             return}
-        let urlParameter = ["count":"\(userID)"]
+        let urlParameter = ["username": "\(userUserName)"]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameter, body: nil) { (data, error) in
             
             if let error = error {
                 print(error.localizedDescription)
-                completion([])
+                completion(nil)
                 return
             }
             
             guard let data = data,
                 let _ = String(data: data, encoding: .utf8) else { NSLog("No data")
-                    completion([])
+                    completion(nil)
                     return}
             
             guard let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else { NSLog("")
-                completion([])
+                completion(nil)
                 return}
             
-            guard let userDictionaries = jsonDictionary?["users"] as? [[String:Any]] else {completion([])
+            guard let userDictionaries = jsonDictionary?["users"] as? [[String:Any]] else {completion(nil)
                 return}
             
-            let users = userDictionaries.flatMap({User(dictionary: $0) })
-            completion(users)
+            let user = userDictionaries.flatMap({User(dictionary: $0) })
+            completion(<#T##User?#>)
         }
     }
     
