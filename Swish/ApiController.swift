@@ -18,8 +18,8 @@ class ApiController {
     
     static func loadShots(completion: @escaping (([Shot]) -> Void)) {
         guard let url = baseURL  else { return }
-        
-        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "20"]
+
+        let urlParameters = ["access_token" : accessToken, "page" : "1", "per_page": "10"]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
             if let error = error {
@@ -36,28 +36,28 @@ class ApiController {
             
             let group = DispatchGroup()
             
-            for shot in shots {
-                group.enter()
-                group.enter()
-                if shot.hiDpiImageURL == nil {
-                    
-                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                        shot.largeImage = image
-                        group.leave()
-                    })
-                } else {
-                    guard let hiDpiImageURL = shot.hiDpiImageURL else { group.leave(); return }
-                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                        shot.largeImage = image
-                        group.leave()
-                    })
-                }
-                
-                ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
-                    shot.teaserImage = image
-                    group.leave()
-                })
-            }
+//            for shot in shots {
+//                group.enter()
+//                group.enter()
+//                if shot.hiDpiImageURL == nil {
+//                    
+//                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+//                        shot.largeImage = image
+//                        group.leave()
+//                    })
+//                } else {
+//                    guard let hiDpiImageURL = shot.hiDpiImageURL else { group.leave(); return }
+//                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+//                        shot.largeImage = image
+//                        group.leave()
+//                    })
+//                }
+//                
+//                ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
+//                    shot.teaserImage = image
+//                    group.leave()
+//                })
+//            }
             
             group.notify(queue: DispatchQueue.main, execute: {
                 completion(shots)
