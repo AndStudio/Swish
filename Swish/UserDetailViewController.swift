@@ -8,13 +8,13 @@
 
 import UIKit
 
-class UserDetailViewController: UIViewController {
-// UICollectionViewDelegate, UICollectionViewDataSource
+class UserDetailViewController: UIViewController, UICollectionViewDelegate {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
-    var collectionView = UICollectionView()
-        
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,7 +22,7 @@ class UserDetailViewController: UIViewController {
 //        collectionView.Delegate = self
 //        
 //        // fetch all shots
-//        ApiController.loadShots(page: String()) { (shots) in
+//        ApiController.loadShots(page: String(page)) { (shots) in
 //            self.shots = shots
 //            DispatchQueue.main.async {
 //                self.collectionView.reloadData()
@@ -30,16 +30,16 @@ class UserDetailViewController: UIViewController {
 //        }
         }
    
-    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
+    func collectionViewReusableView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shots.count
     }
     
-//    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.reuseIdentifier(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
-//    
-//        let shot = shots[indexPath.row]
-//        return cell
-//    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? UserShotsCollectionViewCell else { return UICollectionViewCell() }
+    
+        let shot = shots[indexPath.row]
+        return cell
+    }
 
 
 
