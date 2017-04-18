@@ -19,6 +19,8 @@ class UserController {
     
     static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")
     
+    static var currentUser: User?
+    
     static func loadUserWith(completion: @escaping ([User]) -> Void) {
         guard let url = baseURL else { completion([])
             return}
@@ -45,6 +47,30 @@ class UserController {
             
         }
     }
+    
+    static func fetchAuthenticaedUser(completion: @escaping (User?) -> Void ) {
+        guard
+            let accessToken = NetworkController.accessToken,
+            let baseURL = URL(string: "https://api.dribbble.com/v1/user?")
+            else { return }
+        
+        let urlComponents: [String:String] = ["access_token":accessToken]
+        
+        NetworkController.performRequest(for: baseURL, httpMethod: .Get, urlParameters: urlComponents, body: nil) { (data, error) in
+            if error != nil {
+                NSLog("There was an error with your request for function \(#function): \(String(describing: error?.localizedDescription))")
+            }
+            
+            guard
+                let data = data,
+                let jsonUserDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any]
+                else { completion(nil); return }
+            
+            let authenticatedUser = User(dictionary: jsonUserDictionary)
+            completion(authenticatedUser)
+        }
+    }
+
     
 }
 

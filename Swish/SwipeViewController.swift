@@ -37,6 +37,10 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserController.fetchAuthenticaedUser { (user) in
+            UserController.currentUser = user
+        }
+        
         navigationController?.isNavigationBarHidden = true
         
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)

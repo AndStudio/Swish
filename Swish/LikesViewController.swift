@@ -87,13 +87,21 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
 //    }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard let authenticatedUser = UserController.currentUser else { return }
+        let doubleCount = Double(authenticatedUser.likeCount)
+        self.maxPage = Int(ceil(doubleCount / 20.0))
         
-        
-        if indexPath.row == (self.shots.count - 5) {
+        if indexPath.row == (self.shots.count - 5) && self.page <= maxPage {
+            self.page += 1
             ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+                
+                let oldShotsEndIndex = self.shots.endIndex
                 self.shots.append(contentsOf: shots)
                 DispatchQueue.main.async {
-                    self.collectionView.reloadData()
+                    let newShotsEndIndex = self.shots.endIndex - 1
+                    let newShotsIndexPaths = (oldShotsEndIndex...newShotsEndIndex).map({IndexPath(item: $0, section: 0)})
+                    
+                    self.collectionView.insertItems(at: newShotsIndexPaths)
                     self.isLoadingShots = false
                 }
             })
