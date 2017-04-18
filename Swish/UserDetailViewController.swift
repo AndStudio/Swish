@@ -12,8 +12,9 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
-    var collectionView = UICollectionView()
-        
+    
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,12 +34,12 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate {
         return shots.count
     }
     
-//    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.reuseIdentifier(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
-//    
-//        let shot = shots[indexPath.row]
-//        return cell
-//    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? UserShotsCollectionViewCell else { return UICollectionViewCell() }
+    
+        let shot = shots[indexPath.row]
+        return cell
+    }
 
 
 

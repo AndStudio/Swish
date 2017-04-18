@@ -92,6 +92,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="blY-nw-dJh" id="blk-q9-ZUZ"/>
                         <segue destination="cvn-wv-nXw" kind="show" id="O2u-en-b9S"/>
                     </connections>
                 </viewController>
