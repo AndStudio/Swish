@@ -14,7 +14,7 @@
         <!--Shot Detail View Controller-->
         <scene sceneID="e4v-ot-Mlm">
             <objects>
-                <viewController storyboardIdentifier="Shot" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EFo-fx-oEx" customClass="ShotDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ShotDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EFo-fx-oEx" customClass="ShotDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fGb-zD-b2T"/>
                         <viewControllerLayoutGuide type="bottom" id="npd-SZ-HuZ"/>

@@ -18,7 +18,9 @@ class UserProfileCollectionReusableView: UICollectionReusableView {
     
     var users: User? {
         didSet {
-            updateViews()
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
         }
     }
     func updateViews() {
