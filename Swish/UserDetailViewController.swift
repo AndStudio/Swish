@@ -30,7 +30,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate {
 //        }
         }
    
-    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
+    func collectionViewReusableView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shots.count
     }
     
