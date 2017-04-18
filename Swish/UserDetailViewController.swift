@@ -21,24 +21,24 @@ class UserDetailViewController: UIViewController {
 //        collectionView.Delegate = self
         
         // fetch all shots
-        ApiController.loadShots(page: String()) { (shots) in
-            self.shots = shots
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
+//        ApiController.loadShots(page: String()) { (shots) in
+//            self.shots = shots
+//            DispatchQueue.main.async {
+//                self.collectionView.reloadData()
+//            }
+//        }
         }
-        }
-//    
+   
     func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
         return shots.count
     }
     
-    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.reuseIdentifier(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
-    
-        let shot = shots[indexPath.row]
-        return cell
-    }
+//    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        guard let cell = collectionView.reuseIdentifier(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+//    
+//        let shot = shots[indexPath.row]
+//        return cell
+//    }
 
 
 
