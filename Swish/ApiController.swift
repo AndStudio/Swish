@@ -87,16 +87,12 @@ class ApiController {
             completion(likedShotsArray)
             
         }
-        guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
-        let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
-        
     }
-}
-
-    //MARK: - Like a shot 
-    /* 
+    
+    //MARK: - Like a shot
+    /*
      Liking a shot requires the user to be authenticated to write.
-     -parameter shotID: id of the shot to be liked 
+     -parameter shotID: id of the shot to be liked
      -parameter completionHandler: return and error, JSON, NSURLREsponse, status code of the response and a Bool indicating whether the attempt was successful or not.
      */
     
@@ -135,7 +131,7 @@ class ApiController {
         }
     }
     
-    //MARK: - Check if shot liked 
+    //MARK: - Check if shot liked
     
     static func checkIfShotliked(shotId: String, completion: @escaping (_ liked: Bool) -> Void) {
         
@@ -153,7 +149,7 @@ class ApiController {
             
             guard let data = data else { return }
             
-            
         }
     }
+    
 }
