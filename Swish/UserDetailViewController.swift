@@ -9,18 +9,19 @@
 import UIKit
 
 class UserDetailViewController: UIViewController {
+// UICollectionViewDelegate, UICollectionViewDataSource {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
-    
+    var collectionView = UICollectionView()
         
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        collectionView.DataSource = self
 //        collectionView.Delegate = self
-        
-        // fetch all shots
+//        
+//        // fetch all shots
 //        ApiController.loadShots(page: String()) { (shots) in
 //            self.shots = shots
 //            DispatchQueue.main.async {
@@ -28,13 +29,13 @@ class UserDetailViewController: UIViewController {
 //            }
 //        }
         }
-//    
-//    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
-//        return shots.count
-//    }
-//    
+   
+    func collectionViewReusableView(_ collectionView: UICollectionReusableView, numberOfItemsInSection section: Int) -> Int {
+        return shots.count
+    }
+    
 //    func collectionView(_ collectionView: UICollectionReusableView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+//        guard let cell = collectionView.reuseIdentifier(withReuseIdentifier: "userShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
 //    
 //        let shot = shots[indexPath.row]
 //        return cell
@@ -43,14 +44,13 @@ class UserDetailViewController: UIViewController {
 
 
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+ 
     
 }

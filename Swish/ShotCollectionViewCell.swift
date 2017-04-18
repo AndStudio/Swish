@@ -10,6 +10,8 @@ import UIKit
 
 class LikedShotCollectionViewCell: UICollectionViewCell {
     
+    let apiController = ApiController()
+    
     // MARK: IBOutlets
     @IBOutlet weak var shotTeaserImageView: UIImageView!
     @IBOutlet weak var shotTitleLabel: UILabel!
@@ -18,10 +20,15 @@ class LikedShotCollectionViewCell: UICollectionViewCell {
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
+                guard let shot = self.shot else { return }
+                self.apiController.fetchTeaserImage(forShot: shot, completion: { (teaserImage) in
+                    self.shotTeaserImageView.image = teaserImage
+                })
                 self.updateViews()
             }
         }
     }
+    
     
     func updateViews() {
         shotTeaserImageView.image = shot?.teaserImage

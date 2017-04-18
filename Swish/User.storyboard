@@ -54,7 +54,7 @@
                                         </view>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dM3-IP-D0R" customClass="UserProfileCollectionReusableView" customModule="Swish" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userProfileCRV" id="dM3-IP-D0R" customClass="UserProfileCollectionReusableView" customModule="Swish" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="163"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
