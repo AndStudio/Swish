@@ -36,12 +36,8 @@ class LaunchViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // FIXME: Remove when Auth changed
-        guard let keychainValue = Keychain.value(forKey: "accessToken") else { return }
-        if Keychain.value(forKey: "accessToken") != nil {
-            NetworkController.accessToken = keychainValue
-            self.performSegue(withIdentifier: "toSwipeVC", sender: self)
-        }
+        
+    
     } 
     
     //MARK: - Helpers
