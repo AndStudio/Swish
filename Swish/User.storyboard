@@ -32,17 +32,13 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userShotCell" id="RaM-gk-GQ7" customClass="LikedShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userShotCell" id="RaM-gk-GQ7" customClass="UserShotsCollectionViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="163" width="158" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="158" height="138"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-U0-rbi">
-                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="115"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R8h-Rx-bvF">
                                                     <rect key="frame" x="0.0" y="117" width="158" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -50,11 +46,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U1i-U0-rbi">
+                                                    <rect key="frame" x="0.0" y="0.0" width="158" height="115"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
                                             </subviews>
                                         </view>
+                                        <connections>
+                                            <outlet property="shotTeaserImageView" destination="U1i-U0-rbi" id="kUQ-wU-Fav"/>
+                                            <outlet property="shotTitleLabel" destination="R8h-Rx-bvF" id="Trc-h7-2rL"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="dM3-IP-D0R" customClass="UserProfileCollectionReusableView" customModule="Swish" customModuleProvider="target">
+                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userProfileCRV" id="dM3-IP-D0R" customClass="UserProfileCollectionReusableView" customModule="Swish" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="343" height="163"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
@@ -88,6 +92,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="collectionView" destination="blY-nw-dJh" id="blk-q9-ZUZ"/>
                         <segue destination="cvn-wv-nXw" kind="show" id="O2u-en-b9S"/>
                     </connections>
                 </viewController>

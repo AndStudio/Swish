@@ -22,17 +22,15 @@ class Shot {
     private let normalImageKey =  "normal"
     private let teaserImageKey = "teaser"
     private let hiDpiImageKey = "hidpi"
-    private let tagsKey =  "tags"
     
     //MARK: - properties
     
     let shotID: Int
     let title: String
-    let description: String
+    let description: String?
     let viewCount: Int
     let likeCount: Int
     let createdDate: String
-    let tags: [String]
     let normalImageURL: String
     let teaserImageURL: String
     let hiDpiImageURL: String?
@@ -52,7 +50,6 @@ class Shot {
             let viewCount = dictionary[viewCountKey] as? Int,
             let likeCount = dictionary[likeCountKey] as? Int,
             let createdDate = dictionary[createdDateKey] as? String,
-            let tags = dictionary[tagsKey] as? [String],
             let imageDictionary = dictionary["images"] as? [String: Any],
             let normalImageURL = imageDictionary[normalImageKey] as? String,
             let teaserImageURL = imageDictionary[teaserImageKey] as? String
@@ -64,7 +61,6 @@ class Shot {
         self.viewCount = viewCount
         self.likeCount = likeCount
         self.createdDate = Formatters.formatDate(createdDate)
-        self.tags = tags
         self.normalImageURL = normalImageURL
         self.teaserImageURL = teaserImageURL
         self.hiDpiImageURL = imageDictionary[hiDpiImageKey] as? String
@@ -78,23 +74,27 @@ class Shot {
         guard let shotDictionary = likeDictionary["shot"] as? [String:Any],
             let shotID = shotDictionary[shotIDKey] as? Int,
             let title = shotDictionary[titleKey] as? String,
-            let description = shotDictionary[descriptionKey] as? String,
             let viewCount = shotDictionary[viewCountKey] as? Int,
             let likeCount = shotDictionary[likeCountKey] as? Int,
-            let createdDate = shotDictionary[createdDateKey] as? String,
-            let tags = shotDictionary[tagsKey] as? [String],
             let imageDictionary = shotDictionary["images"] as? [String: Any],
             let normalImageURL = imageDictionary[normalImageKey] as? String,
             let teaserImageURL = imageDictionary[teaserImageKey] as? String
             else { return nil }
         
+        
+            let unformattedDescription = shotDictionary[descriptionKey] as? NSString ?? ""
+        guard let unformattedDate = shotDictionary[createdDateKey] as? String else { return nil }
+        
+        
+        let formattedDescription = Formatters.stripHTML(unformattedDescription)
+        let formattedDate = Formatters.formatDate(unformattedDate)
+        
         self.shotID = shotID
         self.title = title
-        self.description = description
+        self.description = formattedDescription
         self.viewCount = viewCount
         self.likeCount = likeCount
-        self.createdDate = createdDate
-        self.tags = tags
+        self.createdDate = formattedDate
         self.normalImageURL = normalImageURL
         self.teaserImageURL = teaserImageURL
         self.hiDpiImageURL = imageDictionary[hiDpiImageKey] as? String

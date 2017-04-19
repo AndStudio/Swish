@@ -34,15 +34,15 @@ class ShotDetailViewController: UIViewController {
         present(activiityViewController, animated: true, completion: nil)
     }
     
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        
-        
-//        ApiController.loadShots { (shots) in
-//            guard let shot = shots.first else { return }
-//            self.shot = shot
-//        }
         
         views()
         
@@ -59,12 +59,14 @@ class ShotDetailViewController: UIViewController {
     
     func updateViews() {
         
+        guard
+            let shot = shot,
+            let user = shot.user
+            else { return }
         
-//        var userUserName: String
-        guard let shot = shot else { return }
-        guard let user = shot.user else { return }
-        self.shotDescriptionTextView.text = shot.description
-       
+        let description = shot.description ?? ""
+        
+        self.shotDescriptionTextView.text = description
         self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
         self.userAvatarImageView.image = shot.user?.userAvatar
         self.titleLabel.text = shot.title
@@ -116,4 +118,15 @@ class ShotDetailViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toUserDVC" {
+            
+            guard
+                let viewController = segue.destination as? UserDetailViewController,
+                let user = self.shot?.user
+            else { return }
+            
+            //viewController.user = user
+        }
+    }
 }

@@ -37,6 +37,10 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserController.fetchAuthenticaedUser { (user) in
+            UserController.currentUser = user
+        }
+        
         navigationController?.isNavigationBarHidden = true
         
         dynamicAnimator = UIDynamicAnimator(referenceView: self.view)
@@ -112,7 +116,37 @@ class SwipeViewController: UIViewController {
     
     // Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
+        
+//        let fourthCard = cards[3]
+        var shotCount = 0
+        
+        for shot in shots {
+            shotCount += 1
+            
+            if shotCount % 3 == 0 {
+                
+                if shot.hiDpiImageURL == nil {
+                    
+                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                        shot.largeImage = image
+                    })
+                } else {
+                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                        shot.largeImage = image
+                    })
+                }
+            }
+            
+        }
+        
+        
+        
         // frontmost card (first card of the deck)
+        
+        //this is where ill check cards count to reload next batch if needed.
+        guard cards.count > 0 else { return }
+        
         let firstCard = cards[0]
         self.view.addSubview(firstCard)
         firstCard.layer.zPosition = CGFloat(cards.count)
@@ -159,7 +193,7 @@ class SwipeViewController: UIViewController {
     func openCardDetail(sender: UITapGestureRecognizer) {
         guard let vc = UIStoryboard(name: "ShotDetailView", bundle: nil).instantiateViewController(withIdentifier: "ShotDetail") as? ShotDetailViewController,
             let shot = cards[0].shot
-        else { return }
+            else { return }
         
         vc.shot = shot
         
@@ -292,8 +326,9 @@ class SwipeViewController: UIViewController {
                 DispatchQueue.main.async {
                     
                     self.cards[0].removeFromSuperview()
+                    self.cards.remove(at: 0)
+                    self.layoutCards()
                 }
-                self.cards.remove(at: 0)
             }
             
         } else {
@@ -303,8 +338,8 @@ class SwipeViewController: UIViewController {
             self.cards[0].removeFromSuperview()
             self.cards.remove(at: 0)
             
+            layoutCards()
         }
-        
         
     }
     
