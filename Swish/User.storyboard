@@ -53,7 +53,6 @@
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="shotTeaserImageView" destination="U1i-U0-rbi" id="kUQ-wU-Fav"/>
                                             <outlet property="shotTitleLabel" destination="R8h-Rx-bvF" id="Trc-h7-2rL"/>
                                         </connections>
                                     </collectionViewCell>
@@ -89,6 +88,9 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="blY-nw-dJh" id="blk-q9-ZUZ"/>
+                        <outlet property="nameLabel" destination="SFG-O0-M3g" id="3iG-9F-I8u"/>
+                        <outlet property="userAvatarImageView" destination="6Wl-u9-qO6" id="Lh9-0N-rf2"/>
+                        <outlet property="userNameLabel" destination="2dM-2Y-kk4" id="BHX-PA-rbX"/>
                         <segue destination="cvn-wv-nXw" kind="show" id="O2u-en-b9S"/>
                     </connections>
                 </viewController>
