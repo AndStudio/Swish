@@ -43,7 +43,7 @@ class ShotDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
-        
+        updateViews()
         views()
         
     }
@@ -52,6 +52,7 @@ class ShotDetailViewController: UIViewController {
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
+                guard self.isViewLoaded else { return }
                 self.updateViews()
             }
         }

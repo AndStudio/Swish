@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="bx8-Dc-IQ2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="D89-uS-JIA">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Likes View Controller-->
+        <!--Title-->
         <scene sceneID="39l-2j-G9y">
             <objects>
                 <viewController storyboardIdentifier="likes" id="bx8-Dc-IQ2" customClass="LikesViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
@@ -21,9 +22,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xpg-hO-XkR">
-                                <rect key="frame" x="16" y="68" width="343" height="579"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Xpg-hO-XkR">
+                                <rect key="frame" x="16" y="16" width="343" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="IhK-l3-056">
                                     <size key="itemSize" width="166" height="155"/>
@@ -62,14 +62,27 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="oLJ-Vf-iij" firstAttribute="top" secondItem="Xpg-hO-XkR" secondAttribute="bottom" id="3fP-IW-27u"/>
+                            <constraint firstItem="Xpg-hO-XkR" firstAttribute="top" secondItem="jlK-bc-Lw9" secondAttribute="bottom" constant="-48" id="7Qb-su-NCr"/>
+                            <constraint firstItem="Xpg-hO-XkR" firstAttribute="leading" secondItem="cQZ-LA-cc7" secondAttribute="leadingMargin" id="HXl-05-B3n"/>
+                            <constraint firstItem="Xpg-hO-XkR" firstAttribute="trailing" secondItem="cQZ-LA-cc7" secondAttribute="trailingMargin" id="iib-an-IUB"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Title" id="okp-RN-z0a">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wRf-ZZ-mCA">
+                            <connections>
+                                <action selector="dismissViewController:" destination="bx8-Dc-IQ2" id="0E2-Im-eGJ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="Xpg-hO-XkR" id="89a-DG-qjv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fBm-qO-Drb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="368.80000000000001" y="353.9730134932534"/>
+            <point key="canvasLocation" x="1308" y="353.9730134932534"/>
         </scene>
         <!--ShotDetailView-->
         <scene sceneID="i90-3d-xni">
@@ -77,7 +90,25 @@
                 <viewControllerPlaceholder storyboardName="ShotDetailView" id="Bpc-x8-7UM" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ilw-Bm-AUV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015" y="354"/>
+            <point key="canvasLocation" x="1952.8" y="353.52323838080963"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="11K-nV-868">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D89-uS-JIA" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="naS-1k-93I">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bx8-Dc-IQ2" kind="relationship" relationship="rootViewController" id="P76-YR-jN5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7qk-gR-RV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="368.80000000000001" y="353.9730134932534"/>
         </scene>
     </scenes>
 </document>

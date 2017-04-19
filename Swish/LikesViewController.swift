@@ -21,7 +21,9 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.isNavigationBarHidden = true
+        title = "Liked Shots"
+        
+        navigationController?.isNavigationBarHidden = false
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -33,6 +35,11 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
+    
+    @IBAction func dismissViewController(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     
     // MARK: Delegat and Data Source Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -118,22 +118,36 @@ class SwipeViewController: UIViewController {
     func layoutCards() {
         
 //        let fourthCard = cards[3]
-        var shotCount = 0
         
-        for shot in shots {
-            shotCount += 1
+        for i in 0...(shots.count - 1) {
             
-            if shotCount % 3 == 0 {
+            let shot = self.shots[i]
+            
+            if i == 3 {
                 
                 if shot.hiDpiImageURL == nil {
                     
                     ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                        shot.largeImage = image
+                        
+                        guard let image = image, let lowQualityData = image.lowQualityJPEGData, let newGifImage = UIImage.gif(data: lowQualityData) else { return }
+                        
+                        
+                        shot.largeImage = newGifImage
+                        
+                        let card = self.cards[i]
+                        
+                        card.updateViews()
+                        
                     })
                 } else {
                     guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
                     ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                        shot.largeImage = image
+                        guard let image = image, let lowQualityData = image.lowQualityJPEGData, let newImage = UIImage(data: lowQualityData) else { return }
+                        shot.largeImage = newImage
+                        
+                        let card = self.cards[i]
+                        
+                        card.updateViews()
                     })
                 }
             }
