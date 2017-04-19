@@ -136,7 +136,7 @@ class ShotDetailViewController: UIViewController {
 //            
 //                else { return }
             
-            //viewController.user = user
+            viewController.user = user
         }
     }
 }
