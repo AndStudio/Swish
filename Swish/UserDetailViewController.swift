@@ -48,7 +48,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "likesShotCell", for: indexPath) as? ShotCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? ShotCollectionViewCell else { return UICollectionViewCell() }
         
         cell.shot = shots[indexPath.row]
         return cell
