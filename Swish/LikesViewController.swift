@@ -61,9 +61,8 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     //MARK: Pagination Properties and Functions
-    let threshold: CGFloat = 300
+
     var page: Int = 1
-    var isLoadingShots = false
     var maxPage: Int = 1
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -83,7 +82,6 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
                         let newShotsIndexPaths = (oldShotsEndIndex...newShotsEndIndex).map({IndexPath(item: $0, section: 0)})
                         
                         self.collectionView.insertItems(at: newShotsIndexPaths)
-                        self.isLoadingShots = false
                         
                     }
                 }
