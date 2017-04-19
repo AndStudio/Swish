@@ -91,7 +91,7 @@ class ApiController {
     static func fetchShots(forUser user: User, page: String, completion: @escaping ([Shot]) -> Void) {
         // Example enpoint: https://api.dribbble.com/v1/users/dribbble/shots?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
         
-        guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/\(user.userUserName)/shots") else { return }
+        guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/users/\(user.userUserName)/shots") else { return }
         
         let urlParameters = ["access_token": Keychain.value(forKey: "accessToken"),
                              "per_page":String(DribbleApi.collectionShotsToLoad),
@@ -104,8 +104,8 @@ class ApiController {
             
             guard let data = data else { completion([]); return }
             
-            guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
-            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            guard let shotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
+            let likedShotsArray = shotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
             
             completion(likedShotsArray)
             

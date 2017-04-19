@@ -59,7 +59,9 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         userNameLabel.text = user.userUserName
         nameLabel.text = user.userName
         ImageController.image(forURL: (user.userAvatarURL)) { (image) in
-            self.userAvatarImageView.image = image
+            DispatchQueue.main.async {
+                self.userAvatarImageView.image = image
+            }
         }
     }
     
@@ -71,7 +73,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
         if indexPath.row == (self.shots.count - 5) && self.page <= maxPage {
             self.page += 1
-            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+            guard let user = self.user else { return }
+            ApiController.fetchShots(forUser: user, page: String(page), completion: { (shots) in
                 
                 let oldShotsEndIndex = self.shots.endIndex
                 self.shots.append(contentsOf: shots)
