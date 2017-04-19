@@ -32,7 +32,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="likedShotCell" id="KAc-bx-8WX" customClass="LikedShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="likedShotCell" id="KAc-bx-8WX" customClass="ShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="166" height="155"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -53,8 +53,8 @@
                                             </subviews>
                                         </view>
                                         <connections>
-                                            <outlet property="shotTeaserImageView" destination="Hne-8b-yTM" id="WOj-0b-VZ1"/>
-                                            <outlet property="shotTitleLabel" destination="iRl-3x-cfT" id="n95-FI-mGX"/>
+                                            <outlet property="shotTeaserImageView" destination="Hne-8b-yTM" id="NFC-tB-m4Y"/>
+                                            <outlet property="shotTitleLabel" destination="iRl-3x-cfT" id="RlF-3d-FLC"/>
                                             <segue destination="Bpc-x8-7UM" kind="show" identifier="toShotDetailVC" id="k8H-zJ-YIT"/>
                                         </connections>
                                     </collectionViewCell>
