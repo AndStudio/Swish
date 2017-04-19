@@ -53,6 +53,7 @@
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="shotTeaserImageView" destination="U1i-U0-rbi" id="ayB-sX-G1B"/>
                                             <outlet property="shotTitleLabel" destination="R8h-Rx-bvF" id="Trc-h7-2rL"/>
                                         </connections>
                                     </collectionViewCell>
