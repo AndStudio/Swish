@@ -100,7 +100,7 @@ class ApiController {
         let teaserImageURL = shot.teaserImageURL
         ImageController.image(forURL: teaserImageURL) { (image) in
             shot.teaserImage = image
-            completion(shot.teaserImage)
+            completion(image)
         }
     }
     
