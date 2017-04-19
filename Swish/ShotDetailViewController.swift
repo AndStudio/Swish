@@ -47,6 +47,7 @@ class ShotDetailViewController: UIViewController, ShotRefreshDelegate {
         guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
         
         userDetailVC.shotRefreshDelegate = self
+        userDetailVC.user = shot?.user
         
         self.present(userDetailVC, animated: true, completion: nil)
     }
