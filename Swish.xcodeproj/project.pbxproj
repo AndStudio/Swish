@@ -32,6 +32,8 @@
 		665984571E9EBF87001BB19F /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 665984561E9EBF87001BB19F /* UserDetailViewController.swift */; };
 		9638F5BB1EA7DF6D0047D232 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */; };
 		963C597B1EA16BD40015A139 /* UIImage+gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C597A1EA16BD40015A139 /* UIImage+gif.swift */; };
+		964771C41EA8034B0099D625 /* AuthenticatedUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 964771C31EA8034B0099D625 /* AuthenticatedUser.storyboard */; };
+		964771C61EA803630099D625 /* AuthenticatedUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 964771C51EA803630099D625 /* AuthenticatedUserViewController.swift */; };
 		967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967D83C51E9D9F17001BE32E /* NetworkController.swift */; };
 		96A276A01E9E97B7006C21F0 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A2769F1E9E97B7006C21F0 /* Keychain.swift */; };
 		96AF3E461E9FCF2D002A79DD /* ShotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96AF3E441E9FCF2D002A79DD /* ShotCollectionViewCell.swift */; };
@@ -80,6 +82,8 @@
 		665984561E9EBF87001BB19F /* UserDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		963C597A1EA16BD40015A139 /* UIImage+gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+gif.swift"; sourceTree = "<group>"; };
+		964771C31EA8034B0099D625 /* AuthenticatedUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthenticatedUser.storyboard; sourceTree = "<group>"; };
+		964771C51EA803630099D625 /* AuthenticatedUserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticatedUserViewController.swift; sourceTree = "<group>"; };
 		967D83C51E9D9F17001BE32E /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		96A2769F1E9E97B7006C21F0 /* Keychain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		96AF3E441E9FCF2D002A79DD /* ShotCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShotCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 				5A604BB11E9C436200EBF1D3 /* Likes.storyboard */,
 				5A604BB51E9C437200EBF1D3 /* User.storyboard */,
 				96DDF2451EA6D836006DBD1D /* ShotDetailView.storyboard */,
+				964771C31EA8034B0099D625 /* AuthenticatedUser.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -192,6 +197,7 @@
 		5A604BBC1E9C445600EBF1D3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				964771C51EA803630099D625 /* AuthenticatedUserViewController.swift */,
 				9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */,
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
@@ -257,9 +263,7 @@
 				TargetAttributes = {
 					5A604B961E9C41ED00EBF1D3 = {
 						CreatedOnToolsVersion = 8.3.1;
-
-						DevelopmentTeam = HK9J242HR4;
-
+						DevelopmentTeam = JLLV7F3JQ4;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -293,6 +297,7 @@
 				5A604BB21E9C436200EBF1D3 /* Likes.storyboard in Resources */,
 				5A604BA01E9C41ED00EBF1D3 /* Main.storyboard in Resources */,
 				96DDF2461EA6D836006DBD1D /* ShotDetailView.storyboard in Resources */,
+				964771C41EA8034B0099D625 /* AuthenticatedUser.storyboard in Resources */,
 				5A604BB61E9C437200EBF1D3 /* User.storyboard in Resources */,
 				5A604BB01E9C435900EBF1D3 /* Swipe.storyboard in Resources */,
 			);
@@ -306,6 +311,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A7E23B61EA2B24400582516 /* ShotCard.swift in Sources */,
+				964771C61EA803630099D625 /* AuthenticatedUserViewController.swift in Sources */,
 				9638F5BB1EA7DF6D0047D232 /* LaunchScreenViewController.swift in Sources */,
 				96AF3E461E9FCF2D002A79DD /* ShotCollectionViewCell.swift in Sources */,
 				5A8004171E9EBD89005356CA /* ImageController.swift in Sources */,
