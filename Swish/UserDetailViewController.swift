@@ -35,6 +35,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.dataSource = self
         collectionView.delegate = self
         
+        // FIXME: Currently fetching auth users liked hsots, change to fetch a specific user's liked shots
         // fetch all shots
         ApiController.fetchLikedShots(page: String(page)) { (shots) in
             self.shots = shots
@@ -43,6 +44,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return shots.count
     }

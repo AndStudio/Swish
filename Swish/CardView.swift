@@ -124,7 +124,6 @@ class CardView: UIView {
     }
 }
 
-
 class CardViewLabel: UILabel {
     fileprivate static let size = CGSize(width: 120, height: 36)
     

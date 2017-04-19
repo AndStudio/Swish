@@ -16,8 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var userAccessCode: String?
-
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         if (url.host == "oauth") {
@@ -34,12 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: accessTokenDeniedNotification, object: self, userInfo: nil)
                 }
-                
             }
             
             let componentsDictionary: [String:String] = [
-                "client_id":"7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762",
-                "client_secret":"8a8fad391aff41852cd8dd52d7f54f97e050014d3bfa1682538cd8ade9243be8",
+                "client_id":DribbleApi.clientID,
+                "client_secret":DribbleApi.clientSecret,
                 "code":code
             ]
             
@@ -55,9 +52,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
                     let userAccessCode = json["access_token"] as? String
                 else { return }
-                
-                self.userAccessCode = userAccessCode
-                print("Access Code: \(String(describing: userAccessCode))")
                 
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: accessTokenRecievedNotification, object: self, userInfo: ["accessToken":userAccessCode])
