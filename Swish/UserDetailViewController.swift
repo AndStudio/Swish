@@ -12,6 +12,14 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate {
 
     var userAvatar = UIImage()
     var shots: [Shot] = []
+    var user: User? {
+        didSet {
+            DispatchQueue.main.async {
+                self.updateViews()
+            }
+        }
+    }
+    
     
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -41,7 +49,10 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate {
         return cell
     }
 
-
+    func updateViews() {
+        
+        
+    }
 
 
     
