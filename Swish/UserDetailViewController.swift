@@ -92,9 +92,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ShotCollectionViewCell, let selectedShot = cell.shot else { return }
-        self.dismiss(animated: true) {
-            self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
-        }
+        self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
+        self.dismiss(animated: true, completion: nil)
         
         
     }
@@ -102,8 +101,19 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            //destination
+      //  if segue.identifier == "shotDetailView" {
+            //what 
+        //    guard let indexPath = collectionView.indexPath(for: userShotCell),
+            //where
+          //  let destinationVC = segue.destination as? ShotDetailViewController else { return }
+            // what to the where
+            //let userShotCell = shots.description
+            //destinationVC.reloadShotDetailVC = userShotCell
+        //}
+
+    //}
 }
 
 
@@ -111,3 +121,5 @@ protocol ShotRefreshDelegate: class {
     
     func reloadShotDetailVCWith(selectedShot: Shot)
 }
+
+
