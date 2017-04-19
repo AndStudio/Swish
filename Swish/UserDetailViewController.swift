@@ -14,6 +14,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     var page: Int = 1
     var userAvatar = UIImage()
     var shots: [Shot] = []
+    var shotRefreshDelegate: ShotRefreshDelegate?
     var user: User? {
         didSet {
             DispatchQueue.main.async {
@@ -49,7 +50,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "likesShotCell", for: indexPath) as? ShotCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? ShotCollectionViewCell else { return ShotCollectionViewCell() }
         
         cell.shot = shots[indexPath.row]
         return cell
@@ -88,9 +89,24 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let cell = collectionView.cellForItem(at: indexPath) as? ShotCollectionViewCell, let selectedShot = cell.shot else { return }
+        self.dismiss(animated: true) {
+            self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
+        }
+        
+        
+    }
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     }
+}
+
+
+protocol ShotRefreshDelegate: class {
+    
+    func reloadShotDetailVCWith(selectedShot: Shot)
 }

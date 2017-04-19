@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ShotDetailViewController: UIViewController {
+class ShotDetailViewController: UIViewController, ShotRefreshDelegate {
     
     //MARK: - outlets
     @IBOutlet weak var titleLabel: UILabel!
@@ -40,6 +40,17 @@ class ShotDetailViewController: UIViewController {
         
     }
     
+    @IBAction func userNameButtonTapped(_ sender: Any) {
+        
+        let userStoryboard = UIStoryboard(name: "User", bundle: nil)
+        
+        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
+        
+        userDetailVC.shotRefreshDelegate = self
+        
+        self.present(userDetailVC, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
@@ -55,6 +66,10 @@ class ShotDetailViewController: UIViewController {
                 self.updateViews()
             }
         }
+    }
+    
+    func reloadShotDetailVCWith(selectedShot: Shot) {
+        self.shot = selectedShot
     }
     
     func updateViews() {

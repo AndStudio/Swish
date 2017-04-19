@@ -22,16 +22,15 @@ class ShotCollectionViewCell: UICollectionViewCell {
             DispatchQueue.main.async {
                 guard let shot = self.shot else { return }
                 self.apiController.fetchTeaserImage(forShot: shot, completion: { (teaserImage) in
-                    self.shotTeaserImageView.image = teaserImage
+                    self.updateViews()
                 })
-                self.updateViews()
             }
         }
     }
     
-    
     func updateViews() {
-        shotTeaserImageView.image = shot?.teaserImage
-        shotTitleLabel.text = shot?.title
+        guard let shot = shot else { return }
+        shotTeaserImageView.image = shot.teaserImage
+        shotTitleLabel.text = shot.title
     }
 }

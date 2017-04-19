@@ -12,7 +12,7 @@
         <!--User Detail View Controller-->
         <scene sceneID="DgS-S8-lpa">
             <objects>
-                <viewController id="b8H-7D-one" customClass="UserDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userDetailVC" id="b8H-7D-one" customClass="UserDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vUt-TI-pHS"/>
                         <viewControllerLayoutGuide type="bottom" id="xwR-cd-SZy"/>
@@ -32,7 +32,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userShotCell" id="RaM-gk-GQ7" customClass="LikedShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="userShotCell" id="RaM-gk-GQ7" customClass="ShotCollectionViewCell" customModule="Swish" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="158" height="138"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -53,6 +53,7 @@
                                             </subviews>
                                         </view>
                                         <connections>
+                                            <outlet property="shotTeaserImageView" destination="U1i-U0-rbi" id="ayB-sX-G1B"/>
                                             <outlet property="shotTitleLabel" destination="R8h-Rx-bvF" id="Trc-h7-2rL"/>
                                         </connections>
                                     </collectionViewCell>
