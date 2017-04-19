@@ -99,8 +99,8 @@ class ApiController {
     func fetchTeaserImage(forShot shot: Shot, completion: @escaping (UIImage?) -> Void) {
         let teaserImageURL = shot.teaserImageURL
         ImageController.image(forURL: teaserImageURL) { (image) in
-            guard let image = image else { completion(nil); return }
-            completion(image)
+            shot.teaserImage = image
+            completion(shot.teaserImage)
         }
     }
     

@@ -172,7 +172,7 @@ extension UIImage {
         var frameCount: Int
         for i in 0..<count {
             frame = UIImage(cgImage: images[Int(i)])
-            guard let cFrame = UIImage(data: frame.lowQualityJPEGData!) else { return UIImage() }
+            guard let cFrame = UIImage(data: frame.lowestQualityJPEGData!) else { return UIImage() }
 
             frameCount = Int(delays[Int(i)] / gcd)
             for _ in 0..<frameCount {
