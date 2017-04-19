@@ -20,9 +20,9 @@ class LaunchViewController: UIViewController {
 
     
     //MARK: - UI Actions
-    
+    // FIXME: No action in here, do we need this?
     @IBAction func signInButtonTapped(_ sender: Any) {
-        
+
     }
     
     //MARK: - View lifecyle
@@ -30,15 +30,13 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // FIXME: REMOVE THIS LINE BEFORE SHIPPING!
-//        _ = Keychain.removeValue(forKey: "accessToken")
-        
         DispatchQueue.main.async {
             self.updateViews()
         }
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        // FIXME: Remove when Auth changed
         guard let keychainValue = Keychain.value(forKey: "accessToken") else { return }
         if Keychain.value(forKey: "accessToken") != nil {
             NetworkController.accessToken = keychainValue

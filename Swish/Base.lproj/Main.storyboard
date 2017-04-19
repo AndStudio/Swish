@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HBN-xH-w9B">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5t3-7p-oVV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -123,5 +123,30 @@
             </objects>
             <point key="canvasLocation" x="132" y="38"/>
         </scene>
+        <!--Launch Screen View Controller-->
+        <scene sceneID="RYk-f9-Wui">
+            <objects>
+                <viewController id="5t3-7p-oVV" customClass="LaunchScreenViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XIa-Zv-ZGU"/>
+                        <viewControllerLayoutGuide type="bottom" id="PXE-v7-EEC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Zoz-QB-LpO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <connections>
+                        <segue destination="HBN-xH-w9B" kind="show" identifier="toLaunchVC" id="FZs-ph-OmV"/>
+                        <segue destination="F4E-wD-xva" kind="show" identifier="toSwipeVCFromLaunch" id="VWg-VZ-ayD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3oN-bE-rTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1278" y="-743"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="VWg-VZ-ayD"/>
+    </inferredMetricsTieBreakers>
 </document>

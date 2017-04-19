@@ -23,6 +23,7 @@ class UserController {
     
     static var currentUser: User?
     
+    // FIXME: This is never called, do we need it?
     static func loadUserWith(completion: @escaping ([User]) -> Void) {
         guard let url = baseURL else { completion([])
             return}
@@ -50,9 +51,9 @@ class UserController {
         }
     }
     
-    static func fetchAuthenticaedUser(completion: @escaping (User?) -> Void ) {
+    static func fetchAuthenticatedUser(completion: @escaping (User?) -> Void ) {
         guard
-            let accessToken = NetworkController.accessToken,
+            let accessToken = Keychain.value(forKey: "accessToken"),
             let baseURL = URL(string: "https://api.dribbble.com/v1/user?")
             else { return }
         

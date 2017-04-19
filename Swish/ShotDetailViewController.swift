@@ -48,7 +48,6 @@ class ShotDetailViewController: UIViewController {
         
     }
     
-    
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
@@ -66,7 +65,6 @@ class ShotDetailViewController: UIViewController {
         
         self.shotDescriptionTextView.text = description
         self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
-        
         self.titleLabel.text = shot.title
         self.likeCountLabel.text = "\(shot.likeCount)"
         self.viewCountLabel.text = "\(shot.viewCount)"
@@ -119,8 +117,6 @@ class ShotDetailViewController: UIViewController {
         likeCountLabel.text = ""
         creationDateLabel.text = ""
         
-        
-        
         //make the userAvatarImage round
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
         userAvatarImageView.clipsToBounds = true
@@ -136,7 +132,6 @@ class ShotDetailViewController: UIViewController {
             guard let destinationVC = segue.destination as? UserDetailViewController else { return }
             let userData = shot?.user
             destinationVC.user = userData
-            
         }
     }
 }
