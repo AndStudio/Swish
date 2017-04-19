@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import CoreGraphics
 class ImageController {
 
     static func image(forURL url: String, completion: @escaping (UIImage?) -> Void) {
@@ -38,7 +38,5 @@ class ImageController {
             }
         }
     }
-    
-    
-    
+
 }

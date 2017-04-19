@@ -76,8 +76,8 @@ extension UIImage {
         
         delay = delayObject as! Double
         
-        if delay < 0.1 {
-            delay = 0.1 // Make sure they're not too fast
+        if delay < 0.01 {
+            delay = 0.01  // Make sure they're not too fast
         }
         
         return delay
@@ -168,13 +168,16 @@ extension UIImage {
         var frames = [UIImage]()
         
         var frame: UIImage
+
         var frameCount: Int
         for i in 0..<count {
             frame = UIImage(cgImage: images[Int(i)])
+            guard let cFrame = UIImage(data: frame.lowQualityJPEGData!) else { return UIImage() }
+
             frameCount = Int(delays[Int(i)] / gcd)
-            
             for _ in 0..<frameCount {
-                frames.append(frame)
+
+                frames.append(cFrame)
             }
         }
         
@@ -185,4 +188,13 @@ extension UIImage {
         return animation
     }
     
+}
+
+extension UIImage {
+    var data: Data? { return UIImagePNGRepresentation(self) }
+    var highestQualityJPEGData: Data? { return UIImageJPEGRepresentation(self, 1.0)  }
+    var highQualityJPEGData: Data?    { return UIImageJPEGRepresentation(self, 0.75) }
+    var mediumQualityJPEGData: Data?  { return UIImageJPEGRepresentation(self, 0.5)  }
+    var lowQualityJPEGData: Data?     { return UIImageJPEGRepresentation(self, 0.25) }
+    var lowestQualityJPEGData: Data?   { return UIImageJPEGRepresentation(self, 0.0)  }
 }
