@@ -118,4 +118,15 @@ class ShotDetailViewController: UIViewController {
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toUserDVC" {
+            
+            guard
+                let viewController = segue.destination as? UserDetailViewController,
+                let user = self.shot?.user
+            else { return }
+            
+            //viewController.user = user
+        }
+    }
 }
