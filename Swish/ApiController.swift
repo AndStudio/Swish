@@ -36,28 +36,28 @@ class ApiController {
             
             let group = DispatchGroup()
             
-//            for shot in shots {
-//                group.enter()
-//                group.enter()
-//                if shot.hiDpiImageURL == nil {
-//                    
-//                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-//                        shot.largeImage = image
-//                        group.leave()
-//                    })
-//                } else {
-//                    guard let hiDpiImageURL = shot.hiDpiImageURL else { group.leave(); return }
-//                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-//                        shot.largeImage = image
-//                        group.leave()
-//                    })
-//                }
-//                
-//                ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
-//                    shot.teaserImage = image
-//                    group.leave()
-//                })
-//            }
+            for shot in shots {
+                group.enter()
+                group.enter()
+                if shot.hiDpiImageURL == nil {
+                    
+                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                        shot.largeImage = image
+                        group.leave()
+                    })
+                } else {
+                    guard let hiDpiImageURL = shot.hiDpiImageURL else { group.leave(); return }
+                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                        shot.largeImage = image
+                        group.leave()
+                    })
+                }
+                
+                ImageController.image(forURL: shot.teaserImageURL, completion: { (image) in
+                    shot.teaserImage = image
+                    group.leave()
+                })
+            }
             
             group.notify(queue: DispatchQueue.main, execute: {
                 completion(shots)
@@ -99,8 +99,8 @@ class ApiController {
     func fetchTeaserImage(forShot shot: Shot, completion: @escaping (UIImage?) -> Void) {
         let teaserImageURL = shot.teaserImageURL
         ImageController.image(forURL: teaserImageURL) { (image) in
-            guard let image = image else { completion(nil); return }
-            completion(image)
+            shot.teaserImage = image
+            completion(shot.teaserImage)
         }
     }
     
