@@ -147,7 +147,7 @@
                                     <constraint firstAttribute="height" constant="76" id="0lB-94-tCH"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="zSr-IY-IF9" kind="presentation" identifier="toUserDVC" id="U8y-kn-lMo"/>
+                                    <action selector="userNameButtonTapped:" destination="EFo-fx-oEx" eventType="touchUpInside" id="9ZM-JD-Ihe"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -196,14 +196,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hAS-3l-rrl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="268" y="143.47826086956522"/>
-        </scene>
-        <!--User-->
-        <scene sceneID="Nx3-lC-iwN">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="User" storyboardName="User" id="zSr-IY-IF9" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="NL2-3E-zxy" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="884" y="142.1289355322339"/>
         </scene>
     </scenes>
     <resources>
