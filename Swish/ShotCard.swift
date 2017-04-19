@@ -8,13 +8,16 @@
 
 import UIKit
 
+
 class ShotCard: CardView {
     
     //MARK: - Properties 
     
+    
     var shot: Shot? {
         didSet {
             updateViews()
+
         }
     }
     

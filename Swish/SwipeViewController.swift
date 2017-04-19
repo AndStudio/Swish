@@ -73,6 +73,13 @@ class SwipeViewController: UIViewController {
                         self.cards.append(card)
                     }
                     
+                    self.setInitialCardImages(completion: { 
+                        for i in 0...(shots.count - 1) {
+                            let card = self.cards[i]
+                            card.updateViews()
+                        }
+                    })
+                    
                     self.layoutCards()
                     
                     // reload and update stuff
@@ -80,9 +87,7 @@ class SwipeViewController: UIViewController {
             }
             
             // fetch liked shots and build dont show shots array. Need to handle for >100 liked shots
-            
-            
-            
+ 
         }
         
         self.incrementShotLoading()
@@ -110,48 +115,25 @@ class SwipeViewController: UIViewController {
         }
     }
     
+    // Set the Gif
+    
+    func setGif() {
+        
+        print("set new gif triggered as card removed")
+        
+        // check if the index is the fourth card (cards[3])
+        // process that card's gif 
+        // update that shot's largeimage property 
+        // send notification to update views on the shot
+        
+    }
+    
     // Scale and alpha of successive cards visible to the user
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
     
     // Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
-        
-//        let fourthCard = cards[3]
-        
-        for i in 0...(shots.count - 1) {
-            
-            let shot = self.shots[i]
-            
-            if i == 3 {
-                
-                if shot.hiDpiImageURL == nil {
-                    
-                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                        
-                        guard let image = image, let lowQualityData = image.lowQualityJPEGData, let newGifImage = UIImage.gif(data: lowQualityData) else { return }
-                        
-                        
-                        shot.largeImage = newGifImage
-                        
-                        let card = self.cards[i]
-                        
-                        card.updateViews()
-                        
-                    })
-                } else {
-                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
-                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                        guard let image = image, let lowQualityData = image.lowQualityJPEGData, let newImage = UIImage(data: lowQualityData) else { return }
-                        shot.largeImage = newImage
-                        
-                        let card = self.cards[i]
-                        
-                        card.updateViews()
-                    })
-                }
-            }
-        }
         
         // frontmost card (first card of the deck)
         
@@ -339,6 +321,8 @@ class SwipeViewController: UIViewController {
                     self.cards[0].removeFromSuperview()
                     self.cards.remove(at: 0)
                     self.layoutCards()
+                    self.setGif()
+                    
                 }
             }
             
@@ -350,6 +334,7 @@ class SwipeViewController: UIViewController {
             self.cards.remove(at: 0)
             
             layoutCards()
+            setGif()
         }
         
     }
@@ -520,6 +505,34 @@ extension SwipeViewController {
             
         }
     }
+    
+    func setInitialCardImages(completion: () -> Void) {
+        
+        // the next 3 cards in the deck
+        DispatchQueue.main.async {
+            for i in 0...3 {
+                
+                let shot = self.shots[i]
+                
+                if shot.hiDpiImageURL == nil {
+                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                        shot.largeImage = image
+                    })
+                } else {
+                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                        shot.largeImage = image
+                        
+                       let card = self.cards[i]
+                        card.shot = shot
+                        
+                    })
+                }
+            }
+        }
+        completion()
+    }
+    
 }
 
 
