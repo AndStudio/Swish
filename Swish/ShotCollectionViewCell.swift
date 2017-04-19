@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LikedShotCollectionViewCell: UICollectionViewCell {
+class ShotCollectionViewCell: UICollectionViewCell {
     
     let apiController = ApiController()
     

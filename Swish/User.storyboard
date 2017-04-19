@@ -87,7 +87,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="collectionView" destination="blY-nw-dJh" id="blk-q9-ZUZ"/>
+                        <outlet property="collectionView" destination="blY-nw-dJh" id="FL7-qp-gE6"/>
                         <outlet property="nameLabel" destination="SFG-O0-M3g" id="3iG-9F-I8u"/>
                         <outlet property="userAvatarImageView" destination="6Wl-u9-qO6" id="Lh9-0N-rf2"/>
                         <outlet property="userNameLabel" destination="2dM-2Y-kk4" id="BHX-PA-rbX"/>

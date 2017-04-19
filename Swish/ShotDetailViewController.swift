@@ -60,37 +60,48 @@ class ShotDetailViewController: UIViewController {
     
     func updateViews() {
         
-        guard
-            let shot = shot,
-            let user = shot.user
-            else { return }
+        guard let shot = shot, let user = shot.user else { return }
         
         let description = shot.description ?? ""
         
         self.shotDescriptionTextView.text = description
         self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
-        self.userAvatarImageView.image = shot.user?.userAvatar
+        
         self.titleLabel.text = shot.title
         self.likeCountLabel.text = "\(shot.likeCount)"
         self.viewCountLabel.text = "\(shot.viewCount)"
         self.creationDateLabel.text = shot.createdDate
-
-        if shot.hiDpiImageURL == nil {
-            ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                self.shotImageView.image = image
-            })
+        
+        if shot.largeImage != nil {
+            self.shotImageView.image = shot.largeImage
         } else {
-            guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
-            ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                self.shotImageView.image = image
-            })
+            
+            if shot.hiDpiImageURL == nil {
+                ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                    self.shotImageView.image = image
+                })
+            } else {
+                guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                    self.shotImageView.image = image
+                })
+            }
         }
-        ImageController.image(forURL: user.userAvatarURL) { (image) in
-            self.userAvatarImageView.image = image
+        
+        if user.userAvatar != nil {
+            self.userAvatarImageView.image = user.userAvatar
+        } else {
+            
+            ImageController.image(forURL: user.userAvatarURL) { (image) in
+                self.userAvatarImageView.image = image
+            }
         }
     }
     
     func views() {
+        guard let shot = shot else { return }
+        shotImageView.image = shot.teaserImage
+        
         shareButton.backgroundColor = Colors.primaryPink
         shareButton.setTitleColor(.white, for: .normal)
         shotDescriptionTextView.textColor = Colors.dribbbleDarkGray
@@ -122,12 +133,10 @@ class ShotDetailViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserDVC" {
             
-            guard
-                let viewController = segue.destination as? UserDetailViewController,
-                let user = self.shot?.user
-            else { return }
+            guard let destinationVC = segue.destination as? UserDetailViewController else { return }
+            let userData = shot?.user
+            destinationVC.user = userData
             
-            viewController.user = user
         }
     }
 }

@@ -47,7 +47,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "likedShotCell", for: indexPath) as? LikedShotCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "likedShotCell", for: indexPath) as? ShotCollectionViewCell else { return UICollectionViewCell() }
         
         cell.shot = shots[indexPath.row]
         return cell
@@ -68,9 +68,8 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     //MARK: Pagination Properties and Functions
-    let threshold: CGFloat = 300
+
     var page: Int = 1
-    var isLoadingShots = false
     var maxPage: Int = 1
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
@@ -90,7 +89,6 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
                         let newShotsIndexPaths = (oldShotsEndIndex...newShotsEndIndex).map({IndexPath(item: $0, section: 0)})
                         
                         self.collectionView.insertItems(at: newShotsIndexPaths)
-                        self.isLoadingShots = false
                         
                     }
                 }
