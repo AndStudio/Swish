@@ -30,7 +30,7 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         updateViews()
         
         // FIXME: Change clientID to not use David's app registered with Dribble
-        if let url = URL(string: "https://dribbble.com/oauth/authorize?client_id=7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762&scope=public+write") {
+        if let url = URL(string: "https://dribbble.com/oauth/authorize?client_id=\(DribbleApi.clientID)&scope=\(DribbleApi.scope)") {
             let request = URLRequest(url: url)
             authWebView.loadRequest(request)
         }
@@ -90,7 +90,4 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         
         present(deniedAlertController, animated: true, completion: nil)
     }
-
-    
-
 }

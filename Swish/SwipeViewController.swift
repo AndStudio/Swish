@@ -37,7 +37,7 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserController.fetchAuthenticaedUser { (user) in
+        UserController.fetchAuthenticatedUser { (user) in
             UserController.currentUser = user
         }
         
@@ -524,15 +524,5 @@ extension SwipeViewController {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
 
 

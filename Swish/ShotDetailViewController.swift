@@ -169,7 +169,6 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
             guard let destinationVC = segue.destination as? UserDetailViewController else { return }
             let userData = shot?.user
             destinationVC.user = userData
-            
         }
     }
 }
