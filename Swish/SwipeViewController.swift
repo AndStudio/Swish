@@ -151,10 +151,7 @@ class SwipeViewController: UIViewController {
                     })
                 }
             }
-            
         }
-        
-        
         
         // frontmost card (first card of the deck)
         
