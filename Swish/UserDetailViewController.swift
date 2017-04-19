@@ -22,12 +22,11 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
     }
+    
     @IBOutlet weak var userAvatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +34,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        // FIXME: Currently fetching auth users liked hsots, change to fetch a specific user's liked shots
-        // fetch all shots
-        ApiController.fetchLikedShots(page: String(page)) { (shots) in
+        guard let user = user else { return }
+        ApiController.fetchShots(forUser: user, page: String(page)) { (shots) in
             self.shots = shots
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
