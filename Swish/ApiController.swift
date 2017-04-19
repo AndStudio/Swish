@@ -88,6 +88,31 @@ class ApiController {
         }
     }
     
+    static func fetchShots(forUser user: User, page: String, completion: @escaping ([Shot]) -> Void) {
+        // Example enpoint: https://api.dribbble.com/v1/users/dribbble/shots?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
+        
+        guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/user/\(user.userUserName)/shots") else { return }
+        
+        let urlParameters = ["access_token": Keychain.value(forKey: "accessToken"),
+                             "per_page":String(DribbleApi.collectionShotsToLoad),
+                             "page":page] as? [String:String]
+        
+        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+            if error != nil {
+                NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
+            }
+            
+            guard let data = data else { completion([]); return }
+            
+            guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
+            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            
+            completion(likedShotsArray)
+            
+        }
+
+    }
+    
     //MARK: - Like a shot
     /*
      Liking a shot requires the user to be authenticated to write.
