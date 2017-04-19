@@ -12,7 +12,7 @@
         <!--User Detail View Controller-->
         <scene sceneID="DgS-S8-lpa">
             <objects>
-                <viewController id="b8H-7D-one" customClass="UserDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userDetailVC" id="b8H-7D-one" customClass="UserDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="vUt-TI-pHS"/>
                         <viewControllerLayoutGuide type="bottom" id="xwR-cd-SZy"/>
