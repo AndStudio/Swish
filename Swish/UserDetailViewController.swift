@@ -19,9 +19,11 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate {
             }
         }
     }
+    @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     
     
-    @IBOutlet weak var collectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
