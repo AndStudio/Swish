@@ -52,8 +52,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         if segue.identifier == "toShotDetailVC" {
             guard
                 let index = collectionView.indexPathsForSelectedItems?.first,
-                let destinationVC = segue.destination as? ShotDetailViewController,
-                let test = String?("test")
+                let destinationVC = segue.destination as? ShotDetailViewController
                 else { return }
             
             let shot = shots[index.row]
