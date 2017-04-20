@@ -16,6 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
+    var userAccessCode: String?
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
         
         if (url.host == "oauth") {
@@ -28,7 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("THIS IS THE FIRST CODE:\(code)")
             
             if code == "access_denied" {
-                
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: accessTokenDeniedNotification, object: self, userInfo: nil)
                 }
@@ -52,6 +53,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
                     let userAccessCode = json["access_token"] as? String
                 else { return }
+                
+                self.userAccessCode = userAccessCode
+                print("Access Code: \(String(describing: userAccessCode))")
                 
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: accessTokenRecievedNotification, object: self, userInfo: ["accessToken":userAccessCode])

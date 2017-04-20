@@ -37,7 +37,17 @@ class LaunchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-    
+        if Keychain.value(forKey: "accessToken") != nil {
+            UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in
+                
+                DispatchQueue.main.async {
+                    guard let authenticatedUser = authenticatedUser else { /*FIXME: Add error alert controller */ return }
+                    DribbleApi.currentUser = authenticatedUser
+                    
+                    self.performSegue(withIdentifier: "toSwipeVC", sender: self)
+                }
+            })
+        }
     } 
     
     //MARK: - Helpers
