@@ -42,8 +42,11 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
     @IBAction func userButtonTapped(_ sender: Any) {
         
         let userStoryboard = UIStoryboard(name: "User", bundle: nil)
+        
         guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
+        
         userDetailVC.shotRefreshDelegate = self
+        userDetailVC.user = shot?.user
         self.present(userDetailVC, animated: true, completion: nil)
     }
     
