@@ -30,6 +30,8 @@ class AuthenticatedUserViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
+        userAvatarImageView.clipsToBounds = true
     }
 
     func updateViews() {
