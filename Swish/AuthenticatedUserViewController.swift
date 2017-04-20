@@ -11,13 +11,7 @@ import UIKit
 class AuthenticatedUserViewController: UIViewController {
     
     // MARK: Properties
-    var user: User? {
-        didSet {
-            DispatchQueue.main.async {
-                self.updateViews()
-            }
-        }
-    }
+    var user: User? = DribbleApi.currentUser
     
     // MARK: IBOutlets
     @IBOutlet weak var userAvatarImageView: UIImageView!
