@@ -20,15 +20,21 @@ class User {
     private let likeCountKey =  "likes_count"
     private let userAvatarURLKey = "avatar_url"
     private let shotsCountKey = "shots_count"
+    private let bioKey = "bio"
+    private let webLinkKey = "web"
+    private let twitterLinkKey = "twitter"
     
     //properties for Users
-    var userID: Int
-    var userName: String
-    var userUserName: String
-    var userAvatarURL: String
-    var shotsURL: String
-    var likeCount: Int
-    var shotsCount: Int
+    let userID: Int
+    let userName: String
+    let userUserName: String
+    let userAvatarURL: String
+    let shotsURL: String
+    let likeCount: Int
+    let shotsCount: Int
+    let bio: String
+    let webLink: String?
+    let twitterLink: String?
     
     var userAvatar: UIImage?
     
@@ -41,7 +47,10 @@ class User {
             let userAvatarURL = dictionary[userAvatarURLKey] as? String,
             let shotsURL = dictionary[shotsURLKey] as? String,
             let likeCount = dictionary[likeCountKey] as? Int,
-            let shotsCount = dictionary[shotsCountKey] as? Int
+            let shotsCount = dictionary[shotsCountKey] as? Int,
+            let bio = dictionary[bioKey] as? String,
+            let linkDictionary = dictionary["links"] as? [String: Any]
+            
             else { return nil }
         
         // initialize the failable/assign the values
@@ -51,7 +60,10 @@ class User {
         self.userAvatarURL = userAvatarURL
         self.shotsURL = shotsURL
         self.likeCount = likeCount
-        self.shotsCount = shotsCount 
+        self.shotsCount = shotsCount
+        self.bio = bio
+        self.webLink = linkDictionary[webLinkKey] as? String
+        self.twitterLink = linkDictionary[twitterLinkKey] as? String
         
     }
 

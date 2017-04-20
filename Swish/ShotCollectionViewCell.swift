@@ -32,5 +32,8 @@ class ShotCollectionViewCell: UICollectionViewCell {
         guard let shot = shot else { return }
         shotTeaserImageView.image = shot.teaserImage
         shotTitleLabel.text = shot.title
+        
+        shotTeaserImageView.layer.cornerRadius = 5
+        shotTeaserImageView.clipsToBounds = true
     }
 }
