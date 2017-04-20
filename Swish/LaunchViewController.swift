@@ -36,11 +36,17 @@ class LaunchViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        // FIXME: Remove when Auth changed
-        guard let keychainValue = Keychain.value(forKey: "accessToken") else { return }
+        
         if Keychain.value(forKey: "accessToken") != nil {
-            NetworkController.accessToken = keychainValue
-            self.performSegue(withIdentifier: "toSwipeVC", sender: self)
+            UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in
+                
+                DispatchQueue.main.async {
+                    guard let authenticatedUser = authenticatedUser else { /*FIXME: Add error alert controller */ return }
+                    DribbleApi.currentUser = authenticatedUser
+                    
+                    self.performSegue(withIdentifier: "toSwipeVC", sender: self)
+                }
+            })
         }
     } 
     

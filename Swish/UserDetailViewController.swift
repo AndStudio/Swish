@@ -22,12 +22,11 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             }
         }
     }
+    
     @IBOutlet weak var userAvatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    
     @IBOutlet weak var collectionView: UICollectionView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +34,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        // FIXME: Currently fetching auth users liked hsots, change to fetch a specific user's liked shots
-        // fetch all shots
-        ApiController.fetchLikedShots(page: String(page)) { (shots) in
+        guard let user = user else { return }
+        ApiController.fetchShots(forUser: user, page: String(page)) { (shots) in
             self.shots = shots
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -61,7 +59,9 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         userNameLabel.text = user.userUserName
         nameLabel.text = user.userName
         ImageController.image(forURL: (user.userAvatarURL)) { (image) in
-            self.userAvatarImageView.image = image
+            DispatchQueue.main.async {
+                self.userAvatarImageView.image = image
+            }
         }
     }
     
@@ -73,7 +73,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
         if indexPath.row == (self.shots.count - 5) && self.page <= maxPage {
             self.page += 1
-            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+            guard let user = self.user else { return }
+            ApiController.fetchShots(forUser: user, page: String(page), completion: { (shots) in
                 
                 let oldShotsEndIndex = self.shots.endIndex
                 self.shots.append(contentsOf: shots)
@@ -91,9 +92,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? ShotCollectionViewCell, let selectedShot = cell.shot else { return }
-        self.dismiss(animated: true) {
-            self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
-        }
+        self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
+        self.dismiss(animated: true, completion: nil)
         
         
     }
@@ -101,8 +101,19 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    }
+    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            //destination
+      //  if segue.identifier == "shotDetailView" {
+            //what 
+        //    guard let indexPath = collectionView.indexPath(for: userShotCell),
+            //where
+          //  let destinationVC = segue.destination as? ShotDetailViewController else { return }
+            // what to the where
+            //let userShotCell = shots.description
+            //destinationVC.reloadShotDetailVC = userShotCell
+        //}
+
+    //}
 }
 
 
@@ -110,3 +121,5 @@ protocol ShotRefreshDelegate: class {
     
     func reloadShotDetailVCWith(selectedShot: Shot)
 }
+
+
