@@ -58,11 +58,11 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         guard let user = user else {return}
         userNameLabel.text = user.userUserName
         nameLabel.text = user.userName
-        ImageController.image(forURL: (user.userAvatarURL)) { (image) in
-            DispatchQueue.main.async {
-                self.userAvatarImageView.image = image
-            }
-        }
+       // ImageController.image(forURL: (user.userAvatarURL)) { (image) in
+            //DispatchQueue.main.async {
+                //self.userAvatarImageView.image = image
+            //}
+        //}
     }
     
     // Pagination
@@ -97,23 +97,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
         
     }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            //destination
-      //  if segue.identifier == "shotDetailView" {
-            //what 
-        //    guard let indexPath = collectionView.indexPath(for: userShotCell),
-            //where
-          //  let destinationVC = segue.destination as? ShotDetailViewController else { return }
-            // what to the where
-            //let userShotCell = shots.description
-            //destinationVC.reloadShotDetailVC = userShotCell
-        //}
-
-    //}
+ 
 }
 
 
