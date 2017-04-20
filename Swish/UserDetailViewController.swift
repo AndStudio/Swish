@@ -28,6 +28,11 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    @IBAction func backToLikedShotsButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
