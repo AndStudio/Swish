@@ -118,14 +118,10 @@ class SwipeViewController: UIViewController {
     
     // Set the Gif
     
-    func setGif() {
+    func setNewShot() {
         
-        print("set new gif triggered as card removed")
-        
-        /*
-        
-        for i in 0...cards.count {
-            if i == 4 {
+        for i in 0...(cards.count-1) {
+            if i == 3 {
                 
                 let shot = self.shots[i]
 
@@ -154,8 +150,6 @@ class SwipeViewController: UIViewController {
                 }
             }
         }
- */
-        
     }
     
     // Scale and alpha of successive cards visible to the user
@@ -165,7 +159,7 @@ class SwipeViewController: UIViewController {
     // Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
         
-        // frontmost card (first card of the deck)
+        // frontmost card (first card of the deck is index 0)
         
         //this is where ill check cards count to reload next batch if needed.
         guard cards.count > 0 else { return }
@@ -187,6 +181,7 @@ class SwipeViewController: UIViewController {
             
             // here we're just getting some hand-picked vales from cardAttributes (an array of tuples)
             // which will tell us the attributes of each card in the 4 cards visible to the user
+            
             let downscale = cardAttributes[i].downscale
             let alpha = cardAttributes[i].alpha
             card.transform = CGAffineTransform(scaleX: downscale, y: downscale)
@@ -337,7 +332,6 @@ class SwipeViewController: UIViewController {
     //MARK: - remove old card and like shot
     
     func removeOldFrontCard() {
-        //FIXME: need to workon swipe logic to make sure it only likes it if user swipes to the right
         
         guard let shotId = cards[0].shot?.shotID else { return }
         let shotIdString = "\(shotId)"
@@ -352,7 +346,7 @@ class SwipeViewController: UIViewController {
                     self.cards[0].removeFromSuperview()
                     self.cards.remove(at: 0)
                     self.layoutCards()
-                    self.setGif()
+                    self.setNewShot()
                     
                 }
             }
@@ -365,9 +359,8 @@ class SwipeViewController: UIViewController {
             self.cards.remove(at: 0)
             
             layoutCards()
-            setGif()
+            setNewShot()
         }
-        
     }
     
     func showNextCard() {

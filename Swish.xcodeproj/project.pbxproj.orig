@@ -197,8 +197,8 @@
 		5A604BBC1E9C445600EBF1D3 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				964771C51EA803630099D625 /* AuthenticatedUserViewController.swift */,
 				9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */,
+				964771C51EA803630099D625 /* AuthenticatedUserViewController.swift */,
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
 				5A2A17F61EA28C1D00158E55 /* SwipeViewController.swift */,
@@ -264,9 +264,9 @@
 					5A604B961E9C41ED00EBF1D3 = {
 						CreatedOnToolsVersion = 8.3.1;
 <<<<<<< HEAD
-						DevelopmentTeam = 8E43Z5D274;
+						DevelopmentTeam = BP324SX4AT;
 =======
-						DevelopmentTeam = HK9J242HR4;
+						DevelopmentTeam = JLLV7F3JQ4;
 >>>>>>> develop
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
@@ -464,11 +464,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-<<<<<<< HEAD
-				DEVELOPMENT_TEAM = 8E43Z5D274;
-=======
-				DEVELOPMENT_TEAM = HK9J242HR4;
->>>>>>> develop
+				DEVELOPMENT_TEAM = BP324SX4AT;
 				INFOPLIST_FILE = Swish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -486,12 +482,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-<<<<<<< HEAD
-				DEVELOPMENT_TEAM = 8E43Z5D274;
-=======
-				DEVELOPMENT_TEAM = HK9J242HR4;
-
->>>>>>> develop
+				DEVELOPMENT_TEAM = BP324SX4AT;
 				INFOPLIST_FILE = Swish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = studio.and.Swish;
