@@ -357,9 +357,9 @@ class SwipeViewController: UIViewController {
             
             self.cards[0].removeFromSuperview()
             self.cards.remove(at: 0)
-            
             layoutCards()
             setNewShot()
+            
         }
     }
     
@@ -474,6 +474,15 @@ extension SwipeViewController {
         self.view.addSubview(likesButton)
         self.view.bringSubview(toFront: likesButton)
         
+        //Profile button
+        
+        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 8, y: 30, width: 30, height: 30))
+        profileButton.setImage(UIImage(named: "swishUser"), for: .normal)
+        profileButton.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
+        profileButton.tag = 2
+        self.view.addSubview(profileButton)
+        self.view.bringSubview(toFront: profileButton)
+        
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menuFat"))
         menuIconImageView.contentMode = .scaleAspectFit
@@ -526,6 +535,15 @@ extension SwipeViewController {
             }
             
             self.performSegue(withIdentifier: "likes", sender: self)
+            
+        }
+    }
+    
+    func profileButtonTapped(sender: UIButton) {
+        let buttonSendTag: UIButton = sender
+        if buttonSendTag.tag == 2 {
+            
+            self.performSegue(withIdentifier: "profile", sender: self)
             
         }
     }
