@@ -14,6 +14,7 @@ class LaunchScreenViewController: UIViewController {
         super.viewWillAppear(true)
         
 //        _ = Keychain.removeValue(forKey: "accessToken")
+        print(Keychain.value(forKey: "accessToken") ?? "No Keychain value for \"accessToken\"")
         
         if Keychain.value(forKey: "accessToken") != nil {
             UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in
