@@ -57,7 +57,7 @@ class SwipeViewController: UIViewController {
             
             self.doNotShowShots = shots.map({"\($0.shotID)"})
             
-            ApiController.loadShots { (shots) in
+            ApiController.loadShots(page: self.page) { (shots) in
                 
                 for shot in shots {
                     if !self.doNotShowShots.contains("\(shot.shotID)") {
@@ -92,17 +92,20 @@ class SwipeViewController: UIViewController {
         // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
         
         if !isLoadingShots {
-            
-            ApiController.loadShots(completion: { (shots) in
-                
+            isLoadingShots = true
+            ApiController.loadShots(page: self.page, completion: { (shots) in
+                self.page += 1
                 for shot in shots {
                     if !self.doNotShowShots.contains("\(shot.shotID)") {
+                        
+                        let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+                        card.shot = shot
                         self.shots.append(shot)
+                        self.cards.append(card)
+                        
                     }
                 }
-                
-                //think I have to go through each new shot and initialize a card for it, then attach that shot to that card.
-                
+                self.isLoadingShots = false
             })
         }
     }
@@ -113,7 +116,7 @@ class SwipeViewController: UIViewController {
         
         for i in 0...(cards.count-1) {
             if i == 3 {
-                
+                guard shots.count > i else { return }
                 let shot = self.shots[i]
 
                 DispatchQueue.main.async {
@@ -153,7 +156,7 @@ class SwipeViewController: UIViewController {
         //check cards.count to reload next batch if needed.
         guard cards.count > 0 else { return }
         
-        if cards.count < 6 {
+        if shots.count <= 6 {
             incrementShotLoading()
         }
         
