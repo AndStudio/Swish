@@ -10,6 +10,11 @@ import UIKit
 
 class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     
+    @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     var maxPage: Int = 1
     var page: Int = 1
     var userAvatar = UIImage()
@@ -23,16 +28,14 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
-    @IBOutlet weak var userAvatarImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var collectionView: UICollectionView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
+        userAvatarImageView.clipsToBounds = true
         
         guard let user = user else { return }
         ApiController.fetchShots(forUser: user, page: String(page)) { (shots) in
@@ -49,8 +52,10 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "userShotCell", for: indexPath) as? ShotCollectionViewCell else { return ShotCollectionViewCell() }
+        let shot = shots[indexPath.row]
+        shot.user = user
+        cell.shot = shot
         
-        cell.shot = shots[indexPath.row]
         return cell
     }
     
@@ -58,9 +63,14 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         guard let user = user else {return}
         userNameLabel.text = user.userUserName
         nameLabel.text = user.userName
-        ImageController.image(forURL: (user.userAvatarURL)) { (image) in
-            DispatchQueue.main.async {
-                self.userAvatarImageView.image = image
+        if user.userAvatar != nil {
+            self.userAvatarImageView.image = user.userAvatar
+        } else {
+            
+            ImageController.image(forURL: user.userAvatarURL) { (image) in
+                DispatchQueue.main.async {
+                    self.userAvatarImageView.image = image
+                }
             }
         }
     }
@@ -97,26 +107,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         
         
     }
-    
-    // MARK: - Navigation
-    
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    //override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            //destination
-      //  if segue.identifier == "shotDetailView" {
-            //what 
-        //    guard let indexPath = collectionView.indexPath(for: userShotCell),
-            //where
-          //  let destinationVC = segue.destination as? ShotDetailViewController else { return }
-            // what to the where
-            //let userShotCell = shots.description
-            //destinationVC.reloadShotDetailVC = userShotCell
-        //}
-
-    //}
 }
-
-
 protocol ShotRefreshDelegate: class {
     
     func reloadShotDetailVCWith(selectedShot: Shot)
