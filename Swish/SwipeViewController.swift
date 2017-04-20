@@ -345,6 +345,7 @@ class SwipeViewController: UIViewController {
                     
                     self.cards[0].removeFromSuperview()
                     self.cards.remove(at: 0)
+                    self.shots.remove(at: 0)
                     self.layoutCards()
                     self.setNewShot()
                     
@@ -357,6 +358,7 @@ class SwipeViewController: UIViewController {
             
             self.cards[0].removeFromSuperview()
             self.cards.remove(at: 0)
+            self.shots.remove(at: 0)
             layoutCards()
             setNewShot()
             
