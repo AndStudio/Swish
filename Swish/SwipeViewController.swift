@@ -81,18 +81,9 @@ class SwipeViewController: UIViewController {
                     
                     self.layoutCards()
                     
-                    // reload and update stuff
-                    
                 }
             }
-            
-            // fetch liked shots and build dont show shots array. Need to handle for >100 liked shots
-            print("end of view did load")
-            
         }
-        
-        self.incrementShotLoading()
-        
     }
     
     //MARK: - Pagination
@@ -100,18 +91,18 @@ class SwipeViewController: UIViewController {
     func incrementShotLoading() {
         // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
         
-        if !isLoadingShots && (shots.count <= 5) {
-            self.page += 1
+        if !isLoadingShots {
             
             ApiController.loadShots(completion: { (shots) in
                 
                 for shot in shots {
-                    self.shots.append(shot)
+                    if !self.doNotShowShots.contains("\(shot.shotID)") {
+                        self.shots.append(shot)
+                    }
                 }
                 
-                DispatchQueue.main.async {
-                    //reload data or something
-                }
+                //think I have to go through each new shot and initialize a card for it, then attach that shot to that card.
+                
             })
         }
     }
@@ -159,10 +150,13 @@ class SwipeViewController: UIViewController {
     // Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
         
-        // frontmost card (first card of the deck is index 0)
-        
-        //this is where ill check cards count to reload next batch if needed.
+        //check cards.count to reload next batch if needed.
         guard cards.count > 0 else { return }
+        
+        if cards.count < 6 {
+            incrementShotLoading()
+        }
+        
         
         let firstCard = cards[0]
         self.view.addSubview(firstCard)
