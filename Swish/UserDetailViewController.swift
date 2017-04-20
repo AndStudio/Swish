@@ -58,11 +58,11 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
         guard let user = user else {return}
         userNameLabel.text = user.userUserName
         nameLabel.text = user.userName
-       // ImageController.image(forURL: (user.userAvatarURL)) { (image) in
-            //DispatchQueue.main.async {
-                //self.userAvatarImageView.image = image
-            //}
-        //}
+        ImageController.image(forURL: (user.userAvatarURL)) { (image) in
+            DispatchQueue.main.async {
+                self.userAvatarImageView.image = image
+            }
+        }
     }
     
     // Pagination
