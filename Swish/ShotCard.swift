@@ -11,24 +11,22 @@ import UIKit
 
 class ShotCard: CardView {
     
-    //MARK: - Properties 
-    
+    //MARK: - Properties
     
     var shot: Shot? {
         didSet {
             updateViews()
-
         }
     }
     
     func updateViews() {
         
-        // set stuff
+        guard let shot = shot,
+            let shotImage = shot.largeImage else { return }
         
-        guard let shot = shot else { return }
-        let imageView = UIImageView(image: shot.largeImage)
+        let imageView = UIImageView(image: shotImage)
         imageView.contentMode = .scaleAspectFill
-        imageView.backgroundColor = UIColor(red: 67/255, green: 79/255, blue: 182/255, alpha: 1.0)
+        imageView.backgroundColor = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 0.8)
         imageView.layer.cornerRadius = 5
         imageView.layer.masksToBounds = true
         

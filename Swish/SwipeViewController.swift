@@ -54,6 +54,7 @@ class SwipeViewController: UIViewController {
         
         // load shots into card view
         ApiController.fetchLikedShots(page: String(page)) { (shots) in
+            
             self.doNotShowShots = shots.map({"\($0.shotID)"})
             
             ApiController.loadShots { (shots) in
@@ -65,6 +66,7 @@ class SwipeViewController: UIViewController {
                 }
                 
                 guard shots.count > 0 else { return }
+                
                 DispatchQueue.main.async {
                     for i in 1...shots.count {
                         
@@ -73,21 +75,20 @@ class SwipeViewController: UIViewController {
                         self.cards.append(card)
                     }
                     
-                    self.setInitialCardImages(completion: { 
-                        for i in 0...(shots.count - 1) {
-                            let card = self.cards[i]
-                            card.updateViews()
-                        }
+                    self.setInitialCardImages(completion: {
+                        // setting image in this func
                     })
                     
                     self.layoutCards()
                     
                     // reload and update stuff
+                    
                 }
             }
             
             // fetch liked shots and build dont show shots array. Need to handle for >100 liked shots
- 
+            print("end of view did load")
+            
         }
         
         self.incrementShotLoading()
@@ -121,10 +122,39 @@ class SwipeViewController: UIViewController {
         
         print("set new gif triggered as card removed")
         
-        // check if the index is the fourth card (cards[3])
-        // process that card's gif 
-        // update that shot's largeimage property 
-        // send notification to update views on the shot
+        /*
+        
+        for i in 0...cards.count {
+            if i == 4 {
+                
+                let shot = self.shots[i]
+
+                DispatchQueue.main.async {
+                    
+                    if shot.hiDpiImageURL == nil {
+                        ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                            shot.largeImage = image
+                            
+                            //call the shot's update properties ONLY if it also has an image
+                            let card = self.cards[i]
+                            card.shot = shot
+                            
+                        })
+                    } else {
+                        guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                        ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                            shot.largeImage = image
+                            
+                            //update card's shot properties ONLY if it has an image
+                            let card = self.cards[i]
+                            card.shot = shot
+                            
+                        })
+                    }
+                }
+            }
+        }
+ */
         
     }
     
@@ -165,6 +195,7 @@ class SwipeViewController: UIViewController {
             // position each card so there's a set space (cardInteritemSpacing) between each card, to give it a fanned out look
             card.center.x = self.view.center.x
             card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(i) * cardInteritemSpacing)
+            
             // workaround: scale causes heights to skew so compensate for it with some tweaking
             if i == 3 {
                 card.frame.origin.y += 1.5
@@ -517,13 +548,19 @@ extension SwipeViewController {
                 if shot.hiDpiImageURL == nil {
                     ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
                         shot.largeImage = image
+                        
+                        //call the shot's update properties ONLY if it also has an image
+                        let card = self.cards[i]
+                        card.shot = shot
+                        
                     })
                 } else {
                     guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
                     ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
                         shot.largeImage = image
                         
-                       let card = self.cards[i]
+                        //update card's shot properties ONLY if it has an image
+                        let card = self.cards[i]
                         card.shot = shot
                         
                     })
