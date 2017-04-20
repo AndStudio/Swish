@@ -13,6 +13,7 @@ class LaunchViewController: UIViewController {
     
     //MARK: - Outlets
     
+    @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabelOutlet: UILabel!
     @IBOutlet weak var signInButton: UIButton!
     
@@ -29,6 +30,8 @@ class LaunchViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.isHidden = true
         
         DispatchQueue.main.async {
             self.updateViews()
@@ -57,13 +60,17 @@ class LaunchViewController: UIViewController {
         // set up button and title label 
         titleLabelOutlet.text = "testing this "
         
-        self.view.backgroundColor = Colors.primaryPink
-        titleLabelOutlet.textColor = Colors.secondaryPink
-        titleLabelOutlet.text = "Swish"
-        signInButton.backgroundColor = .white
+        logoImageView.image = UIImage(named: "swish2")
+        
+        self.view.backgroundColor = Colors.dribbbleGray
+        titleLabelOutlet.textColor = Colors.dribbbleDarkGray
+        titleLabelOutlet.text = "Tinder for Dribbble"
+        titleLabelOutlet.font = UIFont(name: "ArialRounded", size: 18)
+        
+        signInButton.backgroundColor = Colors.primaryPink
         signInButton.setTitle("Sign in", for: .normal)
-        signInButton.tintColor = Colors.secondaryPink
-        signInButton.layer.cornerRadius = 3
+        signInButton.tintColor = .white
+        signInButton.layer.cornerRadius = 5
         signInButton.clipsToBounds = true
         
     }
