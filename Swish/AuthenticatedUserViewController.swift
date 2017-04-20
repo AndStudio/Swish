@@ -21,16 +21,23 @@ class AuthenticatedUserViewController: UIViewController {
     
     // MARK: IBOutlets
     @IBOutlet weak var userAvatarImageView: UIImageView!
+    @IBOutlet weak var userUserNameLabel: UILabel!
     @IBOutlet weak var usernameLabel: UILabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.user = DribbleApi.currentUser
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
+        userAvatarImageView.clipsToBounds = true
     }
 
     func updateViews() {
         guard let user = user else { return }
-        usernameLabel.text = user.userUserName
+        usernameLabel.text = user.userName
+        userUserNameLabel.text = user.userUserName
         ImageController.image(forURL: (user.userAvatarURL)) { (image) in
             self.userAvatarImageView.image = image
         }
@@ -40,6 +47,10 @@ class AuthenticatedUserViewController: UIViewController {
     @IBAction func logOutButtonTapped(_ sender: Any) {
         _ = Keychain.removeValue(forKey: "accessToken")
         performSegue(withIdentifier: "toMainVC", sender: self)
+    }
+    
+    @IBAction func dismissViewButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Navigation

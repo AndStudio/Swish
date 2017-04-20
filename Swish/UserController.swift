@@ -14,6 +14,7 @@ class UserController {
     
     static let baseURL = URL(string: "https://api.dribbble.com/v1/users/1/shots?")
     
+    // FIXME: We don't need this any more. Change all referencees to this property to a reference the DribbbleAPI.currentUser property
     static var currentUser: User?
     
     // FIXME: This is never called, do we need it?
