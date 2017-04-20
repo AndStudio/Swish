@@ -266,7 +266,7 @@
 <<<<<<< HEAD
 						DevelopmentTeam = HK9J242HR4;
 =======
-						DevelopmentTeam = JLLV7F3JQ4;
+						DevelopmentTeam = BP324SX4AT;
 >>>>>>> develop
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
@@ -467,7 +467,7 @@
 <<<<<<< HEAD
 				DEVELOPMENT_TEAM = HK9J242HR4;
 =======
-				DEVELOPMENT_TEAM = JLLV7F3JQ4;
+				DEVELOPMENT_TEAM = BP324SX4AT;
 >>>>>>> develop
 				INFOPLIST_FILE = Swish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -489,7 +489,7 @@
 <<<<<<< HEAD
 				DEVELOPMENT_TEAM = HK9J242HR4;
 =======
-				DEVELOPMENT_TEAM = JLLV7F3JQ4;
+				DEVELOPMENT_TEAM = BP324SX4AT;
 >>>>>>> develop
 				INFOPLIST_FILE = Swish/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

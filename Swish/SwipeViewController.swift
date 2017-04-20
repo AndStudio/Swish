@@ -54,6 +54,7 @@ class SwipeViewController: UIViewController {
         
         // load shots into card view
         ApiController.fetchLikedShots(page: String(page)) { (shots) in
+            
             self.doNotShowShots = shots.map({"\($0.shotID)"})
             
             ApiController.loadShots { (shots) in
@@ -65,6 +66,7 @@ class SwipeViewController: UIViewController {
                 }
                 
                 guard shots.count > 0 else { return }
+                
                 DispatchQueue.main.async {
                     for i in 1...shots.count {
                         
@@ -73,15 +75,19 @@ class SwipeViewController: UIViewController {
                         self.cards.append(card)
                     }
                     
+                    self.setInitialCardImages(completion: {
+                        // setting image in this func
+                    })
+                    
                     self.layoutCards()
                     
                     // reload and update stuff
+                    
                 }
             }
             
             // fetch liked shots and build dont show shots array. Need to handle for >100 liked shots
-            
-            
+            print("end of view did load")
             
         }
         
@@ -110,6 +116,42 @@ class SwipeViewController: UIViewController {
         }
     }
     
+    // Set the Gif
+    
+    func setNewShot() {
+        
+        for i in 0...(cards.count-1) {
+            if i == 3 {
+                
+                let shot = self.shots[i]
+
+                DispatchQueue.main.async {
+                    
+                    if shot.hiDpiImageURL == nil {
+                        ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                            shot.largeImage = image
+                            
+                            //call the shot's update properties ONLY if it also has an image
+                            let card = self.cards[i]
+                            card.shot = shot
+                            
+                        })
+                    } else {
+                        guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                        ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                            shot.largeImage = image
+                            
+                            //update card's shot properties ONLY if it has an image
+                            let card = self.cards[i]
+                            card.shot = shot
+                            
+                        })
+                    }
+                }
+            }
+        }
+    }
+    
     // Scale and alpha of successive cards visible to the user
     let cardAttributes: [(downscale: CGFloat, alpha: CGFloat)] = [(1, 1), (0.92, 0.8), (0.84, 0.6), (0.76, 0.4)]
     let cardInteritemSpacing: CGFloat = 15
@@ -117,46 +159,7 @@ class SwipeViewController: UIViewController {
     // Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
         
-//        let fourthCard = cards[3]
-        
-        for i in 0...(shots.count - 1) {
-            
-            let shot = self.shots[i]
-            
-            if i == 3 {
-                
-                if shot.hiDpiImageURL == nil {
-                    
-                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                        
-                        guard let image = image, let lowQualityData = image.lowQualityJPEGData, let newGifImage = UIImage.gif(data: lowQualityData) else { return }
-                        
-                        
-                        shot.largeImage = newGifImage
-                        
-                        let card = self.cards[i]
-                        
-                        card.updateViews()
-                        
-                    })
-                } else {
-                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
-                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                        guard let image = image, let lowQualityData = image.lowQualityJPEGData, let newImage = UIImage(data: lowQualityData) else { return }
-                        shot.largeImage = newImage
-                        
-                        let card = self.cards[i]
-                        
-                        card.updateViews()
-                    })
-                }
-            }
-            
-        }
-        
-        
-        
-        // frontmost card (first card of the deck)
+        // frontmost card (first card of the deck is index 0)
         
         //this is where ill check cards count to reload next batch if needed.
         guard cards.count > 0 else { return }
@@ -178,6 +181,7 @@ class SwipeViewController: UIViewController {
             
             // here we're just getting some hand-picked vales from cardAttributes (an array of tuples)
             // which will tell us the attributes of each card in the 4 cards visible to the user
+            
             let downscale = cardAttributes[i].downscale
             let alpha = cardAttributes[i].alpha
             card.transform = CGAffineTransform(scaleX: downscale, y: downscale)
@@ -186,6 +190,7 @@ class SwipeViewController: UIViewController {
             // position each card so there's a set space (cardInteritemSpacing) between each card, to give it a fanned out look
             card.center.x = self.view.center.x
             card.frame.origin.y = cards[0].frame.origin.y - (CGFloat(i) * cardInteritemSpacing)
+            
             // workaround: scale causes heights to skew so compensate for it with some tweaking
             if i == 3 {
                 card.frame.origin.y += 1.5
@@ -327,7 +332,6 @@ class SwipeViewController: UIViewController {
     //MARK: - remove old card and like shot
     
     func removeOldFrontCard() {
-        //FIXME: need to workon swipe logic to make sure it only likes it if user swipes to the right
         
         guard let shotId = cards[0].shot?.shotID else { return }
         let shotIdString = "\(shotId)"
@@ -341,7 +345,10 @@ class SwipeViewController: UIViewController {
                     
                     self.cards[0].removeFromSuperview()
                     self.cards.remove(at: 0)
+                    self.shots.remove(at: 0)
                     self.layoutCards()
+                    self.setNewShot()
+                    
                 }
             }
             
@@ -351,10 +358,11 @@ class SwipeViewController: UIViewController {
             
             self.cards[0].removeFromSuperview()
             self.cards.remove(at: 0)
-            
+            self.shots.remove(at: 0)
             layoutCards()
+            setNewShot()
+            
         }
-        
     }
     
     func showNextCard() {
@@ -468,6 +476,15 @@ extension SwipeViewController {
         self.view.addSubview(likesButton)
         self.view.bringSubview(toFront: likesButton)
         
+        //Profile button
+        
+        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 8, y: 30, width: 30, height: 30))
+        profileButton.setImage(UIImage(named: "swishUser"), for: .normal)
+        profileButton.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
+        profileButton.tag = 2
+        self.view.addSubview(profileButton)
+        self.view.bringSubview(toFront: profileButton)
+        
         // menu icon
         let menuIconImageView = UIImageView(image: UIImage(named: "menuFat"))
         menuIconImageView.contentMode = .scaleAspectFit
@@ -523,6 +540,49 @@ extension SwipeViewController {
             
         }
     }
+    
+    func profileButtonTapped(sender: UIButton) {
+        let buttonSendTag: UIButton = sender
+        if buttonSendTag.tag == 2 {
+            
+            self.performSegue(withIdentifier: "profile", sender: self)
+            
+        }
+    }
+    
+    func setInitialCardImages(completion: () -> Void) {
+        
+        // the next 3 cards in the deck
+        DispatchQueue.main.async {
+            for i in 0...3 {
+                
+                let shot = self.shots[i]
+                
+                if shot.hiDpiImageURL == nil {
+                    ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                        shot.largeImage = image
+                        
+                        //call the shot's update properties ONLY if it also has an image
+                        let card = self.cards[i]
+                        card.shot = shot
+                        
+                    })
+                } else {
+                    guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                    ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                        shot.largeImage = image
+                        
+                        //update card's shot properties ONLY if it has an image
+                        let card = self.cards[i]
+                        card.shot = shot
+                        
+                    })
+                }
+            }
+        }
+        completion()
+    }
+    
 }
 
 
