@@ -17,32 +17,32 @@ class UserController {
     static var currentUser: User?
     
     // FIXME: This is never called, do we need it?
-    static func loadUserWith(completion: @escaping ([User]) -> Void) {
-        guard let url = baseURL else { completion([])
-            return}
-        let urlParameter = ["username" : Keychain.value(forKey: "accessToken")] as? [String:String]
-        
-        NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameter, body: nil) { (data, error) in
-            
-            if let error = error {
-                print(error.localizedDescription)
-                completion([])
-                return
-            }
-            
-            guard let data = data,
-                let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
-                completion([])
-                return}
-            
-            let users = jsonDictionary.flatMap({User(dictionary: $0) })
-            
-            
-            guard let userDictionaries = jsonDictionary?["users"] as? [[String:Any]] else {completion([])
-                return}
-            
-        }
-    }
+    //    static func loadUserWith(completion: @escaping ([User]) -> Void) {
+    //        guard let url = baseURL else { completion([])
+    //            return}
+    //        let urlParameter = ["username" : Keychain.value(forKey: "accessToken")] as? [String:String]
+    //
+    //        NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameter, body: nil) { (data, error) in
+    //
+    //            if let error = error {
+    //                print(error.localizedDescription)
+    //                completion([])
+    //                return
+    //            }
+    //
+    //            guard let data = data,
+    //                let jsonDictionary = try? JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
+    //                completion([])
+    //                return}
+    //
+    //            let users = jsonDictionary.flatMap({User(dictionary: $0) })
+    //
+    //
+    //            guard let userDictionaries = jsonDictionary?["users"] as? [[String:Any]] else {completion([])
+    //                return}
+    //
+    //        }
+    //    }
     
     static func fetchAuthenticatedUser(completion: @escaping (User?) -> Void ) {
         guard
@@ -62,11 +62,16 @@ class UserController {
                 let jsonUserDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any]
                 else { completion(nil); return }
             
-            let authenticatedUser = User(dictionary: jsonUserDictionary)
-            completion(authenticatedUser)
+            if jsonUserDictionary["message"] != nil {
+                _ = Keychain.removeValue(forKey: "accessToken")
+                completion(nil)
+            } else {
+                let authenticatedUser = User(dictionary: jsonUserDictionary)
+                completion(authenticatedUser)
+            }
         }
     }
-
+    
     
 }
 

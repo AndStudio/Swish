@@ -44,6 +44,11 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
         let userStoryboard = UIStoryboard(name: "User", bundle: nil)
         guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
         userDetailVC.shotRefreshDelegate = self
+<<<<<<< HEAD
+=======
+        userDetailVC.user = shot?.user
+        
+>>>>>>> develop
         self.present(userDetailVC, animated: true, completion: nil)
     }
     
@@ -51,9 +56,12 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = false
         views()
-        updateViews()
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> develop
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
@@ -83,9 +91,7 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
         } else {
             if shot.hiDpiImageURL == nil {
                 ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                    DispatchQueue.main.async {
-                        self.shotImageView.image = image
-                    }
+                    self.shotImageView.image = image
                 })
             } else {
                 guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
@@ -102,9 +108,7 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
         } else {
             
             ImageController.image(forURL: user.userAvatarURL) { (image) in
-                DispatchQueue.main.async {
-                    self.userAvatarImageView.image = image
-                }
+                self.userAvatarImageView.image = image
             }
         }
     }
