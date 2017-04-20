@@ -92,20 +92,11 @@
                         <outlet property="nameLabel" destination="SFG-O0-M3g" id="3iG-9F-I8u"/>
                         <outlet property="userAvatarImageView" destination="6Wl-u9-qO6" id="Lh9-0N-rf2"/>
                         <outlet property="userNameLabel" destination="2dM-2Y-kk4" id="BHX-PA-rbX"/>
-                        <segue destination="cvn-wv-nXw" kind="show" id="O2u-en-b9S"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ag7-rb-PeW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="168.80000000000001" y="92.203898050974516"/>
-        </scene>
-        <!--ShotDetailView-->
-        <scene sceneID="4cN-Om-s3A">
-            <objects>
-                <viewControllerPlaceholder storyboardName="ShotDetailView" id="cvn-wv-nXw" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Bbv-TX-BgO" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="815" y="92"/>
         </scene>
     </scenes>
 </document>
