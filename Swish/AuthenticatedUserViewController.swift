@@ -16,10 +16,13 @@ class AuthenticatedUserViewController: UIViewController {
     // MARK: IBOutlets
     @IBOutlet weak var userAvatarImageView: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.user = DribbleApi.currentUser
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     func updateViews() {

@@ -23,6 +23,7 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
     var user: User? {
         didSet {
             DispatchQueue.main.async {
+                guard self.isViewLoaded else { return }
                 self.updateViews()
             }
         }
@@ -47,6 +48,8 @@ class UserDetailViewController: UIViewController, UICollectionViewDelegate, UICo
             self.shots = shots
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                
+                self.updateViews()
             }
         }
     }
