@@ -57,7 +57,7 @@ class SwipeViewController: UIViewController {
             
             self.doNotShowShots = shots.map({"\($0.shotID)"})
             
-            ApiController.loadShots { (shots) in
+            ApiController.loadShots(page: self.page) { (shots) in
                 
                 for shot in shots {
                     if !self.doNotShowShots.contains("\(shot.shotID)") {
@@ -81,18 +81,9 @@ class SwipeViewController: UIViewController {
                     
                     self.layoutCards()
                     
-                    // reload and update stuff
-                    
                 }
             }
-            
-            // fetch liked shots and build dont show shots array. Need to handle for >100 liked shots
-            print("end of view did load")
-            
         }
-        
-        self.incrementShotLoading()
-        
     }
     
     //MARK: - Pagination
@@ -100,18 +91,21 @@ class SwipeViewController: UIViewController {
     func incrementShotLoading() {
         // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
         
-        if !isLoadingShots && (shots.count <= 5) {
-            self.page += 1
-            
-            ApiController.loadShots(completion: { (shots) in
-                
+        if !isLoadingShots {
+            isLoadingShots = true
+            ApiController.loadShots(page: self.page, completion: { (shots) in
+                self.page += 1
                 for shot in shots {
-                    self.shots.append(shot)
+                    if !self.doNotShowShots.contains("\(shot.shotID)") {
+                        
+                        let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+                        card.shot = shot
+                        self.shots.append(shot)
+                        self.cards.append(card)
+                        
+                    }
                 }
-                
-                DispatchQueue.main.async {
-                    //reload data or something
-                }
+                self.isLoadingShots = false
             })
         }
     }
@@ -122,7 +116,7 @@ class SwipeViewController: UIViewController {
         
         for i in 0...(cards.count-1) {
             if i == 3 {
-                
+                guard shots.count > i else { return }
                 let shot = self.shots[i]
 
                 DispatchQueue.main.async {
@@ -159,10 +153,13 @@ class SwipeViewController: UIViewController {
     // Set up the frames, alphas, and transforms of the first 4 cards on the screen
     func layoutCards() {
         
-        // frontmost card (first card of the deck is index 0)
-        
-        //this is where ill check cards count to reload next batch if needed.
+        //check cards.count to reload next batch if needed.
         guard cards.count > 0 else { return }
+        
+        if shots.count <= 6 {
+            incrementShotLoading()
+        }
+        
         
         let firstCard = cards[0]
         self.view.addSubview(firstCard)
