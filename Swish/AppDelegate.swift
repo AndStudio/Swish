@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NSLog("THIS IS THE FIRST CODE:\(code)")
             
             if code == "access_denied" {
-                
                 DispatchQueue.main.async {
                     NotificationCenter.default.post(name: accessTokenDeniedNotification, object: self, userInfo: nil)
                 }
