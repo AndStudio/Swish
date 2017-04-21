@@ -51,6 +51,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func reloadShotDetailVCWith(selectedShot: Shot) {
         self.shot = selectedShot
+        
     }
     
     
@@ -183,6 +184,9 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - AboutCell Delegate
     
     func userButtonTapped(_ sender: AboutShotTableViewCell) {
+        if shot?.isDismisable == true {
+            dismiss(animated: true, completion: nil)
+        } else {
         
         let userStoryboard = UIStoryboard(name: "User", bundle: nil)
         
@@ -190,6 +194,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         userDetailVC.user = shot?.user
         self.present(userDetailVC, animated: true, completion: nil)
+        }
     }
     
 
