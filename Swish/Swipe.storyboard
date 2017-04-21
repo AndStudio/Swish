@@ -44,7 +44,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="I6N-Xe-3eY"/>
                     <connections>
-                        <segue destination="kbn-zo-LZK" kind="showDetail" identifier="likes" action="showViewController:sender:" id="hVP-kH-ZSm"/>
+                        <segue destination="kbn-zo-LZK" kind="presentation" identifier="likes" id="hVP-kH-ZSm"/>
                         <segue destination="AHw-af-adn" kind="presentation" identifier="profile" id="zoX-nE-npr"/>
                     </connections>
                 </viewController>

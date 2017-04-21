@@ -36,7 +36,6 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
@@ -150,16 +149,18 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         return 200
     }
     
-    //MARK: - About Cell Delegate
+    //MARK: - AboutCell Delegate
     
     func userButtonTapped(_ sender: AboutShotTableViewCell) {
+        
         let userStoryboard = UIStoryboard(name: "User", bundle: nil)
         
-        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
+        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "user") as? UserDetailViewController else { return }
         
         userDetailVC.user = shot?.user
         self.present(userDetailVC, animated: true, completion: nil)
     }
+    
 
     func shareButtonTapped(_ sender: AboutShotTableViewCell) {
         guard let shot = self.shot else { return }
@@ -167,9 +168,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activiityViewController, animated: true, completion: nil)
     }
-    
-    
-    
+
     
     //MARK: - TableView detect scroll
     
@@ -190,7 +189,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Segue to User
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toUserDVC" {
+        if segue.identifier == "toUser" {
             
             guard let destinationVC = segue.destination as? UserDetailViewController else { return }
             let userData = shot?.user

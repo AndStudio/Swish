@@ -22,6 +22,7 @@ class UserDetailViewController: UITableViewController, UICollectionViewDelegate,
     var shots: [Shot] = []
     var shotRefreshDelegate: ShotRefreshDelegate?
     
+    
     var user: User? {
         didSet {
             DispatchQueue.main.async {
@@ -32,6 +33,7 @@ class UserDetailViewController: UITableViewController, UICollectionViewDelegate,
     }
     
     @IBAction func backToLikedShotsButtonTapped(_ sender: Any) {
+        
         dismiss(animated: true, completion: nil)
     }
     
@@ -60,7 +62,9 @@ class UserDetailViewController: UITableViewController, UICollectionViewDelegate,
     }
     
     func updateViews() {
+        
         guard let user = user else {return}
+        
         let webLink = user.webLink ?? ""
         let twitterLink = user.twitterLink ?? ""
         var dash = "|"
@@ -122,11 +126,11 @@ class UserDetailViewController: UITableViewController, UICollectionViewDelegate,
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let cell = collectionView.cellForItem(at: indexPath) as? ShotCollectionViewCell, let selectedShot = cell.shot else { return }
-        self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
-        self.dismiss(animated: true, completion: nil)
-    }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        guard let cell = collectionView.cellForItem(at: indexPath) as? ShotCollectionViewCell, let selectedShot = cell.shot else { return }
+//        self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
+//        self.dismiss(animated: true, completion: nil)
+//    }
     //MARK: -  TableView Data Source
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var rowHeight : CGFloat = 0
@@ -140,7 +144,28 @@ class UserDetailViewController: UITableViewController, UICollectionViewDelegate,
             tableView.estimatedRowHeight = 281
             rowHeight = tableView.rowHeight
         }
+        if indexPath.row == 2 {
+            tableView.rowHeight = collectionView.frame.height
+            tableView.estimatedRowHeight = 281
+            rowHeight = tableView.rowHeight
+        }
+
         return rowHeight
+    }
+    //MARK: -  segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toShot" {
+            guard let indexPath = collectionView.indexPathsForSelectedItems?.first,
+                let destinationVC = segue.destination as? ShotDetailViewController else { return }
+            let shot = shots[indexPath.row]
+            shot.isDismisable = true
+            destinationVC.shot = shot
+            
+//            guard let cell = collectionView.cellForItem(at: indexPath) as? ShotCollectionViewCell, let selectedShot = cell.shot else { return }
+//                    self.shotRefreshDelegate?.reloadShotDetailVCWith(selectedShot: selectedShot)
+//                    self.dismiss(animated: true, completion: nil)
+//            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 }
