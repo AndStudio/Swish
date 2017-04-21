@@ -8,55 +8,11 @@
 
 import UIKit
 
-class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
+class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, AboutShotCellDelegate, ShotRefreshDelegate {
     
     
-    //MARK: - outlets
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var creationDateLabel: UILabel!
-    @IBOutlet weak var shotDescriptionTextView: UITextView!
-    @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userAvatarImageView: UIImageView!
-    @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var viewCountLabel: UILabel!
-    @IBOutlet weak var shotImageView: UIImageView!
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var likeLabel: UILabel!
-    @IBOutlet weak var viewLabel: UILabel!
+    //MARK: - Properties
     
-    @IBOutlet weak var descriptionTableViewCell: UITableViewCell!
-    @IBOutlet weak var userTableViewCell: UITableViewCell!
-    
-    //MARK: - actions
-    
-    @IBAction func ShareButtonTapped(_ sender: Any) {
-        guard let shot = self.shotImageView.image else { return }
-        let activiityViewController = UIActivityViewController(activityItems: [shot], applicationActivities: nil)
-        present(activiityViewController, animated: true, completion: nil)
-    }
-    
-    @IBAction func closeButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func userButtonTapped(_ sender: Any) {
-        
-        let userStoryboard = UIStoryboard(name: "User", bundle: nil)
-        
-        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
-        
-        userDetailVC.shotRefreshDelegate = self
-        userDetailVC.user = shot?.user
-        self.present(userDetailVC, animated: true, completion: nil)
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        views()
-        updateViews()
-    }
-
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
@@ -66,110 +22,117 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
         }
     }
     
+    
+    //MARK: - Outlets
+    
+    @IBOutlet var tableView: UITableView!
+    
+    
+    //MARK: - View lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.isNavigationBarHidden = true
+        views()
+        updateViews()
+    }
+    
+    
     func reloadShotDetailVCWith(selectedShot: Shot) {
         self.shot = selectedShot
     }
     
+    
+    //MARK: - Helper fucntions
+    
     func updateViews() {
         
-        guard let shot = shot, let user = shot.user else { return }
-        let description = shot.description ?? ""
-        self.shotDescriptionTextView.text = description
-        self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
-        self.titleLabel.text = shot.title
-        self.likeCountLabel.text = "\(shot.likeCount)"
-        self.viewCountLabel.text = "\(shot.viewCount)"
-        self.creationDateLabel.text = shot.createdDate
-        
-        if shot.largeImage != nil {
-            self.shotImageView.image = shot.largeImage
-        } else {
-            if shot.hiDpiImageURL == nil {
-                ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
-                    DispatchQueue.main.async {
-                        self.shotImageView.image = image
-                    }
-                })
-            } else {
-                guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
-                ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
-                    DispatchQueue.main.async {
-                        self.shotImageView.image = image
-                    }
-                })
-            }
-        }
-        
-        if user.userAvatar != nil {
-            self.userAvatarImageView.image = user.userAvatar
-        } else {
-            
-            ImageController.image(forURL: user.userAvatarURL) { (image) in
-                DispatchQueue.main.async {
-                    self.userAvatarImageView.image = image
-                }
-            }
-        }
     }
     
     func views() {
         
-        guard let shot = shot else { return }
-        shotImageView.image = shot.teaserImage
-        
-        shareButton.backgroundColor = Colors.primaryPink
-        shareButton.setTitleColor(.white, for: .normal)
-        shotDescriptionTextView.textColor = Colors.dribbbleDarkGray
-        creationDateLabel.textColor = Colors.dribbbleDarkGray
-        viewLabel.textColor = Colors.dribbbleDarkGray
-        viewCountLabel.textColor = Colors.dribbbleDarkGray
-        likeLabel.textColor = Colors.dribbbleDarkGray
-        likeCountLabel.textColor = Colors.dribbbleDarkGray
-        userNameLabel.textColor = Colors.dribbbleDarkGray
-        shotDescriptionTextView.text = ""
-        creationDateLabel.text = ""
-        titleLabel.text = ""
-        userNameLabel.text = ""
-        viewCountLabel.text = ""
-        likeCountLabel.text = ""
-        creationDateLabel.text = ""
-        
-        //make the userAvatarImage round
-        userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
-        userAvatarImageView.clipsToBounds = true
-        
-        //round the share button corners
-        shareButton.layer.cornerRadius = 5
-        shareButton.clipsToBounds = true
-        
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        var rowHeight : CGFloat = 0
-        if indexPath.row == 0 {
-            tableView.rowHeight = self.view.frame.height / 2.5
-            tableView.estimatedRowHeight = 281
-            rowHeight = tableView.rowHeight
-        }
-        if indexPath.row == 1 {
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 281
-            rowHeight = tableView.rowHeight
-        }
-        if indexPath.row == 2 {
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 281
-            rowHeight = tableView.rowHeight
-
-        }
-
-        if indexPath.row == 3 {
-            tableView.rowHeight = UITableViewAutomaticDimension
-            tableView.estimatedRowHeight = 281
-            rowHeight = tableView.rowHeight
-        }
-        return rowHeight
+    
+    //MARK: - Tableview Datasource
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
     }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        switch indexPath.section {
+            
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "hero", for: indexPath) as? ShotHeroTableViewCell else { return ShotHeroTableViewCell() }
+            
+            cell.shot = shot
+            
+            return cell
+            
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "about", for: indexPath) as? AboutShotTableViewCell else { return AboutShotTableViewCell() }
+            
+            cell.shot = shot
+            cell.delegate = self 
+            
+            return cell
+            
+        case 2:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? ShotDescriptionTableViewCell else { return ShotDescriptionTableViewCell() }
+            
+            cell.shot = shot
+            
+            return cell
+            
+        case 3:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "designer", for: indexPath) as? ShotDesignerTableViewCell else { return ShotDesignerTableViewCell() }
+            
+            cell.shot = shot
+            
+            return cell
+            
+        default:
+            let cell = UITableViewCell()
+            return cell
+            
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.section {
+        case 0: return UITableViewAutomaticDimension
+        case 1: return UITableViewAutomaticDimension
+        case 2: return UITableViewAutomaticDimension
+        case 3: return UITableViewAutomaticDimension
+        default: return 86
+        }
+    }
+    
+    //MARK: - About Cell Delegate
+    
+    func userButtonTapped(_ sender: AboutShotTableViewCell) {
+        let userStoryboard = UIStoryboard(name: "User", bundle: nil)
+        
+        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "userDetailVC") as? UserDetailViewController else { return }
+        
+        userDetailVC.user = shot?.user
+        self.present(userDetailVC, animated: true, completion: nil)
+    }
+
+    func shareButtonTapped(_ sender: AboutShotTableViewCell) {
+        guard let shot = self.shot else { return }
+        let image = shot.largeImage
+        let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        present(activiityViewController, animated: true, completion: nil)
+    }
+    
+    //MARK: - Segue to User
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserDVC" {
@@ -177,6 +140,14 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
             guard let destinationVC = segue.destination as? UserDetailViewController else { return }
             let userData = shot?.user
             destinationVC.user = userData
+            
         }
     }
 }
+
+
+
+
+
+
+
