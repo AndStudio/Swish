@@ -18,6 +18,8 @@ class ShotDetailTitleTableViewCell: UITableViewCell {
         }
     }
     
+    var user: User?
+    
     //MARK: - Outlets 
     
     @IBOutlet weak var shotTitleLabel: UILabel!

@@ -73,8 +73,6 @@ class AboutShotTableViewCell: UITableViewCell {
                 }
             }
         }
-     
-        // set stuff 
         
         shareButton.backgroundColor = .clear
         

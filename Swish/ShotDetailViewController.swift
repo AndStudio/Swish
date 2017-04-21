@@ -22,11 +22,15 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    var user: User? {
+        didSet {
+        }
+    }
+    
     
     //MARK: - Outlets
     
     @IBOutlet var tableView: UITableView!
-    
     
     
     //MARK: - Actions 
@@ -53,12 +57,38 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Helper fucntions
     
     func updateViews() {
-        guard let shot = shot else { return }
+        guard let shot = shot,
+            let user = shot.user else { return }
         
         view.backgroundColor = Colors.backgroundGray
         tableView.backgroundColor = .clear
         
+        if shot.largeImage == nil {
+            
+                ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
+                    DispatchQueue.main.async {
+                        shot.largeImage = image
+                    }
+                })
+            } else {
+                guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
+                    DispatchQueue.main.async {
+                        shot.largeImage = image
+                    }
+                })
+            }
         
+        // user user avatar here 
+        
+        if user.userAvatar == nil  {
+            
+            ImageController.image(forURL: user.userAvatarURL) { (image) in
+                DispatchQueue.main.async {
+                    user.userAvatar = image
+                }
+            }
+        }
     }
     
     //MARK: - Tableview Datasource
@@ -88,6 +118,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "title", for: indexPath) as? ShotDetailTitleTableViewCell else { return ShotDetailTitleTableViewCell() }
             
             cell.shot = shot
+            cell.user = user
             
             cell.separatorInset.left = 16
             cell.separatorInset.right = 16
