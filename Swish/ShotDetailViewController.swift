@@ -139,7 +139,8 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 2: return UITableViewAutomaticDimension
         case 2: return UITableViewAutomaticDimension
         case 3: return UITableViewAutomaticDimension
-        default: return 86
+        case 4: return 144
+        default: return 200
         }
     }
     

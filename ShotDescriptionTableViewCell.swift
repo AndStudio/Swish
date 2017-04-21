@@ -39,7 +39,7 @@ class ShotDescriptionTableViewCell: UITableViewCell {
         
         shotDescriptionTextView.text = description
         
-        shotDescriptionTextView.textColor = Colors.dribbbleDarkGray
+        shotDescriptionTextView.textColor = UIColor.lightGray
         
         shotDescriptionTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 15)
         
