@@ -26,6 +26,7 @@ class ShotDescriptionTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = Colors.backgroundGray
         
     }
     
@@ -35,10 +36,12 @@ class ShotDescriptionTableViewCell: UITableViewCell {
     func updateViews() {
         guard let shot = shot else { return }
         let description = shot.description ?? ""
-        self.shotDescriptionTextView.text = description
+        
+        shotDescriptionTextView.text = description
         
         shotDescriptionTextView.textColor = Colors.dribbbleDarkGray
-        shotDescriptionTextView.text = ""
+        
+        shotDescriptionTextView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 15)
         
     }
 }

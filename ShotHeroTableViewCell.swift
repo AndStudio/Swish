@@ -20,6 +20,7 @@ class ShotHeroTableViewCell: UITableViewCell {
     
     //MARK: - Outlets 
     @IBOutlet weak var shotImageView: UIImageView!
+    @IBOutlet weak var heroTopConstraint: NSLayoutConstraint!
     
     
     //MARK: - Actions
@@ -29,7 +30,7 @@ class ShotHeroTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        backgroundColor = Colors.backgroundGray
     }
     
     
@@ -37,8 +38,6 @@ class ShotHeroTableViewCell: UITableViewCell {
     
     func updateViews() {
         guard let shot = shot else { return }
-        
-        // fetch and compile shot's images
         
         if shot.largeImage != nil {
             self.shotImageView.image = shot.largeImage
@@ -58,10 +57,5 @@ class ShotHeroTableViewCell: UITableViewCell {
                 })
             }
         }
-        
-        // set stuff 
-        
-        shotImageView.image = shot.teaserImage
-        
     }
 }

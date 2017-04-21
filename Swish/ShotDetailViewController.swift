@@ -28,12 +28,20 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet var tableView: UITableView!
     
     
+    
+    //MARK: - Actions 
+    
+    @IBAction func closeButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        views()
         updateViews()
     }
     
@@ -46,18 +54,18 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Helper fucntions
     
     func updateViews() {
+        guard let shot = shot else { return }
+        
+        view.backgroundColor = Colors.backgroundGray
+        tableView.backgroundColor = .clear
+        
         
     }
-    
-    func views() {
-        
-    }
-    
     
     //MARK: - Tableview Datasource
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return 5
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -72,33 +80,53 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "hero", for: indexPath) as? ShotHeroTableViewCell else { return ShotHeroTableViewCell() }
             
             cell.shot = shot
+            heroCell = cell
+            cell.separatorInset.left = 900
             
             return cell
             
         case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "about", for: indexPath) as? AboutShotTableViewCell else { return AboutShotTableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "title", for: indexPath) as? ShotDetailTitleTableViewCell else { return ShotDetailTitleTableViewCell() }
             
             cell.shot = shot
-            cell.delegate = self 
+            
+            cell.separatorInset.left = 900
             
             return cell
             
         case 2:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? ShotDescriptionTableViewCell else { return ShotDescriptionTableViewCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "about", for: indexPath) as? AboutShotTableViewCell else { return AboutShotTableViewCell() }
             
             cell.shot = shot
+            cell.delegate = self
+            
+            cell.separatorInset.left = 900
             
             return cell
             
         case 3:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "description", for: indexPath) as? ShotDescriptionTableViewCell else { return ShotDescriptionTableViewCell() }
+            
+            cell.shot = shot
+            
+            cell.separatorInset.left = 900
+            
+            return cell
+            
+        case 4:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "designer", for: indexPath) as? ShotDesignerTableViewCell else { return ShotDesignerTableViewCell() }
             
             cell.shot = shot
+            
+            cell.separatorInset.left = 900
             
             return cell
             
         default:
             let cell = UITableViewCell()
+            
+            cell.separatorInset.left = 900
+            
             return cell
             
         }
@@ -109,9 +137,14 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         case 0: return UITableViewAutomaticDimension
         case 1: return UITableViewAutomaticDimension
         case 2: return UITableViewAutomaticDimension
+        case 2: return UITableViewAutomaticDimension
         case 3: return UITableViewAutomaticDimension
         default: return 86
         }
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
     
     //MARK: - About Cell Delegate
@@ -130,6 +163,22 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let image = shot.largeImage
         let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activiityViewController, animated: true, completion: nil)
+    }
+    
+    //MARK: - TableView detect scroll
+    
+    var heroCell: ShotHeroTableViewCell?
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        if let cell = heroCell {
+            
+            if scrollView.contentOffset.y < 0 {
+                cell.heroTopConstraint.constant = scrollView.contentOffset.y
+            }
+            
+        }
+        
     }
     
     //MARK: - Segue to User

@@ -49,6 +49,7 @@ class AboutShotTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = Colors.backgroundGray
         
     }
     
@@ -58,9 +59,9 @@ class AboutShotTableViewCell: UITableViewCell {
     func updateViews() {
         guard let shot = shot, let user = shot.user else { return }
         
-        self.userNameLabel.text = "by \(user.userName) | \(user.userUserName)"
-        self.likeCountLabel.text = "\(shot.likeCount)"
-        self.viewCountLabel.text = "\(shot.viewCount)"
+        userNameLabel.text = "by \(user.userUserName)"
+        likeCountLabel.text = "\(shot.likeCount) likes"
+        viewCountLabel.text = "\(shot.viewCount) views"
         
         if user.userAvatar != nil {
             self.userAvatarImageView.image = user.userAvatar
@@ -75,23 +76,19 @@ class AboutShotTableViewCell: UITableViewCell {
      
         // set stuff 
         
-        shareButton.backgroundColor = Colors.primaryPink
+        shareButton.backgroundColor = .clear
+        
+        
+        userNameLabel.font = UIFont(name: "ArialRoundedMTBold", size: 18)
         
         viewCountLabel.textColor = Colors.dribbbleDarkGray
         likeCountLabel.textColor = Colors.dribbbleDarkGray
-        userNameLabel.textColor = Colors.dribbbleDarkGray
-        
-        userNameLabel.text = ""
-        viewCountLabel.text = ""
-        likeCountLabel.text = ""
+        userNameLabel.textColor = Colors.primaryPink
         
         //make the userAvatarImage round
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
         userAvatarImageView.clipsToBounds = true
-        
-        //round the share button corners
-        shareButton.layer.cornerRadius = 5
-        shareButton.clipsToBounds = true
+
         
     }
 }
