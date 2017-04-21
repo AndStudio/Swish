@@ -90,7 +90,8 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             
             cell.shot = shot
             
-            cell.separatorInset.left = 900
+            cell.separatorInset.left = 16
+            cell.separatorInset.right = 16
             
             return cell
             
@@ -109,7 +110,8 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             
             cell.shot = shot
             
-            cell.separatorInset.left = 900
+            cell.separatorInset.left = 16
+            cell.separatorInset.right = 16
             
             return cell
             
@@ -165,6 +167,9 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
         present(activiityViewController, animated: true, completion: nil)
     }
+    
+    
+    
     
     //MARK: - TableView detect scroll
     
