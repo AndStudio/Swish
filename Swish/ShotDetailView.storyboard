@@ -14,7 +14,8 @@
         <!--Shot Detail View Controller-->
         <scene sceneID="UGJ-yL-zcK">
             <objects>
-                <tableViewController storyboardIdentifier="ShotDetail" id="eRt-me-dH3" customClass="ShotDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XFQ-HQ-MDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableViewController storyboardIdentifier="ShotDetail" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eRt-me-dH3" customClass="ShotDetailViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="xAX-6A-3EV">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,23 +33,20 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xxm-c0-Sm9">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="281"/>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nnT-G2-AZh">
-                                                    <rect key="frame" x="16" y="16" width="35" height="35"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="QvE-gN-pQ4"/>
-                                                        <constraint firstAttribute="width" constant="35" id="lNl-It-ewv"/>
-                                                    </constraints>
-                                                    <state key="normal" image="close"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1D-xA-Pk4">
+                                                    <rect key="frame" x="8" y="8" width="359" height="265"/>
                                                     <connections>
-                                                        <action selector="closeButtonTapped:" destination="eRt-me-dH3" eventType="touchUpInside" id="Id0-YG-CAv"/>
+                                                        <action selector="closeButtonTapped:" destination="eRt-me-dH3" eventType="touchUpInside" id="fyh-SL-7fc"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="bottomMargin" secondItem="N1D-xA-Pk4" secondAttribute="bottom" id="4LG-KU-PcX"/>
                                                 <constraint firstItem="xxm-c0-Sm9" firstAttribute="top" secondItem="SzS-kO-LtW" secondAttribute="top" id="6Hr-zh-h66"/>
-                                                <constraint firstItem="nnT-G2-AZh" firstAttribute="top" secondItem="SzS-kO-LtW" secondAttribute="topMargin" constant="8" id="B5C-x0-7C4"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="N1D-xA-Pk4" secondAttribute="trailing" id="GgE-0o-wl2"/>
+                                                <constraint firstItem="N1D-xA-Pk4" firstAttribute="leading" secondItem="SzS-kO-LtW" secondAttribute="leadingMargin" id="Sb0-yc-lVu"/>
                                                 <constraint firstItem="xxm-c0-Sm9" firstAttribute="width" secondItem="xxm-c0-Sm9" secondAttribute="height" multiplier="4:3" id="TQ4-0S-gsF"/>
-                                                <constraint firstItem="nnT-G2-AZh" firstAttribute="leading" secondItem="SzS-kO-LtW" secondAttribute="leadingMargin" constant="8" id="c3J-bm-C7N"/>
+                                                <constraint firstItem="N1D-xA-Pk4" firstAttribute="top" secondItem="SzS-kO-LtW" secondAttribute="topMargin" id="knW-BS-Ith"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <constraints>
@@ -225,6 +223,9 @@
                             <outlet property="delegate" destination="eRt-me-dH3" id="FWO-JX-vAh"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="5yv-yT-ME5">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="done" id="oyg-uJ-b3U"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="creationDateLabel" destination="4NH-Em-VvK" id="lAC-AY-jml"/>
                         <outlet property="descriptionTableViewCell" destination="K8Y-va-vcD" id="hrE-jx-1Jy"/>
@@ -241,12 +242,8 @@
                         <outlet property="viewLabel" destination="jTk-oE-Ntg" id="ZkN-IM-sIE"/>
                     </connections>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XFQ-HQ-MDe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1106" y="146"/>
+            <point key="canvasLocation" x="3284" y="198"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="close" width="35" height="35"/>
-    </resources>
 </document>

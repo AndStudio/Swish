@@ -38,6 +38,7 @@ class Shot {
     var largeImage: UIImage?
     var teaserImage: UIImage?
     var user: User?
+    var isDismisable: Bool = false
     
     
     //MARK: - failable initializer

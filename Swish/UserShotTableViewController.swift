@@ -1,31 +1,30 @@
 //
-//  ShotDetailViewController.swift
+//  UserShotTableViewController.swift
 //  Swish
 //
-//  Created by Taylor Phillips on 4/13/17.
+//  Created by Taylor Phillips on 4/21/17.
 //  Copyright © 2017 And. All rights reserved.
 //
 
 import UIKit
 
-class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
-    
-    
+class UserShotTableViewController: UITableViewController {
+
     //MARK: - outlets
+    @IBOutlet weak var shotImageView: UIImageView!
+    @IBOutlet weak var likeCountLabel: UILabel!
+    @IBOutlet weak var likeLabel: UILabel!
+    @IBOutlet weak var viewCountLabel: UILabel!
+    @IBOutlet weak var viewLabel: UILabel!
+    @IBOutlet weak var shareButton: UIButton!
+    @IBOutlet weak var userAvatarImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var creationDateLabel: UILabel!
-    @IBOutlet weak var shotDescriptionTextView: UITextView!
     @IBOutlet weak var userNameLabel: UILabel!
-    @IBOutlet weak var userAvatarImageView: UIImageView!
-    @IBOutlet weak var likeCountLabel: UILabel!
-    @IBOutlet weak var viewCountLabel: UILabel!
-    @IBOutlet weak var shotImageView: UIImageView!
-    @IBOutlet weak var shareButton: UIButton!
-    @IBOutlet weak var likeLabel: UILabel!
-    @IBOutlet weak var viewLabel: UILabel!
+    @IBOutlet weak var shotDescriptionTextView: UITextView!
     
-    @IBOutlet weak var descriptionTableViewCell: UITableViewCell!
-    @IBOutlet weak var userTableViewCell: UITableViewCell!
+    
+    
     
     //MARK: - actions
     
@@ -40,18 +39,8 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
     }
     
     @IBAction func userButtonTapped(_ sender: Any) {
-        if shot?.isDismisable  == true {
-            dismiss(animated: true, completion: nil)
-        } else {
         
-        let userStoryboard = UIStoryboard(name: "User", bundle: nil)
-        
-        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "user") as? UserDetailViewController else { return }
-        
-        userDetailVC.shotRefreshDelegate = self
-        userDetailVC.user = shot?.user
-        self.present(userDetailVC, animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
@@ -60,7 +49,7 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
         views()
         updateViews()
     }
-
+    
     var shot: Shot? {
         didSet {
             DispatchQueue.main.async {
@@ -164,9 +153,9 @@ class ShotDetailViewController: UITableViewController, ShotRefreshDelegate {
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 281
             rowHeight = tableView.rowHeight
-
+            
         }
-
+        
         if indexPath.row == 3 {
             tableView.rowHeight = UITableViewAutomaticDimension
             tableView.estimatedRowHeight = 281
