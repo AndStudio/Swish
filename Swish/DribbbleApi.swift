@@ -19,4 +19,5 @@ class DribbleApi {
     static let collectionShotsToLoad = 20
     
     static var currentUser: User?
+    
 }

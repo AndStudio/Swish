@@ -40,6 +40,10 @@ class LaunchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
+        guard let authenticatedUsersAccessToken = Keychain.value(forKey: "accessToken") else { return }
+        
+        print("Authenticated User's Acces Token: \(authenticatedUsersAccessToken)" )
+        
         if Keychain.value(forKey: "accessToken") != nil {
             UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in
                 

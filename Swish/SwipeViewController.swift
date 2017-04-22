@@ -18,6 +18,8 @@ class SwipeViewController: UIViewController {
     
     var doNotShowShots: [String] = []
     
+    var authenticatedUsersLikedShots: [Shot] = []
+    
     var cards = [ShotCard]()
     
     let threshold: CGFloat = 100
@@ -31,15 +33,16 @@ class SwipeViewController: UIViewController {
     @IBOutlet weak var shotImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        UserController.fetchAuthenticatedUser { (user) in
-            UserController.currentUser = user
-        }
+        fetchAuthenticatedUsersLikedShots()
+        
+//        UserController.fetchAuthenticatedUser { (user) in
+//            UserController.currentUser = user
+//        }
         
         navigationController?.isNavigationBarHidden = true
         
@@ -84,6 +87,23 @@ class SwipeViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func fetchAuthenticatedUsersLikedShots() {
+        
+        guard let currentUser = DribbleApi.currentUser else { return }
+
+        var shotsIDsArray: [Shot] = []
+        var page = 1
+        let maxPage: Int = Int(ceil(Double(currentUser.likeCount) / Double(DribbleApi.collectionShotsToLoad)))
+        
+        while page <= maxPage {
+            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+                shotsIDsArray.append(contentsOf:shots)
+                page += 1
+            })
+        }
+        self.authenticatedUsersLikedShots = shotsIDsArray
     }
     
     //MARK: - Pagination

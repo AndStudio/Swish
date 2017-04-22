@@ -64,10 +64,13 @@ class UserController {
                 else { completion(nil); return }
             
             if jsonUserDictionary["message"] != nil {
+                let message = jsonUserDictionary["message"] as? String
+                print(message ?? "There was an error response")
                 _ = Keychain.removeValue(forKey: "accessToken")
                 completion(nil)
             } else {
                 let authenticatedUser = User(dictionary: jsonUserDictionary)
+                NSLog("The authenticated user has been instantiated")
                 completion(authenticatedUser)
             }
         }
