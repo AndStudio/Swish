@@ -65,13 +65,14 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     // MARK: - Navigation
     // FIXME: Link it to the correct VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toShotDetailVC" {
-            guard
-                let index = collectionView.indexPathsForSelectedItems?.first,
-                let destinationVC = segue.destination as? ShotDetailViewController
-                else { return }
-            
-            let shot = shots[index.row]
+        if segue.identifier == "toShotDetail" {
+            guard let indexPath = collectionView?.indexPathsForSelectedItems?.first,
+                let navController = segue.destination as? UINavigationController,
+                let destinationVC = navController.childViewControllers.first as? ShotDetailViewController else {
+                    return
+            }
+            let shot = shots[indexPath.row]
+            shot.isDismisable = true
             destinationVC.shot = shot
         }
     }

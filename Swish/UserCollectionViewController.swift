@@ -182,7 +182,7 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toShot" {
             guard let indexPath = collectionView?.indexPathsForSelectedItems?.first,
-                let destinationVC = segue.destination as? ShotDetailViewController else { return }
+                let navController = segue.destination as? UINavigationController, let destinationVC = navController.childViewControllers.first as? ShotDetailViewController else { return }
             let shot = shots[indexPath.row]
             shot.isDismisable = true
             destinationVC.shot = shot

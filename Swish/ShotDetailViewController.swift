@@ -191,10 +191,6 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "user") as? UserCollectionViewController else { return }
         
         userDetailVC.user = shot?.user
-        
-            
-            
-            
             
 //        navigationController?.pushViewController(userDetailVC, animated: true)
             
