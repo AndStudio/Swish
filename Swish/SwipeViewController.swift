@@ -533,7 +533,9 @@ extension SwipeViewController {
                 return
             }
             
-            self.performSegue(withIdentifier: "likes", sender: self)
+            navigationController?.pushViewController(vc, animated: true)
+            
+//            self.performSegue(withIdentifier: "likes", sender: self)
             
         }
     }

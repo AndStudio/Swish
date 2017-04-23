@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,20 +40,37 @@
                                             <rect key="frame" x="0.0" y="0.0" width="166" height="155"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hne-8b-yTM">
-                                                    <rect key="frame" x="0.0" y="0.0" width="166" height="128"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjc-Lk-ZHA">
+                                                    <rect key="frame" x="0.0" y="-0.5" width="166" height="155"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                </view>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hne-8b-yTM">
+                                                    <rect key="frame" x="8" y="7.5" width="150" height="115.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="Hne-8b-yTM" secondAttribute="height" multiplier="83:64" id="jah-gM-CxY"/>
+                                                    </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRl-3x-cfT">
-                                                    <rect key="frame" x="0.0" y="127" width="166" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRl-3x-cfT">
+                                                    <rect key="frame" x="8" y="131" width="35.5" height="17"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </view>
+                                        <constraints>
+                                            <constraint firstItem="iRl-3x-cfT" firstAttribute="leading" secondItem="Hne-8b-yTM" secondAttribute="leading" id="Hqz-ou-XCG"/>
+                                            <constraint firstItem="hjc-Lk-ZHA" firstAttribute="width" secondItem="KAc-bx-8WX" secondAttribute="width" id="JF8-N5-IMb"/>
+                                            <constraint firstItem="hjc-Lk-ZHA" firstAttribute="centerY" secondItem="KAc-bx-8WX" secondAttribute="centerY" id="Xac-OM-Vo2"/>
+                                            <constraint firstItem="hjc-Lk-ZHA" firstAttribute="centerX" secondItem="KAc-bx-8WX" secondAttribute="centerX" id="Zaj-1e-JK8"/>
+                                            <constraint firstItem="Hne-8b-yTM" firstAttribute="centerX" secondItem="hjc-Lk-ZHA" secondAttribute="centerX" id="bsy-3t-hNT"/>
+                                            <constraint firstItem="hjc-Lk-ZHA" firstAttribute="height" secondItem="KAc-bx-8WX" secondAttribute="height" id="dn1-jz-b7B"/>
+                                            <constraint firstItem="iRl-3x-cfT" firstAttribute="top" secondItem="Hne-8b-yTM" secondAttribute="bottom" constant="8" id="grD-jd-dS9"/>
+                                            <constraint firstItem="Hne-8b-yTM" firstAttribute="width" secondItem="hjc-Lk-ZHA" secondAttribute="width" constant="-16" id="poe-KC-yfI"/>
+                                            <constraint firstItem="Hne-8b-yTM" firstAttribute="top" secondItem="hjc-Lk-ZHA" secondAttribute="top" constant="8" id="xKa-fj-3gw"/>
+                                        </constraints>
                                         <connections>
+                                            <outlet property="cellBackgroundView" destination="hjc-Lk-ZHA" id="VB4-VS-m3x"/>
                                             <outlet property="shotTeaserImageView" destination="Hne-8b-yTM" id="NFC-tB-m4Y"/>
                                             <outlet property="shotTitleLabel" destination="iRl-3x-cfT" id="RlF-3d-FLC"/>
                                             <segue destination="Bpc-x8-7UM" kind="presentation" identifier="toShotDetailVC" id="k8H-zJ-YIT"/>
@@ -70,7 +88,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="okp-RN-z0a">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="wRf-ZZ-mCA">
+                        <barButtonItem key="leftBarButtonItem" image="Line" id="wRf-ZZ-mCA">
                             <connections>
                                 <action selector="dismissViewController:" destination="bx8-Dc-IQ2" id="0E2-Im-eGJ"/>
                             </connections>
@@ -95,20 +113,26 @@
         <!--Navigation Controller-->
         <scene sceneID="11K-nV-868">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7qk-gR-RV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="D89-uS-JIA" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="naS-1k-93I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="naS-1k-93I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.93506884574890137" green="0.27213579416275024" blue="0.53156459331512451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
                         <segue destination="bx8-Dc-IQ2" kind="relationship" relationship="rootViewController" id="P76-YR-jN5"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7qk-gR-RV1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="368.80000000000001" y="353.9730134932534"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Line" width="15" height="25"/>
+    </resources>
 </document>

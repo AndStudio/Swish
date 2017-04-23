@@ -187,20 +187,20 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="190-wv-rzu">
-                                            <rect key="frame" x="137" y="24" width="100" height="100"/>
+                                            <rect key="frame" x="137.5" y="24" width="100" height="100"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="X7A-zo-PTs"/>
                                                 <constraint firstAttribute="height" constant="100" id="YK6-Iz-tav"/>
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cAY-W0-hP7">
-                                            <rect key="frame" x="158" y="140" width="58.5" height="29"/>
+                                            <rect key="frame" x="158.5" y="140" width="58.5" height="29"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La2-A7-5W8">
-                                            <rect key="frame" x="167.5" y="177" width="39.5" height="19.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="La2-A7-5W8">
+                                            <rect key="frame" x="40" y="177" width="295" height="19.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -219,9 +219,11 @@
                                     <constraint firstItem="190-wv-rzu" firstAttribute="centerX" secondItem="BKc-Ij-d87" secondAttribute="centerX" id="Av4-pk-4q6"/>
                                     <constraint firstItem="cAY-W0-hP7" firstAttribute="centerX" secondItem="190-wv-rzu" secondAttribute="centerX" id="Kuy-KV-S0a"/>
                                     <constraint firstItem="190-wv-rzu" firstAttribute="top" secondItem="BKc-Ij-d87" secondAttribute="topMargin" constant="16" id="Sqf-Kg-LPd"/>
+                                    <constraint firstItem="La2-A7-5W8" firstAttribute="leading" secondItem="BKc-Ij-d87" secondAttribute="leadingMargin" constant="32" id="WGE-QQ-LOn"/>
                                     <constraint firstItem="6Gh-Ss-AXH" firstAttribute="centerX" secondItem="BKc-Ij-d87" secondAttribute="centerX" id="XaM-4J-7h1"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="6Gh-Ss-AXH" secondAttribute="bottom" constant="1" id="cmF-L9-Gn0"/>
                                     <constraint firstItem="cAY-W0-hP7" firstAttribute="top" secondItem="190-wv-rzu" secondAttribute="bottom" constant="16" id="d7a-iY-Sa6"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="La2-A7-5W8" secondAttribute="trailing" constant="32" id="k1x-Hi-AVb"/>
                                     <constraint firstItem="La2-A7-5W8" firstAttribute="top" secondItem="cAY-W0-hP7" secondAttribute="bottom" constant="8" id="nN9-aa-ddS"/>
                                 </constraints>
                                 <size key="customSize" width="375" height="223"/>

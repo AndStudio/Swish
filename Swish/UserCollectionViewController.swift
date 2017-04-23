@@ -116,6 +116,15 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
         }
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.section == 0 {
+            return CGSize(width: view.frame.width, height: 300)
+        } else {
+            return CGSize(width: 200, height: 200)
+        }
+    }
+    
+    
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
         let width : CGFloat
@@ -166,12 +175,6 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     //MARK: - Helper Methods
     
     func updateViews() {
-        
-        //setup views once they are hooked up
-        
-        // set user's avatar in a fetch
-        
-        
         
     }
     

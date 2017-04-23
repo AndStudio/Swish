@@ -21,9 +21,15 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        view.backgroundColor = Colors.backgroundGray
+        collectionView.backgroundColor = Colors.backgroundGray
+        
         title = "Liked Shots"
         
         navigationController?.isNavigationBarHidden = false
+        navigationController?.navigationBar.tintColor = Colors.primaryPink
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.backgroundColor = .white
         
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -32,12 +38,15 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
             self.shots = shots
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
+                
             }
         }
     }
     
     @IBAction func dismissViewController(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
+        navigationController?.isNavigationBarHidden = true
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     

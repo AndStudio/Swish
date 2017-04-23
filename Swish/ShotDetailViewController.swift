@@ -194,7 +194,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         userDetailVC.user = shot?.user
         
-//        self.navigationController?.pushViewController(userDetailVC, animated: true)
+//        navigationController?.pushViewController(userDetailVC, animated: true)
             
         self.present(userDetailVC, animated: true, completion: nil)
         }
@@ -205,6 +205,9 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let shot = self.shot else { return }
         let image = shot.largeImage
         let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        
+        
+        
         present(activiityViewController, animated: true, completion: nil)
     }
 

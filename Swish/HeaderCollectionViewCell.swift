@@ -50,6 +50,7 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         
         userNameLabel.text = user.userName
         userBioLabel.text = user.bio
+        userBioLabel.textColor = Colors.dribbbleDarkGray
         
         headerCellBottomSep.backgroundColor = UIColor.lightGray
         
