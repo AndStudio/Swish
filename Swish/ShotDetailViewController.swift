@@ -150,14 +150,12 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "designer", for: indexPath) as? ShotDesignerTableViewCell else { return ShotDesignerTableViewCell() }
             
             cell.shot = shot
-            
             cell.separatorInset.left = 900
             
             return cell
             
         default:
             let cell = UITableViewCell()
-            
             cell.separatorInset.left = 900
             
             return cell
@@ -194,6 +192,10 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         userDetailVC.user = shot?.user
         
+            
+            
+            
+            
 //        navigationController?.pushViewController(userDetailVC, animated: true)
             
         self.present(userDetailVC, animated: true, completion: nil)
@@ -205,9 +207,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         guard let shot = self.shot else { return }
         let image = shot.largeImage
         let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        
-        
-        
+
         present(activiityViewController, animated: true, completion: nil)
     }
 
@@ -223,9 +223,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
             if scrollView.contentOffset.y < 0 {
                 cell.heroTopConstraint.constant = scrollView.contentOffset.y
             }
-            
         }
-        
     }
     
     //MARK: - Segue to User

@@ -188,5 +188,10 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
             destinationVC.shot = shot
         }
     }
-
 }
+
+
+
+
+
+
