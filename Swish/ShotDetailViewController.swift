@@ -190,9 +190,12 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let userStoryboard = UIStoryboard(name: "User", bundle: nil)
         
-        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "user") as? UserDetailViewController else { return }
+        guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "user") as? UserCollectionViewController else { return }
         
         userDetailVC.user = shot?.user
+        
+//        self.navigationController?.pushViewController(userDetailVC, animated: true)
+            
         self.present(userDetailVC, animated: true, completion: nil)
         }
     }
@@ -227,7 +230,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUser" {
             
-            guard let destinationVC = segue.destination as? UserDetailViewController else { return }
+            guard let destinationVC = segue.destination as? UserCollectionViewController else { return }
             let userData = shot?.user
             destinationVC.user = userData
             

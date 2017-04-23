@@ -57,7 +57,7 @@ class AuthenticatedUserViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserVC" {
             guard
-                let destinationVC = segue.destination as? UserDetailViewController,
+                let destinationVC = segue.destination as? UserCollectionViewController,
                 let user = user
             else { return }
             
