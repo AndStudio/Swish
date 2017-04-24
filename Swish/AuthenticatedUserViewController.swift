@@ -57,7 +57,8 @@ class AuthenticatedUserViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toUserVC" {
             guard
-                let destinationVC = segue.destination as? UserDetailViewController,
+                let navController = segue.destination as? UINavigationController,
+                let destinationVC = navController.childViewControllers.first as? UserCollectionViewController,
                 let user = user
             else { return }
             
@@ -66,3 +67,4 @@ class AuthenticatedUserViewController: UIViewController {
     }
 
 }
+

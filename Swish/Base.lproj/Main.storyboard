@@ -31,7 +31,7 @@
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <action selector="signInButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Key-y1-dqc"/>
-                                    <segue destination="exb-TL-nNF" kind="show" id="TMx-y4-oad"/>
+                                    <segue destination="exb-TL-nNF" kind="presentation" id="TMx-y4-oad"/>
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dj1-8b-cXj">
@@ -64,7 +64,7 @@
                         <outlet property="logoImageView" destination="Dj1-8b-cXj" id="a0x-j2-nc0"/>
                         <outlet property="signInButton" destination="n84-EM-L3E" id="sfj-mf-wGt"/>
                         <outlet property="titleLabelOutlet" destination="kQM-RB-Gld" id="vtk-do-pwZ"/>
-                        <segue destination="F4E-wD-xva" kind="presentation" identifier="toSwipeVC" id="Szt-6b-ZpJ"/>
+                        <segue destination="F4E-wD-xva" kind="show" identifier="toSwipeVC" id="Szt-6b-ZpJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -80,11 +80,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Kw6-Tx-jBT"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="AX7-yQ-Yn7">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MG5-W3-VSP">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>

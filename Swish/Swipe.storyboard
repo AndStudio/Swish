@@ -28,7 +28,7 @@
                                     <constraint firstAttribute="width" constant="240" id="hbB-yd-wDh"/>
                                 </constraints>
                             </view>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backboard" translatesAutoresizingMaskIntoConstraints="NO" id="7AS-R3-jvo">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7AS-R3-jvo">
                                 <rect key="frame" x="67.5" y="213" width="240" height="240"/>
                             </imageView>
                         </subviews>
@@ -44,7 +44,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="I6N-Xe-3eY"/>
                     <connections>
-                        <segue destination="kbn-zo-LZK" kind="showDetail" identifier="likes" action="showViewController:sender:" id="hVP-kH-ZSm"/>
+                        <segue destination="kbn-zo-LZK" kind="presentation" identifier="likes" id="hVP-kH-ZSm"/>
                         <segue destination="AHw-af-adn" kind="presentation" identifier="profile" id="zoX-nE-npr"/>
                     </connections>
                 </viewController>
@@ -66,7 +66,7 @@
                 <viewControllerPlaceholder storyboardName="AuthenticatedUser" id="AHw-af-adn" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WrX-GC-Mnr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="234"/>
+            <point key="canvasLocation" x="1591" y="208"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4R0-FD-VrR">
@@ -87,7 +87,4 @@
             <point key="canvasLocation" x="82" y="119"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="backboard" width="356" height="319"/>
-    </resources>
 </document>
