@@ -10,6 +10,7 @@ import UIKit
 
 let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
 let accessTokenDeniedNotification = Notification.Name("Access Token Denied")
+let presentAPIAlertControllerNotification = Notification.Name("API Limit Alert")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,7 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 "code":code
             ]
             
-            NetworkController.performRequest(for: baseURL, httpMethod: .Post, urlParameters: componentsDictionary, body: nil, completion: { (data, error) in
+            NetworkController.performRequest(for: baseURL, httpMethod: .Post, urlParameters: componentsDictionary, body: nil, completion: { (data, response, error) in
                 
                 if let error = error {
                     NSLog("ERROR: \(error.localizedDescription)")

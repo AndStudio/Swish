@@ -19,7 +19,7 @@ class ApiController {
         // FIXME: Change count to access global swipe shot count
         let urlParameters = ["access_token" : Keychain.value(forKey: "accessToken"), "page" : String(page), "per_page": String(DribbleApi.swipeShotsToLoad)] as? [String:String]
         
-        NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+        NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
             if let error = error {
                 NSLog("ERROR: NetworkController.PerformRequest\(error.localizedDescription)")
                 completion([])
@@ -49,7 +49,7 @@ class ApiController {
                              "per_page":String(DribbleApi.collectionShotsToLoad),
                              "page":page] as? [String:String]
         
-        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
             if error != nil {
                 NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
             }
@@ -73,7 +73,7 @@ class ApiController {
                              "per_page":String(DribbleApi.collectionShotsToLoad),
                              "page":page] as? [String:String]
         
-        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+        NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
             if error != nil {
                 NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
             }
@@ -114,7 +114,7 @@ class ApiController {
         
         var success = false
         
-        NetworkController.performRequest(for: likeURL, httpMethod: .Post, urlParameters: urlParameters, body: nil) { (data, error) in
+        NetworkController.performRequest(for: likeURL, httpMethod: .Post, urlParameters: urlParameters, body: nil) { (data, response, error) in
             
             guard let data = data, let responseDataString = String(data: data, encoding: .utf8) else { return }
             
@@ -141,7 +141,7 @@ class ApiController {
         
         let urlParameters = ["access_token": Keychain.value(forKey: "accessToken")] as? [String: String]
         
-        NetworkController.performRequest(for: likesURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, error) in
+        NetworkController.performRequest(for: likesURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
             
             if let error = error {
                 NSLog("there was a problem checking if the user has liked this shot: \(error.localizedDescription)")

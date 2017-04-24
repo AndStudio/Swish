@@ -212,6 +212,7 @@
 		5A604BBD1E9C445C00EBF1D3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */,
 				5A604BBF1E9C6CAC00EBF1D3 /* Appearance.swift */,
 				5AF634401EA66D9900E5ACD4 /* Formatters.swift */,
 				5A8004161E9EBD89005356CA /* ImageController.swift */,
@@ -224,7 +225,6 @@
 		5A604BBE1E9C446100EBF1D3 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				5A8786001E9D33F900CB8B6C /* DribbbleApi.swift */,
 				967D83C51E9D9F17001BE32E /* NetworkController.swift */,
 			);
 			name = Network;

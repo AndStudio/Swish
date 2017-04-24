@@ -31,11 +31,17 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(callAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        
         navigationController?.navigationBar.isHidden = true
         
         DispatchQueue.main.async {
             self.updateViews()
         }
+    }
+    
+    func callAlertController() {
+        DribbleApi.presentAPIInfoAlertController(view: self)
     }
     
     override func viewWillAppear(_ animated: Bool) {

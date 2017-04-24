@@ -73,7 +73,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     var maxPage: Int = 1
 
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let authenticatedUser = UserController.currentUser else { return }
+        guard let authenticatedUser = DribbleApi.currentUser else { return }
         let doubleCount = Double(authenticatedUser.likeCount)
         self.maxPage = Int(ceil(doubleCount / Double(DribbleApi.collectionShotsToLoad)))
         

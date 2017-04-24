@@ -6,7 +6,7 @@
 //  Copyright © 2017 And. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class DribbleApi {
 
@@ -20,4 +20,49 @@ class DribbleApi {
     
     static var currentUser: User?
     
+    static var apiResetDate: NSDate?
+    static var apiCurrentLimit: Int = 60 {
+        didSet {
+            if apiCurrentLimit <= 1 {
+                //post notification
+                NSLog("Current API limit: \(apiCurrentLimit)")
+                NotificationCenter.default.post(name: presentAPIAlertControllerNotification, object: self)
+            }
+        }
+    }
+    
+    // MARK: API Response Header Tracking Functions
+    
+    static func updateAPIHeaderResponses(headerDictionary: URLResponse) {
+        let httpURLResponseFromHeader = headerDictionary as? HTTPURLResponse
+        let responseHeaderDictionary = httpURLResponseFromHeader?.allHeaderFields
+        
+        guard
+            let timeIntervalString = responseHeaderDictionary?["x-ratelimit-reset"] as? String,
+            let timeInterval = Double(timeIntervalString),
+            let apiLimitString = responseHeaderDictionary?["x-ratelimit-limit"] as? String,
+            let apiLimit = Int(apiLimitString)
+            else { return }
+        
+        let date = NSDate(timeIntervalSince1970: timeInterval)
+        
+        DribbleApi.apiResetDate = date
+        DribbleApi.apiCurrentLimit = apiLimit
+        
+    }
+    
+    // MARK: Alert Controller for API limit
+    
+    static func presentAPIInfoAlertController(view: UIViewController) {
+        let currentTimeStamp = Date()
+        guard let resetDate = apiResetDate as Date? else { return }
+        let timeDifferenceInSeconds = currentTimeStamp.timeIntervalSince(resetDate)
+        
+        let alertController = UIAlertController(title: "Dribbble Limit Reached", message: "The Dribbble API only allows a certain amount of access per user. You can do more in \(timeDifferenceInSeconds) seconds", preferredStyle: .alert)
+        let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
+        
+        alertController.addAction(dismissAction)
+        
+        view.present(alertController, animated: true)
+    }
 }

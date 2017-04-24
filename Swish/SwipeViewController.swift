@@ -38,6 +38,8 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(callAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        
         fetchAuthenticatedUsersLikedShots()
         
 //        UserController.fetchAuthenticatedUser { (user) in
@@ -87,6 +89,11 @@ class SwipeViewController: UIViewController {
                 }
             }
         }
+        
+    }
+    
+    func callAlertController() {
+        DribbleApi.presentAPIInfoAlertController(view: self)
     }
     
     func fetchAuthenticatedUsersLikedShots() {

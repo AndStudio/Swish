@@ -17,7 +17,7 @@ class ImageController {
             fatalError("Image URL optional is nil")
         }
         
-        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, error) in
+        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, response, error) in
             guard let data = data else { return }
             
             let filetype = url.pathComponents.last?.hasSuffix(".gif")

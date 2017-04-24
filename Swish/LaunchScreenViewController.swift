@@ -33,7 +33,7 @@ class LaunchScreenViewController: UIViewController {
         }
     }
     
-    func viewWill() {
+    func viewDid() {
         super.viewDidLoad()
         
     }
