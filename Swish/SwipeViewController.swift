@@ -213,7 +213,9 @@ class SwipeViewController: UIViewController {
         
         vc.shot = shot
         
-        self.present(vc, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.present(navController, animated: true, completion: nil)
         
     }
     
@@ -526,8 +528,8 @@ extension SwipeViewController {
     
     func likesButtonTapped(sender: UIButton!) {
         let buttonSendTag: UIButton = sender
+        
         if buttonSendTag.tag == 1 {
-            
             guard let vc = UIStoryboard(name: "Likes", bundle: nil).instantiateViewController(withIdentifier: "likes") as? LikesViewController else {
                 print("probelem instantiting view controller for likes")
                 return

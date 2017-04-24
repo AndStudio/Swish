@@ -49,10 +49,12 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         userAvatarImageView.clipsToBounds = true
         
         userNameLabel.text = user.userName
+        userNameLabel.textColor = Colors.primaryPink
+        userNameLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
         userBioLabel.text = user.bio
-        userBioLabel.textColor = Colors.dribbbleDarkGray
+        userBioLabel.textColor = Colors.paraGray
         
-        headerCellBottomSep.backgroundColor = UIColor.lightGray
+        headerCellBottomSep.backgroundColor = Colors.auxLightGray
         
         
     }

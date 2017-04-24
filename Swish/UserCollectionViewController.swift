@@ -36,12 +36,20 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     var screenHeight: CGFloat!
     
     
+    //MARK: - UI Actions 
+    
+    @IBAction func backButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
     //MARK: - View lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.isHidden = false 
+        navigationController?.isNavigationBarHidden = false
 
         screenSize = UIScreen.main.bounds
         screenWidth = screenSize.width
@@ -118,7 +126,7 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: view.frame.width, height: 300)
+            return CGSize(width: view.frame.width, height: 350)
         } else {
             return CGSize(width: 200, height: 200)
         }
@@ -146,6 +154,8 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     
     
     //MARK: - Pagination 
+    //FIXME: - Pagination doesnt work with mulitple secion indexs
+    
     /*
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let user = self.user else { return }

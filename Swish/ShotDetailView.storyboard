@@ -123,6 +123,7 @@
                                                     </constraints>
                                                     <connections>
                                                         <action selector="userButtonTapped:" destination="srr-Hn-al0" eventType="touchUpInside" id="T8C-a7-iGJ"/>
+                                                        <segue destination="CF2-6C-BL0" kind="show" identifier="toUserDetail" id="qj1-iz-NRy"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acw-wm-j9q">
@@ -276,14 +277,24 @@
             </objects>
             <point key="canvasLocation" x="2048.8000000000002" y="372.86356821589209"/>
         </scene>
+        <!--User-->
+        <scene sceneID="CwT-aZ-bU2">
+            <objects>
+                <viewControllerPlaceholder storyboardName="User" id="CF2-6C-BL0" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-qO-4kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2665" y="85"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="B3w-8B-kjv">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="v20-cW-3FB" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NrT-WJ-W3l">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="NrT-WJ-W3l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -292,7 +303,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fwb-UX-UKe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1109.5999999999999" y="372.86356821589209"/>
+            <point key="canvasLocation" x="1202" y="373"/>
         </scene>
     </scenes>
     <resources>

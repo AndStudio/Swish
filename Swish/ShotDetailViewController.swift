@@ -188,6 +188,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         
         let userStoryboard = UIStoryboard(name: "User", bundle: nil)
         
+        
         guard let userDetailVC = userStoryboard.instantiateViewController(withIdentifier: "user") as? UserCollectionViewController else { return }
         
         userDetailVC.user = shot?.user
@@ -197,6 +198,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
         self.present(userDetailVC, animated: true, completion: nil)
         }
     }
+    
     
 
     func shareButtonTapped(_ sender: AboutShotTableViewCell) {
@@ -225,9 +227,9 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Segue to User
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toUser" {
+        if segue.identifier == "toUserDetail" {
             
-            guard let destinationVC = segue.destination as? UserCollectionViewController else { return }
+            guard let navController = segue.destination as? UINavigationController, let destinationVC = navController.childViewControllers.first as? UserCollectionViewController else { return }
             let userData = shot?.user
             destinationVC.user = userData
             
