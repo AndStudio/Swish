@@ -18,7 +18,11 @@ class SwipeViewController: UIViewController {
     
     var doNotShowShots: [String] = []
     
-    var authenticatedUsersLikedShots: [Shot] = []
+    var authenticatedUsersLikedShots: [Shot]? {
+        didSet {
+            
+        }
+    }
     
     var cards = [ShotCard]()
     
@@ -41,10 +45,6 @@ class SwipeViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(callAlertController), name: presentAPIAlertControllerNotification, object: nil)
         
         fetchAuthenticatedUsersLikedShots()
-        
-//        UserController.fetchAuthenticatedUser { (user) in
-//            UserController.currentUser = user
-//        }
         
         navigationController?.isNavigationBarHidden = true
         
@@ -108,6 +108,8 @@ class SwipeViewController: UIViewController {
             ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
                 shotsIDsArray.append(contentsOf:shots)
                 page += 1
+                print(page)
+                
             })
         }
         self.authenticatedUsersLikedShots = shotsIDsArray

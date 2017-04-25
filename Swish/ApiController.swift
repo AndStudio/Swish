@@ -60,6 +60,7 @@ class ApiController {
                 let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]],
                 let response = response
                 else { completion([]); return }
+            
             let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
             
             DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
@@ -126,7 +127,13 @@ class ApiController {
         
         NetworkController.performRequest(for: likeURL, httpMethod: .Post, urlParameters: urlParameters, body: nil) { (data, response, error) in
             
-            guard let data = data, let responseDataString = String(data: data, encoding: .utf8) else { return }
+            guard
+                let data = data,
+                let responseDataString = String(data: data, encoding: .utf8),
+                let response = response
+                else { return }
+            
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             if let error = error {
                 NSLog("there was a problem with the API trying to like a shot: \(error.localizedDescription)")
@@ -152,6 +159,10 @@ class ApiController {
         let urlParameters = ["access_token": Keychain.value(forKey: "accessToken")] as? [String: String]
         
         NetworkController.performRequest(for: likesURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
+            
+            guard let response = response else { return }
+            
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             if let error = error {
                 NSLog("there was a problem checking if the user has liked this shot: \(error.localizedDescription)")
