@@ -26,13 +26,14 @@ class ApiController {
                 return
             }
             guard let data = data,
-                let shotsDictionaryArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String: Any]]
-                
+                let shotsDictionaryArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String: Any]],
+                let response = response
                 else { completion([]); return }
             
             let shots = shotsDictionaryArray.flatMap({ Shot(dictionary: $0) })
-            
             let group = DispatchGroup()
+            
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             group.notify(queue: DispatchQueue.main, execute: {
                 completion(shots)
@@ -54,10 +55,14 @@ class ApiController {
                 NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
             }
             
-            guard let data = data else { completion([]); return }
-            
-            guard let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
+            guard
+                let data = data,
+                let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]],
+                let response = response
+                else { completion([]); return }
             let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             completion(likedShotsArray)
             
@@ -78,10 +83,15 @@ class ApiController {
                 NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
             }
             
-            guard let data = data else { completion([]); return }
+            guard
+                let data = data,
+                let response = response,
+                let shotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]]
+                else { completion([]); return }
             
-            guard let shotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] else { completion([]); return }
             let likedShotsArray = shotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
+            
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             completion(likedShotsArray)
             

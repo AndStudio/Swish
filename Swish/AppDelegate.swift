@@ -52,8 +52,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard
                     let data = data,
                     let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
-                    let userAccessCode = json["access_token"] as? String
+                    let userAccessCode = json["access_token"] as? String,
+                    let response = response
                 else { return }
+
+                DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
                 
                 self.userAccessCode = userAccessCode
                 print("Access Code: \(String(describing: userAccessCode))")
