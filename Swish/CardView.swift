@@ -35,11 +35,11 @@ class CardView: UIView {
         
         let padding: CGFloat = 20
         
-        greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: UIColor(red: 102/255, green: 209/255, blue: 158/255, alpha: 1.0))
+        greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: Colors.primaryPink)
         greenLabel.isHidden = true
         self.addSubview(greenLabel)
         
-        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: UIColor(red: 236/255, green: 137/255, blue: 134/255, alpha: 1.0))
+        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: Colors.highlightBlue)
         redLabel.isHidden = true
         self.addSubview(redLabel)
     }

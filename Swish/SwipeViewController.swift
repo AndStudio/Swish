@@ -267,6 +267,7 @@ class SwipeViewController: UIViewController {
             dynamicAnimator.removeAllBehaviors()
             
             if emojiOptionsOverlay.heartIsFocused {
+                
                 // animate card to get "swallowed" by heart
                 
                 let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
@@ -289,6 +290,7 @@ class SwipeViewController: UIViewController {
                 showNextCard()
                 
             } else {
+                
                 emojiOptionsOverlay.hideFaceEmojis()
                 emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
                 
@@ -458,11 +460,12 @@ extension SwipeViewController {
         }
     }
     
+    
     // Blank UI
     
     func setUpUI() {
         
-        view.backgroundColor = Colors.dribbbleGray
+        view.backgroundColor = Colors.backgroundGray
         
         // likes button
         
@@ -485,28 +488,89 @@ extension SwipeViewController {
         self.view.bringSubview(toFront: profileButton)
         
         // logo
-        let swishLogoView = UIImageView(image: UIImage(named: "swish2"))
+        let swishLogoView = UIImageView(image: UIImage(named: "swishMark4"))
         swishLogoView.contentMode = .scaleAspectFill
         swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 24, width: 45, height: 30)
         swishLogoView.isUserInteractionEnabled = false
         self.view.addSubview(swishLogoView)
         
-        // <- ☹️
-        let frownArrowImageView = UIImageView(image: UIImage(named: "frown_arrow"))
-        frownArrowImageView.contentMode = .scaleAspectFit
-        frownArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) - 100, y: self.view.frame.height - 120, width: 75, height: 75)
-        frownArrowImageView.isUserInteractionEnabled = false
-        self.view.addSubview(frownArrowImageView)
+        // pass button 
+        let noButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) - 100, y: self.view.frame.height - 120, width: 75, height: 75))
+        noButton.setImage(UIImage(named: "frown_arrow"), for: .normal)
+        noButton.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
+        noButton.tag = 3
+        self.view.addSubview(noButton)
+        self.view.bringSubview(toFront: noButton)
         
-        // 🙂 ->
-        let smileArrowImageView = UIImageView(image: UIImage(named: "smile_arrow"))
-        smileArrowImageView.contentMode = .scaleAspectFit
-        smileArrowImageView.frame = CGRect(x: (self.view.frame.width / 2) + 20, y: self.view.frame.height - 120, width: 75, height: 75)
-        smileArrowImageView.isUserInteractionEnabled = false
-        self.view.addSubview(smileArrowImageView)
+        // like button 
+        let likeButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) + 20, y: self.view.frame.height - 120, width: 75, height: 75))
+        likeButton.setImage(UIImage(named: "smile_arrow"), for: .normal)
+        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        likeButton.tag = 4
+        self.view.addSubview(likeButton)
+        self.view.bringSubview(toFront: likeButton)
+        
     }
     
-    // likes button segue
+    //MARK: - Like / No buttons 
+
+    
+    func noButtonTapped() {
+        cards[0].showOptionLabel(option: .dislike1)
+        emojiOptionsOverlay.showEmoji(for: .dislike1)
+        dynamicAnimator.removeAllBehaviors()
+        
+        // animate card to slide off screen to the left 
+        
+        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        
+        let offScreenTargetCenter = CGPoint(x: -200, y: 400)
+        var newTransform = CGAffineTransform.identity
+        newTransform = newTransform.scaledBy(x: 0.95, y: 0.95)
+        newTransform = newTransform.rotated(by: 270)
+        
+        UIView.animate(withDuration: 0.8, delay: 0.35, usingSpringWithDamping: 0.0, initialSpringVelocity: 0, options: [.curveEaseInOut], animations: {
+            
+            self.cards[0].center = offScreenTargetCenter
+            self.cards[0].transform = newTransform
+            self.cards[0].alpha = 1.0
+            
+        }) { (_) in
+            self.emojiOptionsOverlay.hideFaceEmojis()
+            self.emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
+            self.hideFrontCard()
+            self.showNextCard()
+        }
+    }
+    
+    func likeButtonTapped() {
+        cards[0].showOptionLabel(option: .like1)
+        emojiOptionsOverlay.showEmoji(for: .like1)
+        dynamicAnimator.removeAllBehaviors()
+        
+        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        
+        let offScreenTargetCenter = CGPoint(x: 600, y: 400)
+        var newTransform = CGAffineTransform.identity
+        newTransform = newTransform.scaledBy(x: 0.95, y: 0.95)
+        newTransform = newTransform.rotated(by: -270)
+        
+        UIView.animate(withDuration: 0/8, delay: 0.35, usingSpringWithDamping: 0, initialSpringVelocity: 0, options: [.curveEaseInOut], animations: {
+            self.cards[0].center = offScreenTargetCenter
+            self.cards[0].transform = newTransform
+            self.cards[0].alpha = 0.5
+        }) { (_) in
+            self.emojiOptionsOverlay.hideFaceEmojis()
+            self.emojiOptionsOverlay.updateHeartEmoji(isFilled: false, isFocused: false)
+            self.hideFrontCard()
+            self.showNextCard()
+        }
+        
+    }
+    
+    
+    
+    //MARK: - Handle Segues
     
     func likesButtonTapped(sender: UIButton!) {
         let buttonSendTag: UIButton = sender
@@ -565,7 +629,6 @@ extension SwipeViewController {
         }
         completion()
     }
-    
 }
 
 
