@@ -13,9 +13,11 @@ class LaunchViewController: UIViewController {
     
     //MARK: - Outlets
     
-    @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var titleLabelOutlet: UILabel!
     @IBOutlet weak var signInButton: UIButton!
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var pageControl: UIPageControl!
+    
     
     //MARK: - Properties
 
@@ -25,17 +27,33 @@ class LaunchViewController: UIViewController {
     @IBAction func signInButtonTapped(_ sender: Any) {
 
     }
+    var launchPageViewController: LaunchPageViewController? {
+        didSet {
+            launchPageViewController?.launchDelegate = self
+        }
+    }
     
     //MARK: - View lifecyle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pageControl.addTarget(self, action: #selector(LaunchViewController.didChangePageControlValue), for: .valueChanged)
+        
         navigationController?.navigationBar.isHidden = true
         
         DispatchQueue.main.async {
             self.updateViews()
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let launchPageViewController = segue.destination as? LaunchPageViewController {
+            self.launchPageViewController = launchPageViewController
+        }
+    }
+    func didChangePageControlValue() {
+        launchPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -51,21 +69,13 @@ class LaunchViewController: UIViewController {
                 }
             })
         }
-    } 
+    }
     
     //MARK: - Helpers
     
     func updateViews() {
         
-        // set up button and title label 
-        titleLabelOutlet.text = "testing this "
-        
-        logoImageView.image = UIImage(named: "swish2")
-        
-        self.view.backgroundColor = Colors.dribbbleGray
-        titleLabelOutlet.textColor = Colors.dribbbleDarkGray
-        titleLabelOutlet.text = "Tinder for Dribbble"
-        titleLabelOutlet.font = UIFont(name: "ArialRounded", size: 18)
+        self.containerView.backgroundColor = Colors.dribbbleGray
         
         signInButton.backgroundColor = Colors.primaryPink
         signInButton.setTitle("Sign in", for: .normal)
@@ -76,3 +86,19 @@ class LaunchViewController: UIViewController {
     }
     
 }
+
+extension LaunchViewController: LaunchPageViewControllerDelegate {
+    
+    func launchPageViewController(_ launchPageViewController: LaunchPageViewController, didUpdatePageCount count: Int) {
+        pageControl.numberOfPages = count
+    }
+    
+    func launchPageViewController(_ launchPageViewController: LaunchPageViewController, didUpdatePageIndex index: Int) {
+        pageControl.currentPage = index
+    }
+}
+
+
+
+
+
