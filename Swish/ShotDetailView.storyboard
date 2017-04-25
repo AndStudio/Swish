@@ -123,7 +123,6 @@
                                                     </constraints>
                                                     <connections>
                                                         <action selector="userButtonTapped:" destination="srr-Hn-al0" eventType="touchUpInside" id="T8C-a7-iGJ"/>
-                                                        <segue destination="CF2-6C-BL0" kind="show" identifier="toUserDetail" id="qj1-iz-NRy"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Acw-wm-j9q">
@@ -277,14 +276,6 @@
             </objects>
             <point key="canvasLocation" x="2048.8000000000002" y="372.86356821589209"/>
         </scene>
-        <!--User-->
-        <scene sceneID="CwT-aZ-bU2">
-            <objects>
-                <viewControllerPlaceholder storyboardName="User" id="CF2-6C-BL0" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="KgO-qO-4kQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2665" y="85"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="B3w-8B-kjv">
             <objects>
@@ -294,6 +285,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.93506884570000004" green="0.2721357942" blue="0.53156459330000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -72,7 +72,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
                     return
             }
             let shot = shots[indexPath.row]
-            shot.isDismisable = true
+            shot.isDismisable = false
             destinationVC.shot = shot
         }
     }
