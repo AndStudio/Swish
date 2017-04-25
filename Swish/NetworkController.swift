@@ -38,6 +38,8 @@ class NetworkController {
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
+            // TODO: Remove all instances of updateAPIHeaderInfo and put it here instead
+            
             completion?(data, response, error)
         }
         

@@ -24,6 +24,7 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>swish2</string>
+				<string>swish</string>
 			</array>
 		</dict>
 	</array>

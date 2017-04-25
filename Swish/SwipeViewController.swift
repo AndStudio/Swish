@@ -105,9 +105,9 @@ class SwipeViewController: UIViewController {
         let maxPage: Int = Int(ceil(Double(currentUser.likeCount) / Double(DribbleApi.collectionShotsToLoad)))
         
         while page <= maxPage {
+            page += 1
             ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
                 shotsIDsArray.append(contentsOf:shots)
-                page += 1
                 print(page)
                 
             })

@@ -73,7 +73,7 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         print(accessToken)
         _ = Keychain.set(accessToken, forKey: "accessToken")
         
-        _ = navigationController?.popViewController(animated: true)
+        dismiss(animated: true, completion: nil)
         
     }
     

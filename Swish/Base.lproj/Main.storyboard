@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5t3-7p-oVV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="5t3-7p-oVV">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,11 +19,11 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n84-EM-L3E">
-                                <rect key="frame" x="24" y="536" width="327" height="45"/>
+                                <rect key="frame" x="24" y="600" width="327" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="L4y-Ef-M5z"/>
                                 </constraints>
@@ -35,14 +35,14 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dj1-8b-cXj">
-                                <rect key="frame" x="112" y="200" width="150" height="64"/>
+                                <rect key="frame" x="112" y="220" width="150" height="64"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="E0x-Qk-IaQ"/>
                                     <constraint firstAttribute="height" constant="64" id="ToE-MZ-Led"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kQM-RB-Gld">
-                                <rect key="frame" x="144" y="286" width="87" height="43"/>
+                                <rect key="frame" x="144" y="306" width="87" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -147,8 +147,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <connections>
-                        <segue destination="HBN-xH-w9B" kind="show" identifier="toLaunchVC" id="FZs-ph-OmV"/>
                         <segue destination="F4E-wD-xva" kind="show" identifier="toSwipeVCFromLaunch" id="VWg-VZ-ayD"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="toLaunchVC" id="YAQ-oa-lEs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3oN-bE-rTs" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -157,6 +157,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Szt-6b-ZpJ"/>
+        <segue reference="YAQ-oa-lEs"/>
+        <segue reference="VWg-VZ-ayD"/>
     </inferredMetricsTieBreakers>
 </document>

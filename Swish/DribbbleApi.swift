@@ -9,10 +9,19 @@
 import UIKit
 
 class DribbleApi {
-
-    static let clientID = "7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762"
-    static let clientSecret = "8a8fad391aff41852cd8dd52d7f54f97e050014d3bfa1682538cd8ade9243be8"
-    static let clientAccessKey = "a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd"
+    
+    // MARK: Switch Dribble accounts enum
+    
+    enum dribbleAPIKeys {
+        case clay
+        case david
+        case andrew
+        case taylor
+    }
+    
+    static var clientID = "7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762"
+    static var clientSecret = "8a8fad391aff41852cd8dd52d7f54f97e050014d3bfa1682538cd8ade9243be8"
+    static var clientAccessKey = "a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd"
     static let scope = "public+write"
     
     static let swipeShotsToLoad = 10
@@ -39,7 +48,7 @@ class DribbleApi {
         guard
             let timeIntervalString = responseHeaderDictionary?["x-ratelimit-reset"] as? String,
             let timeInterval = Double(timeIntervalString),
-            let apiLimitString = responseHeaderDictionary?["x-ratelimit-limit"] as? String,
+            let apiLimitString = responseHeaderDictionary?["x-ratelimit-remaining"] as? String,
             let apiLimit = Int(apiLimitString)
             else { return }
         
