@@ -14,7 +14,8 @@ class ShotCollectionViewCell: UICollectionViewCell {
     
     // MARK: IBOutlets
     @IBOutlet weak var shotTeaserImageView: UIImageView!
-    @IBOutlet weak var shotTitleLabel: UILabel!
+    @IBOutlet weak var cellBackgroundView: UIView!
+    
     
     // MARK: Properties
     var shot: Shot? {
@@ -31,9 +32,8 @@ class ShotCollectionViewCell: UICollectionViewCell {
     func updateViews() {
         guard let shot = shot else { return }
         shotTeaserImageView.image = shot.teaserImage
-        shotTitleLabel.text = shot.title
         
-        shotTeaserImageView.layer.cornerRadius = 5
-        shotTeaserImageView.clipsToBounds = true
+        cellBackgroundView.layer.cornerRadius = 4
+        cellBackgroundView.clipsToBounds = true
     }
 }

@@ -242,7 +242,9 @@ class SwipeViewController: UIViewController {
         
         vc.shot = shot
         
-        self.present(vc, animated: true, completion: nil)
+        let navController = UINavigationController(rootViewController: vc)
+        
+        self.present(navController, animated: true, completion: nil)
         
     }
     
@@ -495,7 +497,7 @@ extension SwipeViewController {
         
         let emojiPadding: CGFloat = 20
         
-        let likesButton: UIButton = UIButton(frame: CGRect(x: view.frame.width - emojiPadding - 50, y: 30, width: 35, height: 35))
+        let likesButton: UIButton = UIButton(frame: CGRect(x: view.frame.width - emojiPadding - 36, y: 22, width: 32, height: 32))
         likesButton.setImage(UIImage(named: "likedCards"), for: .normal)
         likesButton.addTarget(self, action: #selector(likesButtonTapped), for: .touchUpInside)
         likesButton.tag = 1
@@ -504,35 +506,17 @@ extension SwipeViewController {
         
         //Profile button
         
-        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 8, y: 30, width: 30, height: 30))
+        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 8, y: 24, width: 26, height: 28))
         profileButton.setImage(UIImage(named: "swishUser"), for: .normal)
         profileButton.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
         profileButton.tag = 2
         self.view.addSubview(profileButton)
         self.view.bringSubview(toFront: profileButton)
         
-        // menu icon
-        let menuIconImageView = UIImageView(image: UIImage(named: "menuFat"))
-        menuIconImageView.contentMode = .scaleAspectFit
-        menuIconImageView.frame = CGRect(x: 35, y: 30, width: 35, height: 30)
-        menuIconImageView.isUserInteractionEnabled = false
-        //        self.view.addSubview(menuIconImageView)
-        
-        
-        // title label
-        let titleLabel = UILabel()
-        titleLabel.text = "Swish"
-        titleLabel.numberOfLines = 2
-        titleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 24)
-        titleLabel.textColor = Colors.primaryPink
-        titleLabel.textAlignment = .center
-        titleLabel.frame = CGRect(x: (self.view.frame.width / 2) - 90, y: 17, width: 180, height: 60)
-        //        self.view.addSubview(titleLabel)
-        
         // logo
         let swishLogoView = UIImageView(image: UIImage(named: "swish2"))
         swishLogoView.contentMode = .scaleAspectFill
-        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 30, width: 45, height: 30)
+        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 24, width: 45, height: 30)
         swishLogoView.isUserInteractionEnabled = false
         self.view.addSubview(swishLogoView)
         
@@ -555,14 +539,16 @@ extension SwipeViewController {
     
     func likesButtonTapped(sender: UIButton!) {
         let buttonSendTag: UIButton = sender
+        
         if buttonSendTag.tag == 1 {
-            
             guard let vc = UIStoryboard(name: "Likes", bundle: nil).instantiateViewController(withIdentifier: "likes") as? LikesViewController else {
                 print("probelem instantiting view controller for likes")
                 return
             }
             
-            self.performSegue(withIdentifier: "likes", sender: self)
+            navigationController?.pushViewController(vc, animated: true)
+            
+//            self.performSegue(withIdentifier: "likes", sender: self)
             
         }
     }
