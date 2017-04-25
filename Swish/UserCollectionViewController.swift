@@ -31,6 +31,7 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     var userAvatar = UIImage()
     var shots: [Shot] = []
     var shotRefreshDelegate: ShotRefreshDelegate?
+    
     var screenSize: CGRect!
     var screenWidth: CGFloat!
     var screenHeight: CGFloat!
@@ -49,6 +50,10 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        guard let username = user?.userUserName else { return }
+        
+        title = "\(username)"
+        
         navigationController?.isNavigationBarHidden = false
 
         screenSize = UIScreen.main.bounds
@@ -59,9 +64,10 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
         collectionView?.backgroundColor = Colors.backgroundGray
         
         // Do any additional setup after loading the view, typically from a nib.
+        
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: screenWidth/2, height: screenWidth/2)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+        layout.itemSize = CGSize(width: screenWidth / 2 - 22, height: screenWidth/2 - 245)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
@@ -126,30 +132,10 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.section == 0 {
-            return CGSize(width: view.frame.width, height: 350)
+            return CGSize(width: view.frame.width, height: 260)
         } else {
-            return CGSize(width: 200, height: 200)
+            return CGSize(width: screenWidth / 2 - 8, height: screenWidth / 2 - 65)
         }
-    }
-    
-    
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        
-        let width : CGFloat
-        let height : CGFloat
-        
-        if indexPath.section == 0 {
-            // First section
-            width = collectionView.frame.width
-            height = 300
-            return CGSize(width: width, height: height)
-        } else {
-            // Second section
-            width = collectionView.frame.width/2
-            height = 200
-            return CGSize(width: width, height: height)
-        }
-        
     }
     
     
@@ -185,7 +171,9 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     //MARK: - Helper Methods
     
     func updateViews() {
-        
+        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.backgroundColor = .white
+        navigationController?.navigationBar.tintColor = Colors.primaryPink
     }
     
     //MARK: -  segue
