@@ -634,21 +634,13 @@ extension SwipeViewController {
         let buttonSendTag: UIButton = sender
         if buttonSendTag.tag == 2 {
             
-            self.performSegue(withIdentifier: "profile", sender: self)
+//            self.performSegue(withIdentifier: "profile", sender: self)
             
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "profile" {
-            
-            guard
-                let navController = segue.destination as? UINavigationController,
-                let destinationVC = navController.childViewControllers.first as? UserCollectionViewController,
-                let userData = DribbleApi.currentUser
-                else { return }
-            
-            destinationVC.user = userData
+            guard let vc = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "user") as? UserCollectionViewController else { return }
+        
+            let userData = DribbleApi.currentUser
+            vc.user = userData
+            navigationController?.pushViewController(vc, animated: true)
             
         }
     }
