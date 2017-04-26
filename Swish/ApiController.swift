@@ -75,6 +75,25 @@ class ApiController {
         }
     }
     
+    static func fetchAuthenticatedUsersLikedShots(completion: @escaping ([Shot]) -> Void) {
+        
+        guard let currentUser = DribbleApi.currentUser else { return }
+        
+        var shotsArray: [Shot] = []
+        var page = 1
+        let maxPage: Int = Int(ceil(Double(currentUser.likeCount) / Double(DribbleApi.collectionShotsToLoad)))
+        
+        while page <= maxPage {
+            page += 1
+            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+                shotsArray.append(contentsOf:shots)
+                print(page)
+                
+            })
+        }
+        completion(shotsArray)
+    }
+    
     static func fetchShots(forUser user: User, page: String, completion: @escaping ([Shot]) -> Void) {
         // Example enpoint: https://api.dribbble.com/v1/users/dribbble/shots?access_token=a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd&per_page=20
         
