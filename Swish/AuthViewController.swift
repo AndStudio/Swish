@@ -37,6 +37,7 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         // Observer is where the selector lives
         NotificationCenter.default.addObserver(self, selector: #selector(accessTokenWasRecievedFrom(notification:)), name: accessTokenRecievedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(accessTokenWasDenied), name: accessTokenDeniedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -89,5 +90,9 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         deniedAlertController.addAction(denyAction)
         
         present(deniedAlertController, animated: true, completion: nil)
+    }
+    
+    func callRateLimitAlertController() {
+        DribbleApi.presentAPIInfoAlertController(view: self)
     }
 }
