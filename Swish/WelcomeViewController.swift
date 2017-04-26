@@ -10,6 +10,7 @@ import UIKit
 
 class WelcomeViewController: UIViewController {
     
+    @IBOutlet weak var welcomeToLabel: UILabel!
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var titleLabelOutlet: UILabel!
     
@@ -26,7 +27,12 @@ class WelcomeViewController: UIViewController {
     func updateViews() {
         
 //        set up button and title label
+        welcomeToLabel.textColor = Colors.dribbbleDarkGray
+        welcomeToLabel.text = "Welcome to"
+        welcomeToLabel.font = UIFont(name: "ArialRounded", size: 18)
+        
         logoImageView.image = UIImage(named: "swish2")
+        
         titleLabelOutlet.textColor = Colors.dribbbleDarkGray
         titleLabelOutlet.text = "Tinder for Dribbble"
         titleLabelOutlet.font = UIFont(name: "ArialRounded", size: 18)

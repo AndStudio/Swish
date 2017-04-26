@@ -30,14 +30,14 @@ class SwipingViewController: UIViewController {
     func updateViews() {
         
         //        set up button and title label
-        swipeRightLabel.textColor = Colors.dribbbleDarkGray
+       // swipeRightLabel.textColor = Colors.dribbbleDarkGray
         swipeRightLabel.text = "Swipe right or tap heart to like"
-        swipeRightLabel.font = UIFont(name: "ArialRounded", size: 18)
+        swipeRightLabel.font = UIFont(name: "ArialRounded", size: 28)
         swipeRightImageView.image = UIImage(named: "likeImage")
         
-        swipeLeftLabel.textColor = Colors.dribbbleDarkGray
+       // swipeLeftLabel.textColor = Colors.dribbbleDarkGray
         swipeLeftLabel.text = "Swipe left or tap X to ignore"
-        swipeLeftLabel.font = UIFont(name: "ArialRounded", size: 18)
+        swipeLeftLabel.font = UIFont(name: "ArialRounded", size: 28)
         swipeLeftImageView.image = UIImage(named: "dislikeImage")
         
         self.view.backgroundColor = Colors.dribbbleGray

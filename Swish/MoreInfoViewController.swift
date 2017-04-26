@@ -28,17 +28,17 @@ class MoreInfoViewController: UIViewController {
     func updateViews() {
         
         //        set up button and title label
-        seeProfileLabel.textColor = Colors.dribbbleDarkGray
+        //seeProfileLabel.textColor = Colors.dribbbleDarkGray
         seeProfileLabel.text = "See profile"
-        seeProfileLabel.font = UIFont(name: "ArialRounded", size: 18)
+        seeProfileLabel.font = UIFont(name: "ArialRounded", size: 28)
         
-        seeLikesLabel.textColor = Colors.dribbbleDarkGray
+        //seeLikesLabel.textColor = Colors.dribbbleDarkGray
         seeLikesLabel.text = "See likes"
-        seeLikesLabel.font = UIFont(name: "ArialRounded", size: 18)
+        seeLikesLabel.font = UIFont(name: "ArialRounded", size: 28)
         
-        seeMoreLabel.textColor = Colors.dribbbleDarkGray
-        seeMoreLabel.text = "Click to see more by designer"
-        seeMoreLabel.font = UIFont(name: "ArialRounded", size: 18)
+        //seeMoreLabel.textColor = Colors.dribbbleDarkGray
+        seeMoreLabel.text = "Tap user's name to see more"
+        seeMoreLabel.font = UIFont(name: "ArialRounded", size: 28)
         
         mainImageView.image = UIImage(named: "mainImage")
         
