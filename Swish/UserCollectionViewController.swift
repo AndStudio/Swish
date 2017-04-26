@@ -40,7 +40,10 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     //MARK: - UI Actions 
     
     @IBAction func backButtonTapped(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        
+        navigationController?.isNavigationBarHidden = true
+        _ = self.navigationController?.popViewController(animated: true)
+        
     }
     
     

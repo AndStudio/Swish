@@ -66,6 +66,7 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         
         navigationController?.isNavigationBarHidden = true
         _ = self.navigationController?.popViewController(animated: true)
+        
     }
     
     // MARK: Observer Functions

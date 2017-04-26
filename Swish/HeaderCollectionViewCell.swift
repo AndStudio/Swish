@@ -58,9 +58,9 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         shotCountBackground.backgroundColor = .white
         shotCountBackground.layer.cornerRadius = 4
         
-        shotCountLabel.text = "\(user.shotsCount) shots"
+        shotCountLabel.text = "\(user.shotsCount)"
         shotCountLabel.textColor = Colors.dribbbleDarkGray
-        shotCountLabel.font = UIFont(name: "SanFranciscoRounded-Heavy", size: 11)
+        shotCountLabel.font = UIFont(name: "ArialRoundedMTBold", size: 14)
         
         aboutTextView.text = user.bio
         aboutTextView.textColor = Colors.paraGray
