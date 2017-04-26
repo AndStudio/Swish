@@ -43,8 +43,12 @@ class LaunchScreenViewController: UIViewController {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        _ = Keychain.removeValue(forKey: "accessToken")
+
+        print(Keychain.value(forKey: "accessToken") ?? "No Keychain value for \"accessToken\"")
         
         if Keychain.value(forKey: "accessToken") != nil {
             UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in

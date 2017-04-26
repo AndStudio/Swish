@@ -59,18 +59,28 @@ class DribbleApi {
         
     }
     
-    // MARK: Alert Controller for API limit
+    // MARK: Alert Controller for notfications/observers
     
     static func presentAPIInfoAlertController(view: UIViewController) {
         let currentTimeStamp = Date()
         guard let resetDate = apiResetDate as Date? else { return }
-        let timeDifferenceInSeconds = currentTimeStamp.timeIntervalSince(resetDate)
+        let timeDifferenceInSeconds = Int(ceil(currentTimeStamp.timeIntervalSince(resetDate)))
         
         let alertController = UIAlertController(title: "Dribbble Limit Reached", message: "The Dribbble API only allows a certain amount of access per user. You can do more in \(timeDifferenceInSeconds) seconds", preferredStyle: .alert)
         let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel) { (_) in }
         
         alertController.addAction(dismissAction)
+        view.present(alertController, animated: true)
+    }
+    
+    static func presentBadCredantialsAlertController(view: UIViewController) {
+        let navigationController = UINavigationController()
+        let alertController = UIAlertController(title: "No account access", message: "Your authorization credentials were not accepted. You will need to log in again.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Log In", style: .default) { (_) in
+            navigationController.popToRootViewController(animated: true)
+        }
         
+        alertController.addAction(okAction)
         view.present(alertController, animated: true)
     }
 }

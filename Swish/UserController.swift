@@ -31,7 +31,9 @@ class UserController {
                 let data = data,
                 let jsonUserDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
                 let response = response
-                else { completion(nil); return }
+                else {
+                    completion(nil)
+                    return }
             
             DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
@@ -39,7 +41,10 @@ class UserController {
                 let message = jsonUserDictionary["message"] as? String
                 NSLog(message ?? "Credentials were bad")
                 _ = Keychain.removeValue(forKey: "accessToken")
+                NotificationCenter.default.post(name: presentBadCredentialsAlertControllerNotification, object: self)
                 completion(nil)
+            } else if jsonUserDictionary["message"] as? String == "API rate limit exceeded." {
+                NotificationCenter.default.post(name: presentAPIAlertControllerNotification, object: self)
             } else if jsonUserDictionary["message"] != nil {
                 guard let message = jsonUserDictionary["message"] as? String else { completion(nil); return }
                 NSLog(message)

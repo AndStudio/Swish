@@ -16,8 +16,7 @@ class ApiController {
     static func loadShots(page: Int, completion: @escaping (([Shot]) -> Void)) {
         guard let url = baseURL  else { return }
 
-        // FIXME: Change count to access global swipe shot count
-        let urlParameters = ["access_token" : Keychain.value(forKey: "accessToken"), "page" : String(page), "per_page": String(DribbleApi.swipeShotsToLoad)] as? [String:String]
+        let urlParameters = ["access_token" : DribbleApi.clientAccessKey, "page" : String(page), "per_page": String(DribbleApi.swipeShotsToLoad)]
         
         NetworkController.performRequest(for: url, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
             if let error = error {
@@ -55,13 +54,19 @@ class ApiController {
                 NSLog("There was an error with the API to grab the user's liked shots: \(String(describing: error?.localizedDescription))")
             }
             
-            guard
-                let data = data,
-                let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]],
-                let response = response
-                else { completion([]); return }
+            var likedShotsArray: [Shot] = []
             
-            let likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            guard let data = data, let response = response else { completion([]); return }
+            
+            if let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] {
+                likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
+            } else if let messageDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any] {
+                if messageDictionary["message"] as? String == "Bad credentials." {
+                    NotificationCenter.default.post(name: presentBadCredentialsAlertControllerNotification, object: self)
+                } else if messageDictionary["message"] as? String == "API rate limit exceeded." {
+                    NotificationCenter.default.post(name: presentAPIAlertControllerNotification, object: self)
+                }
+            }
             
             DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
@@ -75,9 +80,9 @@ class ApiController {
         
         guard let likesBaseURL = URL(string: "https://api.dribbble.com/v1/users/\(user.userUserName)/shots") else { return }
         
-        let urlParameters = ["access_token": Keychain.value(forKey: "accessToken"),
+        let urlParameters = ["access_token": DribbleApi.clientAccessKey,
                              "per_page":String(DribbleApi.collectionShotsToLoad),
-                             "page":page] as? [String:String]
+                             "page":page]
         
         NetworkController.performRequest(for: likesBaseURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
             if error != nil {
@@ -149,7 +154,7 @@ class ApiController {
     }
     
     //MARK: - Check if shot liked
-    
+    // FIXME: Never used - do we need this?
     static func checkIfShotliked(shotId: String, completion: @escaping (_ liked: Bool) -> Void) {
         
         let baseURL = "https://api.dribbble.com/v1"

@@ -21,6 +21,9 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
+        
         view.backgroundColor = Colors.backgroundGray
         collectionView.backgroundColor = Colors.backgroundGray
         
@@ -49,6 +52,14 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         _ = self.navigationController?.popViewController(animated: true)
     }
     
+    // MARK: Observer Functions
+    func callRateLimitAlertController() {
+        DribbleApi.presentAPIInfoAlertController(view: self)
+    }
+    
+    func callBadCredentialsAlertController() {
+        DribbleApi.presentBadCredantialsAlertController(view: self)
+    }
     
     // MARK: Delegat and Data Source Functions
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

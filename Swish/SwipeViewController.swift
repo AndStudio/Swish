@@ -42,7 +42,8 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(callAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
         fetchAuthenticatedUsersLikedShots()
         
@@ -92,8 +93,13 @@ class SwipeViewController: UIViewController {
         
     }
     
-    func callAlertController() {
+    // MARK: Observer Functions
+    func callRateLimitAlertController() {
         DribbleApi.presentAPIInfoAlertController(view: self)
+    }
+    
+    func callBadCredentialsAlertController() {
+        DribbleApi.presentBadCredantialsAlertController(view: self)
     }
     
     func fetchAuthenticatedUsersLikedShots() {
@@ -612,8 +618,6 @@ extension SwipeViewController {
             
             navigationController?.pushViewController(vc, animated: true)
             
-//            self.performSegue(withIdentifier: "likes", sender: self)
-            
         }
     }
     
@@ -622,6 +626,20 @@ extension SwipeViewController {
         if buttonSendTag.tag == 2 {
             
             self.performSegue(withIdentifier: "profile", sender: self)
+            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "profile" {
+            
+            guard
+                let navController = segue.destination as? UINavigationController,
+                let destinationVC = navController.childViewControllers.first as? UserCollectionViewController,
+                let userData = DribbleApi.currentUser
+                else { return }
+            
+            destinationVC.user = userData
             
         }
     }
@@ -659,5 +677,6 @@ extension SwipeViewController {
         completion()
     }
 }
+
 
 

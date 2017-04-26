@@ -46,6 +46,7 @@ class AuthenticatedUserViewController: UIViewController {
     // MARK: IBActions
     @IBAction func logOutButtonTapped(_ sender: Any) {
         _ = Keychain.removeValue(forKey: "accessToken")
+        dismiss(animated: true, completion: nil)
         performSegue(withIdentifier: "toMainVC", sender: self)
     }
     

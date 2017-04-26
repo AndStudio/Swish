@@ -21,17 +21,15 @@ class LaunchViewController: UIViewController {
 
     
     //MARK: - UI Actions
-    // FIXME: No action in here, do we need this?
-    @IBAction func signInButtonTapped(_ sender: Any) {
-
-    }
+    @IBAction func signInButtonTapped(_ sender: Any) {}
     
     //MARK: - View lifecyle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(callAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
         navigationController?.navigationBar.isHidden = true
         
@@ -40,38 +38,35 @@ class LaunchViewController: UIViewController {
         }
     }
     
-    func callAlertController() {
+    // MARK: Observer Functions
+    func callRateLimitAlertController() {
         DribbleApi.presentAPIInfoAlertController(view: self)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-//        guard let authenticatedUsersAccessToken = Keychain.value(forKey: "accessToken") else { return }
-//        
-//        print("Authenticated User's Acces Token: \(authenticatedUsersAccessToken)" )
+    func callBadCredentialsAlertController() {
+        DribbleApi.presentBadCredantialsAlertController(view: self)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         
         if Keychain.value(forKey: "accessToken") != nil {
             UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in
                 
                 DispatchQueue.main.async {
-                    guard let authenticatedUser = authenticatedUser else { /*FIXME: Add error alert controller */ return }
+                    guard let authenticatedUser = authenticatedUser else { return }
                     DribbleApi.currentUser = authenticatedUser
                     
                     self.performSegue(withIdentifier: "toSwipeVC", sender: self)
                 }
             })
         } else if Keychain.value(forKey: "accessToken") == nil {
-//            self.performSegue(withIdentifier: "toLaunchVC", sender: self)
             self.updateViews()
         }
-    } 
+    }
     
     //MARK: - Helpers
     
     func updateViews() {
-        
-        // set up button and title label 
-        titleLabelOutlet.text = "testing this "
         
         logoImageView.image = UIImage(named: "swish2")
         

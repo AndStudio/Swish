@@ -11,6 +11,7 @@ import UIKit
 let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
 let accessTokenDeniedNotification = Notification.Name("Access Token Denied")
 let presentAPIAlertControllerNotification = Notification.Name("API Limit Alert")
+let presentBadCredentialsAlertControllerNotification = Notification.Name("Bad Credentials")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
