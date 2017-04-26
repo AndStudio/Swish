@@ -204,8 +204,8 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func shareButtonTapped(_ sender: AboutShotTableViewCell) {
         guard let shot = self.shot else { return }
         let image = shot.largeImage
-        let activiityViewController = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
-
+        let swishURL = URL(fileURLWithPath: "http://appstore.com/apps/swish")
+        let activiityViewController = UIActivityViewController(activityItems: ["View on swish \(swishURL)", image as Any], applicationActivities: nil)
         present(activiityViewController, animated: true, completion: nil)
     }
 
