@@ -515,7 +515,7 @@ extension SwipeViewController {
         
         //Profile button
         
-        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 8, y: 24, width: 26, height: 28))
+        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 4, y: 28, width: 22, height: 24))
         profileButton.setImage(UIImage(named: "swishUser"), for: .normal)
         profileButton.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
         profileButton.tag = 2
@@ -523,25 +523,34 @@ extension SwipeViewController {
         self.view.bringSubview(toFront: profileButton)
         
         // logo
-        let swishLogoView = UIImageView(image: UIImage(named: "swishMark4"))
+        let swishLogoView = UIImageView(image: UIImage(named: "swishMark5"))
         swishLogoView.contentMode = .scaleAspectFill
-        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 24, width: 45, height: 30)
+        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 28, width: 40, height: 24)
         swishLogoView.isUserInteractionEnabled = false
         self.view.addSubview(swishLogoView)
         
         // pass button 
         let noButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) - 100, y: self.view.frame.height - 120, width: 75, height: 75))
-        noButton.setImage(UIImage(named: "frown_arrow"), for: .normal)
+        noButton.setImage(UIImage(named: "noActive"), for: .normal)
         noButton.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
         noButton.tag = 3
+        noButton.layer.masksToBounds = false
+        noButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        noButton.layer.shadowRadius = 8
+        noButton.layer.shadowOpacity = 0.08
         self.view.addSubview(noButton)
         self.view.bringSubview(toFront: noButton)
         
+        
         // like button 
         let likeButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) + 20, y: self.view.frame.height - 120, width: 75, height: 75))
-        likeButton.setImage(UIImage(named: "smile_arrow"), for: .normal)
+        likeButton.setImage(UIImage(named: "yesActive"), for: .normal)
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         likeButton.tag = 4
+        likeButton.layer.masksToBounds = false
+        likeButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        likeButton.layer.shadowRadius = 8
+        likeButton.layer.shadowOpacity = 0.08
         self.view.addSubview(likeButton)
         self.view.bringSubview(toFront: likeButton)
         
