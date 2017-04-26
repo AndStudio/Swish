@@ -19,9 +19,9 @@ class DribbleApi {
         case taylor
     }
     
-    static var clientID = "e97282047496bac5ee671f3dd82e7e44789a3a011f10d1c8ba375aab4f93097f"
-    static var clientSecret = "58770dac962283bdbd486ae4815d087654731bec8d3753a9e332c3069ebd5e8d"
-    static var clientAccessKey = "70a3dded364357c7f618fd1eb28241ac19511cd0f2110ed34b8508d7e3217184"
+    static var clientID = "7e3ecb0581a0c7346f00029b96826f0267e92ec0a16759eeefaeafec841ff762"
+    static var clientSecret = "8a8fad391aff41852cd8dd52d7f54f97e050014d3bfa1682538cd8ade9243be8"
+    static var clientAccessKey = "a1590f48ee53ae2d172f3c49a444ce3d658e92cf7c95a91cc39eebbd4c5197cd"
     static let scope = "public+write"
     
     static let swipeShotsToLoad = 10
