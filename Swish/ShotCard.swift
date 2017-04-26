@@ -27,7 +27,6 @@ class ShotCard: CardView {
         
         guard let shot = shot,
             let shotImage = shot.largeImage, let imageView = self.imageView, let titleLabel = self.titleLabel, let usernameLabel =  self.usernameLabel else {
-                NSLog("Shit, it didn't work!")
                 return
         }
         

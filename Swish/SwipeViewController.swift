@@ -90,7 +90,6 @@ class SwipeViewController: UIViewController {
                 }
             }
         }
-        
     }
     
     // MARK: Observer Functions
@@ -147,11 +146,13 @@ class SwipeViewController: UIViewController {
     
     // Set the Gif
     
-    func setNewShot() {
+    func setNewShot(completion: () -> Void) {
         
         for i in 0...(cards.count-1) {
             if i == 3 {
-                guard shots.count > i else { return }
+                guard shots.count > i else {
+                    return
+                }
                 let shot = self.shots[i]
 
                 DispatchQueue.main.async {
@@ -178,6 +179,7 @@ class SwipeViewController: UIViewController {
                     }
                 }
             }
+            completion()
         }
     }
     
@@ -382,9 +384,10 @@ class SwipeViewController: UIViewController {
                     self.cards[0].removeFromSuperview()
                     self.cards.remove(at: 0)
                     self.shots.remove(at: 0)
-                    self.layoutCards()
-                    self.setNewShot()
                     
+                }
+                self.setNewShot {
+                    self.layoutCards()
                 }
             }
             
@@ -395,9 +398,10 @@ class SwipeViewController: UIViewController {
             self.cards[0].removeFromSuperview()
             self.cards.remove(at: 0)
             self.shots.remove(at: 0)
-            layoutCards()
-            setNewShot()
             
+            self.setNewShot {
+                self.layoutCards()
+            }
         }
     }
     
@@ -423,7 +427,6 @@ class SwipeViewController: UIViewController {
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(self.handleCardPan)))
                 }
             })
-            
         }
         
         // 2. add a new card (now the 4th card in the deck) to the very back
@@ -609,9 +612,7 @@ extension SwipeViewController {
             self.hideFrontCard()
             self.showNextCard()
         }
-        
     }
-    
     
     
     //MARK: - Handle Segues
@@ -624,9 +625,7 @@ extension SwipeViewController {
                 print("probelem instantiting view controller for likes")
                 return
             }
-            
             navigationController?.pushViewController(vc, animated: true)
-            
         }
     }
     
