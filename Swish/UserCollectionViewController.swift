@@ -152,7 +152,7 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
             guard let indexPath = collectionView?.indexPathsForSelectedItems?.first,
                 let navController = segue.destination as? UINavigationController, let destinationVC = navController.childViewControllers.first as? ShotDetailViewController else { return }
             let shot = shots[indexPath.row]
-            shot.isDismisable = false
+            shot.isDismisable = true
             destinationVC.shot = shot
         }
     }
