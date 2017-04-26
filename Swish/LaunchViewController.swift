@@ -56,19 +56,25 @@ class LaunchViewController: UIViewController {
         launchPageViewController?.scrollToViewController(index: pageControl.currentPage)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         
         if Keychain.value(forKey: "accessToken") != nil {
             UserController.fetchAuthenticatedUser(completion: { (authenticatedUser) in
                 
                 DispatchQueue.main.async {
-                    guard let authenticatedUser = authenticatedUser else { /*FIXME: Add error alert controller */ return }
+                    guard let authenticatedUser = authenticatedUser else { return }
                     DribbleApi.currentUser = authenticatedUser
                     
                     self.performSegue(withIdentifier: "toSwipeVC", sender: self)
                 }
             })
+        } else if Keychain.value(forKey: "accessToken") == nil {
+            self.updateViews()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        
     }
     
     //MARK: - Helpers
