@@ -9,10 +9,14 @@
 
 import UIKit
 
-class LikesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class LikesViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     // MARK: Properties
     var shots: [Shot] = []
+    
+    var screenSize: CGRect!
+    var screenWidth: CGFloat!
+    var screenHeight: CGFloat!
     
     // MARK: IBOutlets
     @IBOutlet weak var collectionView: UICollectionView!
@@ -27,15 +31,25 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         view.backgroundColor = Colors.backgroundGray
         collectionView.backgroundColor = Colors.backgroundGray
         
+        screenSize = UIScreen.main.bounds
+        screenWidth = screenSize.width
+        screenHeight = screenSize.height
+        
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = CGSize(width: screenWidth / 2 - 22, height: screenWidth/2 - 65)
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
+        collectionView!.collectionViewLayout = layout
+        
         title = "Liked Shots"
         
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.tintColor = Colors.primaryPink
         navigationController?.navigationBar.barTintColor = .white
         navigationController?.navigationBar.backgroundColor = .white
-        
-        collectionView.delegate = self
-        collectionView.dataSource = self
         
         ApiController.fetchLikedShots(page: String(page)) { (shots) in
             self.shots = shots
@@ -45,6 +59,8 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
             }
         }
     }
+    
+    
     
     @IBAction func dismissViewController(_ sender: Any) {
         

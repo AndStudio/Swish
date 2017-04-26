@@ -27,6 +27,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
+    
     //MARK: - Outlets
     
     @IBOutlet var tableView: UITableView!
