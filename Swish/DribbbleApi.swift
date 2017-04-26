@@ -32,7 +32,6 @@ class DribbleApi {
     static var apiResetDate: NSDate?
     static var apiCurrentLimit: Int = 60 {
         didSet {
-            NSLog("Current API limit: \(apiCurrentLimit)")
             if apiCurrentLimit <= 1 {
                 NotificationCenter.default.post(name: presentAPIAlertControllerNotification, object: self)
             }

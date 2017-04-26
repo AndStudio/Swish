@@ -38,7 +38,11 @@ class NetworkController {
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
-            // TODO: Remove all instances of updateAPIHeaderInfo and put it here instead
+            guard let response = response else { return }
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
+            guard let apiResetDate = DribbleApi.apiResetDate else { return }
+            NSLog("API Reset Date: \(apiResetDate)")
+            NSLog("API Limit: \(DribbleApi.apiCurrentLimit)")
             
             completion?(data, response, error)
         }

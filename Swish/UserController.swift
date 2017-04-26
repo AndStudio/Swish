@@ -34,9 +34,7 @@ class UserController {
                 else {
                     completion(nil)
                     return }
-            
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
-            
+                        
             if jsonUserDictionary["message"] as? String == "Bad credentials." {
                 let message = jsonUserDictionary["message"] as? String
                 NSLog(message ?? "Credentials were bad")

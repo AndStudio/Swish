@@ -22,8 +22,6 @@ class ImageController {
                 let data = data,
                 let response = response
                 else { return }
-
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             let filetype = url.pathComponents.last?.hasSuffix(".gif")
             if filetype == true {

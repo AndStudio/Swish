@@ -32,8 +32,6 @@ class ApiController {
             let shots = shotsDictionaryArray.flatMap({ Shot(dictionary: $0) })
             let group = DispatchGroup()
             
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
-            
             group.notify(queue: DispatchQueue.main, execute: {
                 completion(shots)
             })
@@ -67,8 +65,6 @@ class ApiController {
                     NotificationCenter.default.post(name: presentAPIAlertControllerNotification, object: self)
                 }
             }
-            
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             completion(likedShotsArray)
             
@@ -116,8 +112,6 @@ class ApiController {
             
             let likedShotsArray = shotsDictionariesArray.flatMap({ Shot(dictionary: $0) })
             
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
-            
             completion(likedShotsArray)
             
         }
@@ -149,9 +143,7 @@ class ApiController {
                 let responseDataString = String(data: data, encoding: .utf8),
                 let response = response
                 else { return }
-            
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
-            
+                        
             if let error = error {
                 NSLog("there was a problem with the API trying to like a shot: \(error.localizedDescription)")
             } else if responseDataString.contains("error") {

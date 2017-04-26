@@ -55,8 +55,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     let userAccessCode = json["access_token"] as? String,
                     let response = response
                     else { return }
-
-                DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
                 
                 self.userAccessCode = userAccessCode
                 print("Access Code: \(String(describing: userAccessCode))")
