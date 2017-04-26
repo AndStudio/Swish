@@ -5,7 +5,6 @@
 //  Created by Andrew Ervin Gierke on 4/15/17.
 //  Copyright © 2017 And. All rights reserved.
 //
-
 import UIKit
 
 class SwipeViewController: UIViewController {
@@ -41,7 +40,7 @@ class SwipeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
         NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
@@ -90,6 +89,7 @@ class SwipeViewController: UIViewController {
                 }
             }
         }
+        
     }
     
     // MARK: Observer Functions
@@ -104,7 +104,7 @@ class SwipeViewController: UIViewController {
     func fetchAuthenticatedUsersLikedShots() {
         
         guard let currentUser = DribbleApi.currentUser else { return }
-
+        
         var shotsIDsArray: [Shot] = []
         var page = 1
         let maxPage: Int = Int(ceil(Double(currentUser.likeCount) / Double(DribbleApi.collectionShotsToLoad)))
@@ -146,15 +146,13 @@ class SwipeViewController: UIViewController {
     
     // Set the Gif
     
-    func setNewShot(completion: () -> Void) {
+    func setNewShot() {
         
         for i in 0...(cards.count-1) {
             if i == 3 {
-                guard shots.count > i else {
-                    return
-                }
+                guard shots.count > i else { return }
                 let shot = self.shots[i]
-
+                
                 DispatchQueue.main.async {
                     
                     if shot.hiDpiImageURL == nil {
@@ -179,7 +177,6 @@ class SwipeViewController: UIViewController {
                     }
                 }
             }
-            completion()
         }
     }
     
@@ -384,10 +381,9 @@ class SwipeViewController: UIViewController {
                     self.cards[0].removeFromSuperview()
                     self.cards.remove(at: 0)
                     self.shots.remove(at: 0)
-                    
-                }
-                self.setNewShot {
                     self.layoutCards()
+                    self.setNewShot()
+                    
                 }
             }
             
@@ -398,10 +394,9 @@ class SwipeViewController: UIViewController {
             self.cards[0].removeFromSuperview()
             self.cards.remove(at: 0)
             self.shots.remove(at: 0)
+            layoutCards()
+            setNewShot()
             
-            self.setNewShot {
-                self.layoutCards()
-            }
         }
     }
     
@@ -427,6 +422,7 @@ class SwipeViewController: UIViewController {
                     card.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(self.handleCardPan)))
                 }
             })
+            
         }
         
         // 2. add a new card (now the 4th card in the deck) to the very back
@@ -489,7 +485,6 @@ class SwipeViewController: UIViewController {
 
 
 //MARK: - Not related to cards logic
-
 extension SwipeViewController {
     
     override var prefersStatusBarHidden: Bool {
@@ -532,7 +527,7 @@ extension SwipeViewController {
         swishLogoView.isUserInteractionEnabled = false
         self.view.addSubview(swishLogoView)
         
-        // pass button 
+        // pass button
         let noButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) - 100, y: self.view.frame.height - 120, width: 75, height: 75))
         noButton.setImage(UIImage(named: "noActive"), for: .normal)
         noButton.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
@@ -545,7 +540,7 @@ extension SwipeViewController {
         self.view.bringSubview(toFront: noButton)
         
         
-        // like button 
+        // like button
         let likeButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) + 20, y: self.view.frame.height - 120, width: 75, height: 75))
         likeButton.setImage(UIImage(named: "yesActive"), for: .normal)
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
@@ -559,17 +554,16 @@ extension SwipeViewController {
         
     }
     
-    //MARK: - Like / No buttons 
-
+    //MARK: - Like / No buttons
     
     func noButtonTapped() {
         cards[0].showOptionLabel(option: .dislike1)
         emojiOptionsOverlay.showEmoji(for: .dislike1)
         dynamicAnimator.removeAllBehaviors()
         
-        // animate card to slide off screen to the left 
+        // animate card to slide off screen to the left
         
-        _ = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: -200, y: 400)
         var newTransform = CGAffineTransform.identity
@@ -595,7 +589,7 @@ extension SwipeViewController {
         emojiOptionsOverlay.showEmoji(for: .like1)
         dynamicAnimator.removeAllBehaviors()
         
-        _ = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: 600, y: 400)
         var newTransform = CGAffineTransform.identity
@@ -612,7 +606,9 @@ extension SwipeViewController {
             self.hideFrontCard()
             self.showNextCard()
         }
+        
     }
+    
     
     
     //MARK: - Handle Segues
@@ -625,7 +621,9 @@ extension SwipeViewController {
                 print("probelem instantiting view controller for likes")
                 return
             }
+            
             navigationController?.pushViewController(vc, animated: true)
+            
         }
     }
     
@@ -633,10 +631,10 @@ extension SwipeViewController {
         let buttonSendTag: UIButton = sender
         if buttonSendTag.tag == 2 {
             
-//            self.performSegue(withIdentifier: "profile", sender: self)
+            //            self.performSegue(withIdentifier: "profile", sender: self)
             
             guard let vc = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "user") as? UserCollectionViewController else { return }
-        
+            
             let userData = DribbleApi.currentUser
             vc.user = userData
             navigationController?.pushViewController(vc, animated: true)
@@ -677,6 +675,3 @@ extension SwipeViewController {
         completion()
     }
 }
-
-
-
