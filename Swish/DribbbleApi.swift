@@ -74,10 +74,9 @@ class DribbleApi {
     }
     
     static func presentBadCredantialsAlertController(view: UIViewController) {
-        let navigationController = UINavigationController()
         let alertController = UIAlertController(title: "No account access", message: "Your authorization credentials were not accepted. You will need to log in again.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Log In", style: .default) { (_) in
-            navigationController.popToRootViewController(animated: true)
+            //FIXME: Pop back to log in screen
         }
         
         alertController.addAction(okAction)
