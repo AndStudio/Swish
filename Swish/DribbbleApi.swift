@@ -74,9 +74,13 @@ class DribbleApi {
     }
     
     static func presentBadCredantialsAlertController(view: UIViewController) {
+        let launchScreenStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
+        let luanchScreenNav = launchScreenStoryboard.instantiateViewController(withIdentifier: "launchScreenViewController")
+        
         let alertController = UIAlertController(title: "No account access", message: "Your authorization credentials were not accepted. You will need to log in again.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Log In", style: .default) { (_) in
-            //FIXME: Pop back to log in screen
+            view.present(luanchScreenNav, animated: true, completion: nil)
+            
         }
         
         alertController.addAction(okAction)

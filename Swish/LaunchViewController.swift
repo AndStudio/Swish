@@ -14,24 +14,21 @@ class LaunchViewController: UIViewController {
     //MARK: - Outlets
     
     @IBOutlet weak var signInButton: UIButton!
-    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var pageControl: UIPageControl!
     
     
     //MARK: - Properties
 
-    
-    //MARK: - UI Actions
-    // FIXME: No action in here, do we need this?
-    @IBAction func signInButtonTapped(_ sender: Any) {
-
-    }
     var launchPageViewController: LaunchPageViewController? {
         didSet {
             launchPageViewController?.launchDelegate = self
         }
     }
+    
+    //MARK: - UI Actions
+    @IBAction func signInButtonTapped(_ sender: Any) {}
+    
     
     //MARK: - View lifecyle
 
@@ -39,7 +36,6 @@ class LaunchViewController: UIViewController {
         super.viewDidLoad()
         
         NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
         pageControl.addTarget(self, action: #selector(LaunchViewController.didChangePageControlValue), for: .valueChanged)
         
@@ -53,10 +49,6 @@ class LaunchViewController: UIViewController {
     // MARK: Observer Functions
     func callRateLimitAlertController() {
         DribbleApi.presentAPIInfoAlertController(view: self)
-    }
-    
-    func callBadCredentialsAlertController() {
-        DribbleApi.presentBadCredantialsAlertController(view: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
