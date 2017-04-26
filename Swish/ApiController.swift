@@ -124,13 +124,6 @@ class ApiController {
 
     }
     
-    //MARK: - Like a shot
-    /*
-     Liking a shot requires the user to be authenticated to write.
-     -parameter shotID: id of the shot to be liked
-     -parameter completionHandler: return and error, JSON, NSURLREsponse, status code of the response and a Bool indicating whether the attempt was successful or not.
-     */
-    
     func fetchTeaserImage(forShot shot: Shot, completion: @escaping (UIImage?) -> Void) {
         let teaserImageURL = shot.teaserImageURL
         ImageController.image(forURL: teaserImageURL) { (image) in
@@ -169,28 +162,6 @@ class ApiController {
             }
             
             completion(success)
-        }
-    }
-    
-    //MARK: - Check if shot liked
-    // FIXME: Never used - do we need this?
-    static func checkIfShotliked(shotId: String, completion: @escaping (_ liked: Bool) -> Void) {
-        
-        let baseURL = "https://api.dribbble.com/v1"
-        
-        guard let likesURL = URL(string: "\(baseURL)/shots/\(shotId)/like") else { return }
-        
-        let urlParameters = ["access_token": Keychain.value(forKey: "accessToken")] as? [String: String]
-        
-        NetworkController.performRequest(for: likesURL, httpMethod: .Get, urlParameters: urlParameters, body: nil) { (data, response, error) in
-            
-            guard let response = response else { return }
-            
-            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
-            
-            if let error = error {
-                NSLog("there was a problem checking if the user has liked this shot: \(error.localizedDescription)")
-            }
         }
     }
 }

@@ -66,6 +66,7 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         
     }
     
+    // MARK: Observer functions
     func accessTokenWasRecievedFrom(notification: Notification) {
 
         guard let accessToken = notification.userInfo?["accessToken"] as? String else { return }

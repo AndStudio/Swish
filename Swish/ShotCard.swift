@@ -28,7 +28,6 @@ class ShotCard: CardView {
         guard let shot = shot,
             let shotImage = shot.largeImage, let imageView = self.imageView, let titleLabel = self.titleLabel, let usernameLabel =  self.usernameLabel else { return }
         
-        
         imageView.image = shotImage
         
         // text labels
@@ -41,7 +40,6 @@ class ShotCard: CardView {
         guard let username = shot.user?.userName else { return }
         
         usernameLabel.text = "by "+"\(username)"
-
         
     }
     

@@ -18,7 +18,6 @@ class Formatters {
         guard let date = datea else { return "" }
             
             return formatter.string(from: date)
-        
     }
     
     static func stripHTML(_ description: NSString) -> String {

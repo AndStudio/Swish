@@ -75,15 +75,10 @@ class AboutShotTableViewCell: UITableViewCell {
         }
         
         shareButton.backgroundColor = .clear
-        
-        
         userNameLabel.font = UIFont(name: "ArialRoundedMTBold", size: 18)
-        
         viewCountLabel.textColor = Colors.dribbbleDarkGray
         likeCountLabel.textColor = Colors.dribbbleDarkGray
         userNameLabel.textColor = Colors.primaryPink
-        
-        //make the userAvatarImage round
         userAvatarImageView.layer.cornerRadius = userAvatarImageView.frame.size.width/2
         userAvatarImageView.clipsToBounds = true
 

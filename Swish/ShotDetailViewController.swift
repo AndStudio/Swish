@@ -227,13 +227,11 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     //MARK: - Segue to User
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toUserDetail" {
-        
+
             guard let navController = segue.destination as? UINavigationController, let destinationVC = navController.childViewControllers.first as? UserCollectionViewController else { return }
             let userData = shot?.user
             destinationVC.user = userData
-            
-//        }
+        
     }
 }
 

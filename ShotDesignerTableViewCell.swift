@@ -24,8 +24,6 @@ class ShotDesignerTableViewCell: UITableViewCell {
     @IBOutlet weak var designerNameLabel: UILabel!
     @IBOutlet weak var designerBiolabel: UILabel!
     
-    
-    
     //MARK: - View lifecycle
     
     override func awakeFromNib() {
@@ -33,7 +31,6 @@ class ShotDesignerTableViewCell: UITableViewCell {
         backgroundColor = Colors.backgroundGray
         
     }
-    
     
     //MARK: - Helpers
     

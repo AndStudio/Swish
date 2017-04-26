@@ -22,17 +22,14 @@ class ShotHeroTableViewCell: UITableViewCell {
     @IBOutlet weak var shotImageView: UIImageView!
     @IBOutlet weak var heroTopConstraint: NSLayoutConstraint!
     
-    
     //MARK: - Actions
-
 
     //MARK: - View lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = Colors.backgroundGray
-    }
-    
+    }    
     
     //MARK: - Helpers 
     

@@ -56,9 +56,4 @@ class UserController {
             }
         }
     }
-    
-    
 }
-
-
-

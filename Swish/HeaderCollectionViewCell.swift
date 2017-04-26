@@ -25,10 +25,8 @@ class HeaderCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var userAvatarImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var aboutTextView: UITextView!
-    
     @IBOutlet weak var shotCountBackground: UIView!
     @IBOutlet weak var shotCountLabel: UILabel!
-    
     @IBOutlet weak var headerCellBottomSep: UIImageView!
     
     //MARK: - Helper Methods 
@@ -73,7 +71,6 @@ class HeaderCollectionViewCell: UICollectionViewCell {
         shotCountBackground.layer.shadowOffset = CGSize(width: 0, height: 1)
         shotCountBackground.layer.shadowRadius = 1
         shotCountBackground.layer.shadowOpacity = 0.08
-        
         
     }
 }

@@ -31,13 +31,11 @@ class ShotDetailTitleTableViewCell: UITableViewCell {
         backgroundColor = Colors.backgroundGray
     }
     
-    
     //MARK: - Helpers
     
     func updateViews() {
         shotTitleLabel.text = shot?.title
         shotTitleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 30)
     }
-    
 
 }

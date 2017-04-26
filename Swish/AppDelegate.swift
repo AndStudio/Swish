@@ -17,7 +17,6 @@ let presentBadCredentialsAlertControllerNotification = Notification.Name("Bad Cr
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    
     var userAccessCode: String?
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
@@ -66,7 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     NotificationCenter.default.post(name: accessTokenRecievedNotification, object: self, userInfo: ["accessToken":userAccessCode])
                 }
             })
-
         }
         return true
     }

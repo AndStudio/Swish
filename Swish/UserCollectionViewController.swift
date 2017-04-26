@@ -46,8 +46,6 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
         
     }
     
-    
-    
     //MARK: - View lifecycle
 
     override func viewDidLoad() {
@@ -92,7 +90,6 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 2
     }
-
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -140,36 +137,6 @@ class UserCollectionViewController: UICollectionViewController, UICollectionView
             return CGSize(width: screenWidth / 2 - 8, height: screenWidth / 2 - 65)
         }
     }
-    
-    
-    //MARK: - Pagination 
-    //FIXME: - Pagination doesnt work with mulitple secion indexs
-    
-    /*
-    override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard let user = self.user else { return }
-        let doubleCount = Double(user.shotsCount)
-        self.maxPage = Int(ceil(doubleCount / 20.0))
-        
-        if indexPath.row == (self.shots.count - 5) && self.page <= maxPage {
-            self.page += 1
-            guard let user = self.user else { return }
-            ApiController.fetchShots(forUser: user, page: String(page), completion: { (shots) in
-                
-                let oldShotsEndIndex = self.shots.endIndex
-                self.shots.append(contentsOf: shots)
-                DispatchQueue.main.async {
-                    if self.page < self.maxPage {
-                        let newShotsEndIndex = self.shots.endIndex - 1
-                        let newShotsIndexPaths = (oldShotsEndIndex...newShotsEndIndex).map({IndexPath(item: $0, section: 0)})
-                        
-                        self.collectionView?.insertItems(at: newShotsIndexPaths)
-                    }
-                }
-            })
-        }
-    }
-    */
     
     //MARK: - Helper Methods
     

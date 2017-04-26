@@ -60,8 +60,6 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         }
     }
     
-    
-    
     @IBAction func dismissViewController(_ sender: Any) {
         
         navigationController?.isNavigationBarHidden = true
@@ -91,7 +89,6 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
     }
     
     // MARK: - Navigation
-    // FIXME: Link it to the correct VC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toShotDetail" {
             guard let indexPath = collectionView?.indexPathsForSelectedItems?.first,

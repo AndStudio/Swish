@@ -30,7 +30,6 @@ class ShotDescriptionTableViewCell: UITableViewCell {
         
     }
     
-    
     //MARK: - Helpers
     
     func updateViews() {

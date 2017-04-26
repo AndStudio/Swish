@@ -40,7 +40,5 @@ class ShotCollectionViewCell: UICollectionViewCell {
         cellBackgroundView.layer.shadowRadius = 1
         cellBackgroundView.layer.shadowOpacity = 0.13
         
-        
-        
     }
 }
