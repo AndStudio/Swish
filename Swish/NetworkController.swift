@@ -40,8 +40,7 @@ class NetworkController {
             
             guard let response = response else { return }
             DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
-            guard let apiResetDate = DribbleApi.apiResetDate else { return }
-            NSLog("API Reset Date: \(apiResetDate)")
+            NSLog("API Reset Date: \(String(describing: DribbleApi.apiResetDate))")
             NSLog("API Limit: \(DribbleApi.apiCurrentLimit)")
             
             completion?(data, response, error)

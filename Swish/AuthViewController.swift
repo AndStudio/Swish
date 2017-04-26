@@ -73,20 +73,8 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         guard let accessToken = notification.userInfo?["accessToken"] as? String else { return }
         print(accessToken)
         _ = Keychain.set(accessToken, forKey: "accessToken")
-        
-        //TEST
-        UserController.fetchAuthenticatedUser { (user) in
-            if user != nil {
-                DribbleApi.currentUser = user
-                
-                self.dismiss(animated: true, completion: nil) // Move out of test function if this doesn't work
-            } else if user == nil {
-                presentAPIAlertControllerNotification
-            }
-        }
-        //END TEST
-        
-        
+       
+        self.dismiss(animated: true, completion: nil)
     }
     
     func accessTokenWasDenied() {
