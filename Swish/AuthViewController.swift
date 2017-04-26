@@ -74,7 +74,18 @@ class AuthViewController: UIViewController, UIWebViewDelegate {
         print(accessToken)
         _ = Keychain.set(accessToken, forKey: "accessToken")
         
-        dismiss(animated: true, completion: nil)
+        //TEST
+        UserController.fetchAuthenticatedUser { (user) in
+            if user != nil {
+                DribbleApi.currentUser = user
+                
+                self.dismiss(animated: true, completion: nil) // Move out of test function if this doesn't work
+            } else if user == nil {
+                presentAPIAlertControllerNotification
+            }
+        }
+        //END TEST
+        
         
     }
     
