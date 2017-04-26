@@ -26,7 +26,9 @@ class ShotCard: CardView {
     func updateViews() {
         
         guard let shot = shot,
-            let shotImage = shot.largeImage, let imageView = self.imageView, let titleLabel = self.titleLabel, let usernameLabel =  self.usernameLabel else { return }
+            let shotImage = shot.largeImage, let imageView = self.imageView, let titleLabel = self.titleLabel, let usernameLabel =  self.usernameLabel else {
+                return
+        }
         
         
         imageView.image = shotImage
