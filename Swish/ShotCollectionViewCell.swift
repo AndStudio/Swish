@@ -34,6 +34,13 @@ class ShotCollectionViewCell: UICollectionViewCell {
         shotTeaserImageView.image = shot.teaserImage
         
         cellBackgroundView.layer.cornerRadius = 4
-        cellBackgroundView.clipsToBounds = true
+        
+        cellBackgroundView.layer.masksToBounds = false
+        cellBackgroundView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        cellBackgroundView.layer.shadowRadius = 1
+        cellBackgroundView.layer.shadowOpacity = 0.13
+        
+        
+        
     }
 }

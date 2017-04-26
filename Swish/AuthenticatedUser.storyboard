@@ -12,7 +12,7 @@
         <!--Authenticated User View Controller-->
         <scene sceneID="vtL-cd-QnH">
             <objects>
-                <viewController id="kWa-fg-2Sv" customClass="AuthenticatedUserViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="profile" id="kWa-fg-2Sv" customClass="AuthenticatedUserViewController" customModule="Swish" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="WtL-r9-9F7"/>
                         <viewControllerLayoutGuide type="bottom" id="BLS-Ba-NhC"/>

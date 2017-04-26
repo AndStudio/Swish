@@ -10,6 +10,8 @@ import UIKit
 
 let accessTokenRecievedNotification = Notification.Name("Access Token Recieved")
 let accessTokenDeniedNotification = Notification.Name("Access Token Denied")
+let presentAPIAlertControllerNotification = Notification.Name("API Limit Alert")
+let presentBadCredentialsAlertControllerNotification = Notification.Name("Bad Credentials")
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -41,7 +43,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 "code":code
             ]
             
-            NetworkController.performRequest(for: baseURL, httpMethod: .Post, urlParameters: componentsDictionary, body: nil, completion: { (data, error) in
+            NetworkController.performRequest(for: baseURL, httpMethod: .Post, urlParameters: componentsDictionary, body: nil, completion: { (data, response, error) in
                 
                 if let error = error {
                     NSLog("ERROR: \(error.localizedDescription)")
@@ -51,8 +53,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard
                     let data = data,
                     let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
-                    let userAccessCode = json["access_token"] as? String
-                else { return }
+                    let userAccessCode = json["access_token"] as? String,
+                    let response = response
+                    else { return }
+
+                DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
                 
                 self.userAccessCode = userAccessCode
                 print("Access Code: \(String(describing: userAccessCode))")

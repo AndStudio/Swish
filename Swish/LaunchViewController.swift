@@ -38,6 +38,9 @@ class LaunchViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
+        
         pageControl.addTarget(self, action: #selector(LaunchViewController.didChangePageControlValue), for: .valueChanged)
         
         navigationController?.navigationBar.isHidden = true
@@ -45,6 +48,15 @@ class LaunchViewController: UIViewController {
         DispatchQueue.main.async {
             self.updateViews()
         }
+    }
+    
+    // MARK: Observer Functions
+    func callRateLimitAlertController() {
+        DribbleApi.presentAPIInfoAlertController(view: self)
+    }
+    
+    func callBadCredentialsAlertController() {
+        DribbleApi.presentBadCredantialsAlertController(view: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

@@ -25,7 +25,7 @@ class NetworkController {
                                httpMethod: HTTPMethod,
                                urlParameters: [String : String]? = nil,
                                body: Data? = nil,
-                               completion: ((Data?, Error?) -> Void)? = nil) {
+                               completion: ((Data?, URLResponse?, Error?) -> Void)? = nil) {
         
         // Build our entire URL
         
@@ -38,7 +38,9 @@ class NetworkController {
         
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
             
-            completion?(data, error)
+            // TODO: Remove all instances of updateAPIHeaderInfo and put it here instead
+            
+            completion?(data, response, error)
         }
         
         dataTask.resume()

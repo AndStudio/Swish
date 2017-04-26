@@ -77,7 +77,7 @@ class ShotCard: CardView {
         self.addSubview(titleLabel)
         
         let usernameLabel = UILabel()
-        usernameLabel.font = UIFont(name: "AvenirHeavy", size: 14)
+        usernameLabel.font = UIFont(name: "AvenirHeavy", size: 13)
         usernameLabel.textColor = Colors.highlightBlue
         usernameLabel.textAlignment = .left
         usernameLabel.frame = CGRect(x: 16, y: titleLabel.frame.maxY + 4, width: 300, height: 24)

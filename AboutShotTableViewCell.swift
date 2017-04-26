@@ -60,8 +60,8 @@ class AboutShotTableViewCell: UITableViewCell {
         guard let shot = shot, let user = shot.user else { return }
         
         userNameLabel.text = "by \(user.userUserName)"
-        likeCountLabel.text = "\(shot.likeCount) likes"
-        viewCountLabel.text = "\(shot.viewCount) views"
+        likeCountLabel.text = "\(shot.likeCount)"
+        viewCountLabel.text = "\(shot.viewCount)"
         
         if user.userAvatar != nil {
             self.userAvatarImageView.image = user.userAvatar

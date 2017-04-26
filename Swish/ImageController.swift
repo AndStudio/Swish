@@ -17,8 +17,13 @@ class ImageController {
             fatalError("Image URL optional is nil")
         }
         
-        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, error) in
-            guard let data = data else { return }
+        NetworkController.performRequest(for: url, httpMethod: .Get) { (data, response, error) in
+            guard
+                let data = data,
+                let response = response
+                else { return }
+
+            DribbleApi.updateAPIHeaderResponses(headerDictionary: response)
             
             let filetype = url.pathComponents.last?.hasSuffix(".gif")
             if filetype == true {

@@ -18,6 +18,12 @@ class SwipeViewController: UIViewController {
     
     var doNotShowShots: [String] = []
     
+    var authenticatedUsersLikedShots: [Shot]? {
+        didSet {
+            
+        }
+    }
+    
     var cards = [ShotCard]()
     
     let threshold: CGFloat = 100
@@ -31,15 +37,15 @@ class SwipeViewController: UIViewController {
     @IBOutlet weak var shotImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    
     //MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+            
+        NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
-        UserController.fetchAuthenticatedUser { (user) in
-            UserController.currentUser = user
-        }
+        fetchAuthenticatedUsersLikedShots()
         
         navigationController?.isNavigationBarHidden = true
         
@@ -84,6 +90,35 @@ class SwipeViewController: UIViewController {
                 }
             }
         }
+        
+    }
+    
+    // MARK: Observer Functions
+    func callRateLimitAlertController() {
+        DribbleApi.presentAPIInfoAlertController(view: self)
+    }
+    
+    func callBadCredentialsAlertController() {
+        DribbleApi.presentBadCredantialsAlertController(view: self)
+    }
+    
+    func fetchAuthenticatedUsersLikedShots() {
+        
+        guard let currentUser = DribbleApi.currentUser else { return }
+
+        var shotsIDsArray: [Shot] = []
+        var page = 1
+        let maxPage: Int = Int(ceil(Double(currentUser.likeCount) / Double(DribbleApi.collectionShotsToLoad)))
+        
+        while page <= maxPage {
+            page += 1
+            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
+                shotsIDsArray.append(contentsOf:shots)
+                print(page)
+                
+            })
+        }
+        self.authenticatedUsersLikedShots = shotsIDsArray
     }
     
     //MARK: - Pagination
@@ -480,7 +515,7 @@ extension SwipeViewController {
         
         //Profile button
         
-        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 8, y: 24, width: 26, height: 28))
+        let profileButton: UIButton = UIButton(frame: CGRect(x: view.frame.minX + emojiPadding + 4, y: 28, width: 22, height: 24))
         profileButton.setImage(UIImage(named: "swishUser"), for: .normal)
         profileButton.addTarget(self, action: #selector(profileButtonTapped), for: .touchUpInside)
         profileButton.tag = 2
@@ -488,25 +523,34 @@ extension SwipeViewController {
         self.view.bringSubview(toFront: profileButton)
         
         // logo
-        let swishLogoView = UIImageView(image: UIImage(named: "swishMark4"))
+        let swishLogoView = UIImageView(image: UIImage(named: "swishMark5"))
         swishLogoView.contentMode = .scaleAspectFill
-        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 24, width: 45, height: 30)
+        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 28, width: 40, height: 24)
         swishLogoView.isUserInteractionEnabled = false
         self.view.addSubview(swishLogoView)
         
         // pass button 
         let noButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) - 100, y: self.view.frame.height - 120, width: 75, height: 75))
-        noButton.setImage(UIImage(named: "frown_arrow"), for: .normal)
+        noButton.setImage(UIImage(named: "noActive"), for: .normal)
         noButton.addTarget(self, action: #selector(noButtonTapped), for: .touchUpInside)
         noButton.tag = 3
+        noButton.layer.masksToBounds = false
+        noButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        noButton.layer.shadowRadius = 8
+        noButton.layer.shadowOpacity = 0.08
         self.view.addSubview(noButton)
         self.view.bringSubview(toFront: noButton)
         
+        
         // like button 
         let likeButton: UIButton = UIButton(frame: CGRect(x: (self.view.frame.width / 2) + 20, y: self.view.frame.height - 120, width: 75, height: 75))
-        likeButton.setImage(UIImage(named: "smile_arrow"), for: .normal)
+        likeButton.setImage(UIImage(named: "yesActive"), for: .normal)
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         likeButton.tag = 4
+        likeButton.layer.masksToBounds = false
+        likeButton.layer.shadowOffset = CGSize(width: 0, height: 3)
+        likeButton.layer.shadowRadius = 8
+        likeButton.layer.shadowOpacity = 0.08
         self.view.addSubview(likeButton)
         self.view.bringSubview(toFront: likeButton)
         
@@ -583,8 +627,6 @@ extension SwipeViewController {
             
             navigationController?.pushViewController(vc, animated: true)
             
-//            self.performSegue(withIdentifier: "likes", sender: self)
-            
         }
     }
     
@@ -592,7 +634,13 @@ extension SwipeViewController {
         let buttonSendTag: UIButton = sender
         if buttonSendTag.tag == 2 {
             
-            self.performSegue(withIdentifier: "profile", sender: self)
+//            self.performSegue(withIdentifier: "profile", sender: self)
+            
+            guard let vc = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "user") as? UserCollectionViewController else { return }
+        
+            let userData = DribbleApi.currentUser
+            vc.user = userData
+            navigationController?.pushViewController(vc, animated: true)
             
         }
     }
@@ -630,5 +678,6 @@ extension SwipeViewController {
         completion()
     }
 }
+
 
 
