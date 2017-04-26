@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class Shot {
+class Shot: Equatable {
     
     //MARK: - properties keys
     
@@ -103,5 +103,10 @@ class Shot {
         if let userData = shotDictionary["user"] as? [String: Any] {
             self.user = User(dictionary: userData)
         }
+    }
+    
+    static func ==(lhs: Shot, rhs: Shot) -> Bool {
+        return
+            lhs.shotID == rhs.shotID
     }
 }
