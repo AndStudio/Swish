@@ -18,10 +18,7 @@ class ImageController {
         }
         
         NetworkController.performRequest(for: url, httpMethod: .Get) { (data, response, error) in
-            guard
-                let data = data,
-                let response = response
-                else { return }
+            guard let data = data else { return }
             
             let filetype = url.pathComponents.last?.hasSuffix(".gif")
             if filetype == true {

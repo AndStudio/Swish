@@ -25,7 +25,7 @@ class EmojiOptionsOverlay: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.isUserInteractionEnabled = false
-        self.layer.zPosition = CGFloat(FLT_MAX)
+        self.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
         
         like1Emoji.frame = CGRect(x: frame.width - emojiPadding - emojiSize.width, y: (frame.height/2) - (emojiSize.height * 1.5) - emojiPadding, width: emojiSize.width, height: emojiSize.height)
         self.addSubview(like1Emoji)
@@ -34,11 +34,11 @@ class EmojiOptionsOverlay: UIView {
         self.addSubview(dislike1Emoji)
         
         heartEmoji.frame = CGRect(x: frame.width - emojiPadding - 50, y: 30, width: 35, height: 35)
-        heartEmoji.layer.zPosition = CGFloat(FLT_MAX)
+        heartEmoji.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
         self.addSubview(heartEmoji)
         
         darkHeartEmoji.frame = heartEmoji.frame
-        darkHeartEmoji.layer.zPosition = CGFloat(FLT_MAX)
+        darkHeartEmoji.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
         
         // initial state
         like1Emoji.alpha = emojiInitialAlpha

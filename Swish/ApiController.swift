@@ -25,8 +25,7 @@ class ApiController {
                 return
             }
             guard let data = data,
-                let shotsDictionaryArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String: Any]],
-                let response = response
+                let shotsDictionaryArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String: Any]]
                 else { completion([]); return }
             
             let shots = shotsDictionaryArray.flatMap({ Shot(dictionary: $0) })
@@ -54,7 +53,7 @@ class ApiController {
             
             var likedShotsArray: [Shot] = []
             
-            guard let data = data, let response = response else { completion([]); return }
+            guard let data = data else { completion([]); return }
             
             if let likedShotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]] {
                 likedShotsArray = likedShotsDictionariesArray.flatMap({ Shot(likeDictionary: $0) })
@@ -106,7 +105,6 @@ class ApiController {
             
             guard
                 let data = data,
-                let response = response,
                 let shotsDictionariesArray = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [[String:Any]]
                 else { completion([]); return }
             
@@ -140,8 +138,7 @@ class ApiController {
             
             guard
                 let data = data,
-                let responseDataString = String(data: data, encoding: .utf8),
-                let response = response
+                let responseDataString = String(data: data, encoding: .utf8)
                 else { return }
                         
             if let error = error {

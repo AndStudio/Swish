@@ -204,7 +204,7 @@ class ShotDetailViewController: UIViewController, UITableViewDelegate, UITableVi
     func shareButtonTapped(_ sender: AboutShotTableViewCell) {
         guard let shot = self.shot else { return }
         let image = shot.largeImage
-        let activiityViewController = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        let activiityViewController = UIActivityViewController(activityItems: [image as Any], applicationActivities: nil)
 
         present(activiityViewController, animated: true, completion: nil)
     }

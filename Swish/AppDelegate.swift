@@ -52,8 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 guard
                     let data = data,
                     let json = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
-                    let userAccessCode = json["access_token"] as? String,
-                    let response = response
+                    let userAccessCode = json["access_token"] as? String
                     else { return }
                 
                 self.userAccessCode = userAccessCode

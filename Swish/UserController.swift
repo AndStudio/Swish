@@ -29,11 +29,8 @@ class UserController {
             
             guard
                 let data = data,
-                let jsonUserDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
-                let response = response
-                else {
-                    completion(nil)
-                    return }
+                let jsonUserDictionary = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any]
+                else { completion(nil); return }
                         
             if jsonUserDictionary["message"] as? String == "Bad credentials." {
                 let message = jsonUserDictionary["message"] as? String

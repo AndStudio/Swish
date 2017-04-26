@@ -566,7 +566,7 @@ extension SwipeViewController {
         
         // animate card to slide off screen to the left 
         
-        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        _ = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: -200, y: 400)
         var newTransform = CGAffineTransform.identity
@@ -592,7 +592,7 @@ extension SwipeViewController {
         emojiOptionsOverlay.showEmoji(for: .like1)
         dynamicAnimator.removeAllBehaviors()
         
-        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        _ = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: 600, y: 400)
         var newTransform = CGAffineTransform.identity
