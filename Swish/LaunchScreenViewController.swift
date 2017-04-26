@@ -13,7 +13,7 @@ class LaunchScreenViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
-//        _ = Keychain.removeValue(forKey: "accessToken")
+        _ = Keychain.removeValue(forKey: "accessToken")
         print(Keychain.value(forKey: "accessToken") ?? "No Keychain value for \"accessToken\"")
         
         // FIXME: Remove this before shipping

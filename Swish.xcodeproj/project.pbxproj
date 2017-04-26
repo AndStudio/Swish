@@ -36,6 +36,10 @@
 		5AF634411EA66D9900E5ACD4 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AF634401EA66D9900E5ACD4 /* Formatters.swift */; };
 		661E6E3E1E9C4BD00048E5EA /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3D1E9C4BD00048E5EA /* UserController.swift */; };
 		661E6E401E9C4BE90048E5EA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 661E6E3F1E9C4BE90048E5EA /* User.swift */; };
+		66354F061EB0E06C00B4599B /* MoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66354F051EB0E06C00B4599B /* MoreInfoViewController.swift */; };
+		66354F081EB0E18800B4599B /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66354F071EB0E18800B4599B /* WelcomeViewController.swift */; };
+		66354F0A1EB0E32200B4599B /* SwipingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66354F091EB0E32200B4599B /* SwipingViewController.swift */; };
+		66C8F9961EAFE54B00A6E3C7 /* LaunchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C8F9951EAFE54B00A6E3C7 /* LaunchPageViewController.swift */; };
 		9638F5BB1EA7DF6D0047D232 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */; };
 		963C597B1EA16BD40015A139 /* UIImage+gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 963C597A1EA16BD40015A139 /* UIImage+gif.swift */; };
 		964771C41EA8034B0099D625 /* AuthenticatedUser.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 964771C31EA8034B0099D625 /* AuthenticatedUser.storyboard */; };
@@ -92,6 +96,10 @@
 		5AF634401EA66D9900E5ACD4 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 		661E6E3D1E9C4BD00048E5EA /* UserController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
 		661E6E3F1E9C4BE90048E5EA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		66354F051EB0E06C00B4599B /* MoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoreInfoViewController.swift; sourceTree = "<group>"; };
+		66354F071EB0E18800B4599B /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		66354F091EB0E32200B4599B /* SwipingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipingViewController.swift; sourceTree = "<group>"; };
+		66C8F9951EAFE54B00A6E3C7 /* LaunchPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchPageViewController.swift; sourceTree = "<group>"; };
 		9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		963C597A1EA16BD40015A139 /* UIImage+gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+gif.swift"; sourceTree = "<group>"; };
 		964771C31EA8034B0099D625 /* AuthenticatedUser.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = AuthenticatedUser.storyboard; sourceTree = "<group>"; };
@@ -143,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				5A604BAD1E9C433500EBF1D3 /* Storyboards */,
+				66C8F9991EB0002100A6E3C7 /* Onboarding Views */,
 				5A604BBC1E9C445600EBF1D3 /* ViewControllers */,
 				5A0FBA251EACF1E5005BB455 /* CollectionViews */,
 				5A604BBB1E9C444F00EBF1D3 /* SwipeViews */,
@@ -222,6 +231,7 @@
 				9638F5BA1EA7DF6D0047D232 /* LaunchScreenViewController.swift */,
 				964771C51EA803630099D625 /* AuthenticatedUserViewController.swift */,
 				5A604BC11E9C6E0900EBF1D3 /* LaunchViewController.swift */,
+				66C8F9951EAFE54B00A6E3C7 /* LaunchPageViewController.swift */,
 				5A604BC31E9C726300EBF1D3 /* AuthViewController.swift */,
 				5A2A17F61EA28C1D00158E55 /* SwipeViewController.swift */,
 				5A0FBA261EACF229005BB455 /* UserCollectionViewController.swift */,
@@ -265,6 +275,16 @@
 			path = ..;
 			sourceTree = "<group>";
 		};
+		66C8F9991EB0002100A6E3C7 /* Onboarding Views */ = {
+			isa = PBXGroup;
+			children = (
+				66354F071EB0E18800B4599B /* WelcomeViewController.swift */,
+				66354F091EB0E32200B4599B /* SwipingViewController.swift */,
+				66354F051EB0E06C00B4599B /* MoreInfoViewController.swift */,
+			);
+			name = "Onboarding Views";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -298,7 +318,7 @@
 				TargetAttributes = {
 					5A604B961E9C41ED00EBF1D3 = {
 						CreatedOnToolsVersion = 8.3.1;
-						DevelopmentTeam = BP324SX4AT;
+						DevelopmentTeam = HK9J242HR4;
 						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
@@ -349,6 +369,8 @@
 				5A0FBA291EAD0593005BB455 /* HeaderCollectionViewCell.swift in Sources */,
 				5A7E23B61EA2B24400582516 /* ShotCard.swift in Sources */,
 				964771C61EA803630099D625 /* AuthenticatedUserViewController.swift in Sources */,
+				66354F081EB0E18800B4599B /* WelcomeViewController.swift in Sources */,
+				66C8F9961EAFE54B00A6E3C7 /* LaunchPageViewController.swift in Sources */,
 				5AEB79851EAA958C009E172C /* ShotDetailTitleTableViewCell.swift in Sources */,
 				9638F5BB1EA7DF6D0047D232 /* LaunchScreenViewController.swift in Sources */,
 				96AF3E461E9FCF2D002A79DD /* ShotCollectionViewCell.swift in Sources */,
@@ -362,8 +384,10 @@
 				5AF634411EA66D9900E5ACD4 /* Formatters.swift in Sources */,
 				5A604B9B1E9C41ED00EBF1D3 /* AppDelegate.swift in Sources */,
 				5A7E23B21EA2B1B900582516 /* CardView.swift in Sources */,
+				66354F061EB0E06C00B4599B /* MoreInfoViewController.swift in Sources */,
 				661E6E401E9C4BE90048E5EA /* User.swift in Sources */,
 				967D83C61E9D9F17001BE32E /* NetworkController.swift in Sources */,
+				66354F0A1EB0E32200B4599B /* SwipingViewController.swift in Sources */,
 				5A604BC21E9C6E0900EBF1D3 /* LaunchViewController.swift in Sources */,
 				963C597B1EA16BD40015A139 /* UIImage+gif.swift in Sources */,
 				5A2A17F71EA28C1D00158E55 /* SwipeViewController.swift in Sources */,
@@ -501,7 +525,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = BP324SX4AT;
+				DEVELOPMENT_TEAM = HK9J242HR4;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -520,7 +544,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = BP324SX4AT;
+				DEVELOPMENT_TEAM = HK9J242HR4;
 				INFOPLIST_FILE = Swish/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
