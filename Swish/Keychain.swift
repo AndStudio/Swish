@@ -2,8 +2,8 @@
 //  KeychainWrapper.swift
 //  Keychain sample app
 //
-//  Created by Ashley Mills on 17/04/2015.
-//  Copyright (c) 2015 Joylord Systems Ltd. All rights reserved.
+//  Created by Andrew Ervin Gierke on 4/21/17.
+//  Copyright © 2017 And. All rights reserved.
 //
 
 import Foundation

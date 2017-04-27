@@ -2,8 +2,8 @@
 //  Gif.swift
 //  SwiftGif
 //
-//  Created by Arne Bahlo on 07.06.14.
-//  Copyright (c) 2014 Arne Bahlo. All rights reserved.
+//  Created by Andrew Ervin Gierke on 4/21/17.
+//  Copyright © 2017 And. All rights reserved.
 //
 
 import UIKit
