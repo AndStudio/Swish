@@ -521,9 +521,9 @@ extension SwipeViewController {
         self.view.bringSubview(toFront: profileButton)
         
         // logo
-        let swishLogoView = UIImageView(image: UIImage(named: "swishMark5"))
+        let swishLogoView = UIImageView(image: UIImage(named: "swishMark10"))
         swishLogoView.contentMode = .scaleAspectFill
-        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 28, width: 40, height: 24)
+        swishLogoView.frame = CGRect(x: (self.view.frame.width / 2) - 17, y: 32, width: 40, height: 22)
         swishLogoView.isUserInteractionEnabled = false
         self.view.addSubview(swishLogoView)
         
