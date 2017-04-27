@@ -535,7 +535,7 @@ extension SwipeViewController {
         noButton.layer.masksToBounds = false
         noButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         noButton.layer.shadowRadius = 8
-        noButton.layer.shadowOpacity = 0.08
+        noButton.layer.shadowOpacity = 0.05
         self.view.addSubview(noButton)
         self.view.bringSubview(toFront: noButton)
         
@@ -548,7 +548,7 @@ extension SwipeViewController {
         likeButton.layer.masksToBounds = false
         likeButton.layer.shadowOffset = CGSize(width: 0, height: 3)
         likeButton.layer.shadowRadius = 8
-        likeButton.layer.shadowOpacity = 0.08
+        likeButton.layer.shadowOpacity = 0.05
         self.view.addSubview(likeButton)
         self.view.bringSubview(toFront: likeButton)
         
