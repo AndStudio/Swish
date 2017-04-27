@@ -16,10 +16,19 @@ class ShotCard: CardView {
     var imageView: UIImageView?
     var titleLabel: UILabel?
     var usernameLabel: UILabel?
+    let view = UIView()
     
+    override func setNeedsDisplay() {
+        updateViews()
+       view.reloadInputViews()
+
+    }
     var shot: Shot? {
         didSet {
-            updateViews()
+            DispatchQueue.main.async {
+                self.updateViews()
+                self.view.reloadInputViews()
+            }
         }
     }
     
@@ -42,12 +51,13 @@ class ShotCard: CardView {
         guard let username = shot.user?.userName else { return }
         
         usernameLabel.text = "by "+"\(username)"
-        
+
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupSubviews()
+       
     }
     
     required init?(coder aDecoder: NSCoder) {

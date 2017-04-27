@@ -41,6 +41,7 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        cards[0].becomeFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
@@ -80,9 +81,7 @@ class SwipeViewController: UIViewController {
                         self.cards.append(card)
                     }
                     
-                    self.setInitialCardImages(completion: {
-                        // setting image in this func
-                    })
+                    self.setInitialCardImages()
                     
                     self.layoutCards()
                     
@@ -232,6 +231,7 @@ class SwipeViewController: UIViewController {
         
         // make sure that the first card in the deck is at the front
         self.view.bringSubview(toFront: cards[0])
+        cards[0].updateViews()
     }
     
     // UIKit dynamics variables that we need references to.
@@ -454,6 +454,7 @@ class SwipeViewController: UIViewController {
         
         // first card needs to be in the front for proper interactivity
         self.view.bringSubview(toFront: cards[1])
+        self.view.subviews.first?.reloadInputViews()
     }
     
     func hideFrontCard() {
@@ -563,7 +564,7 @@ extension SwipeViewController {
         
         // animate card to slide off screen to the left
         
-        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+//        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: -200, y: 400)
         var newTransform = CGAffineTransform.identity
@@ -589,7 +590,7 @@ extension SwipeViewController {
         emojiOptionsOverlay.showEmoji(for: .like1)
         dynamicAnimator.removeAllBehaviors()
         
-        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+//        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: 600, y: 400)
         var newTransform = CGAffineTransform.identity
@@ -642,7 +643,7 @@ extension SwipeViewController {
         }
     }
     
-    func setInitialCardImages(completion: () -> Void) {
+    func setInitialCardImages() {
         
         // the next 3 cards in the deck
         DispatchQueue.main.async {
@@ -651,27 +652,26 @@ extension SwipeViewController {
                 let shot = self.shots[i]
                 
                 if shot.hiDpiImageURL == nil {
+                    
                     ImageController.image(forURL: shot.normalImageURL, completion: { (image) in
                         shot.largeImage = image
                         
                         //call the shot's update properties ONLY if it also has an image
                         let card = self.cards[i]
                         card.shot = shot
-                        
                     })
                 } else {
                     guard let hiDpiImageURL = shot.hiDpiImageURL else { return }
+                    
                     ImageController.image(forURL: hiDpiImageURL, completion: { (image) in
                         shot.largeImage = image
                         
                         //update card's shot properties ONLY if it has an image
                         let card = self.cards[i]
                         card.shot = shot
-                        
                     })
                 }
             }
         }
-        completion()
     }
 }
