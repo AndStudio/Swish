@@ -12,7 +12,6 @@ class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var welcomeToLabel: UILabel!
     @IBOutlet weak var logoImageView: UIImageView!
-    @IBOutlet weak var titleLabelOutlet: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,17 +25,13 @@ class WelcomeViewController: UIViewController {
     
     func updateViews() {
         
-//        set up button and title label
         welcomeToLabel.textColor = Colors.dribbbleDarkGray
-        welcomeToLabel.text = "Welcome to"
+        welcomeToLabel.text = "Like dribbble shots by swishing through them. 😍"
         welcomeToLabel.font = UIFont(name: "ArialRounded", size: 18)
         
-        logoImageView.image = UIImage(named: "swish2")
+        logoImageView.image = UIImage(named: "cardsIllustration")
         
-        titleLabelOutlet.textColor = Colors.dribbbleDarkGray
-        titleLabelOutlet.text = "Tinder for Dribbble"
-        titleLabelOutlet.font = UIFont(name: "ArialRounded", size: 18)
-        self.view.backgroundColor = Colors.dribbbleGray
+        self.view.backgroundColor = .white
     }
     
 }

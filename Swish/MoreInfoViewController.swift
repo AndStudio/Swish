@@ -9,11 +9,12 @@
 import UIKit
 
 class MoreInfoViewController: UIViewController {
-    @IBOutlet weak var seeProfileLabel: UILabel!
-    @IBOutlet weak var seeLikesLabel: UILabel!
-    @IBOutlet weak var seeMoreLabel: UILabel!
-
-    @IBOutlet weak var mainImageView: UIImageView!
+    
+    //MARK: - Outlets
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var illustrationImageView: UIImageView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,22 +28,14 @@ class MoreInfoViewController: UIViewController {
     
     func updateViews() {
         
-        //        set up button and title label
-        //seeProfileLabel.textColor = Colors.dribbbleDarkGray
-        seeProfileLabel.text = "See profile"
-        seeProfileLabel.font = UIFont(name: "ArialRounded", size: 28)
         
-        //seeLikesLabel.textColor = Colors.dribbbleDarkGray
-        seeLikesLabel.text = "See likes"
-        seeLikesLabel.font = UIFont(name: "ArialRounded", size: 28)
+        descriptionLabel.text = "See more work from the designers you love."
+        descriptionLabel.font = UIFont(name: "ArialRounded", size: 18)
+        descriptionLabel.textColor = Colors.dribbbleDarkGray
         
-        //seeMoreLabel.textColor = Colors.dribbbleDarkGray
-        seeMoreLabel.text = "Tap user's name to see more"
-        seeMoreLabel.font = UIFont(name: "ArialRounded", size: 28)
+        illustrationImageView.image = UIImage(named: "userIllustration")
         
-        mainImageView.image = UIImage(named: "mainImage")
-        
-        self.view.backgroundColor = Colors.dribbbleGray
+        self.view.backgroundColor = .white
 
     }
 }

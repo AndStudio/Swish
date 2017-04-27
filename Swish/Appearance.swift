@@ -20,5 +20,6 @@ struct Colors {
     static let auxLightGray = UIColor.init(red: 232/255.0, green: 232/255.0, blue: 232/255.0, alpha: 1)
     static let paraGray = UIColor.init(red: 157/255.0, green: 157/255.0, blue: 157/255.0, alpha: 1)
     static let backGroundPeach = UIColor.init(red: 255/255.0, green: 240/255.0, blue: 240/255.0, alpha: 1)
+    static let buttonPink = UIColor.init(red: 252/255.0, green: 61/255.0, blue: 154/255.0, alpha: 1)
     
 }

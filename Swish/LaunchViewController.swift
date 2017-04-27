@@ -85,9 +85,9 @@ class LaunchViewController: UIViewController {
     
     func updateViews() {
         
-        self.containerView.backgroundColor = Colors.dribbbleGray
+        self.containerView.backgroundColor = .white
         
-        signInButton.backgroundColor = Colors.primaryPink
+        signInButton.backgroundColor = Colors.buttonPink
         signInButton.setTitle("Sign in", for: .normal)
         signInButton.tintColor = .white
         signInButton.layer.cornerRadius = 5

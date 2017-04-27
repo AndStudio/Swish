@@ -10,11 +10,10 @@ import UIKit
 
 class SwipingViewController: UIViewController {
     
-    @IBOutlet weak var swipeRightLabel: UILabel!
-    @IBOutlet weak var swipeRightImageView: UIImageView!
-
-    @IBOutlet weak var swipeLeftLabel: UILabel!
-    @IBOutlet weak var swipeLeftImageView: UIImageView!
+    //MARK: - Outlets
+    
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var illustrationImageView: UIImageView!
     
 
     override func viewDidLoad() {
@@ -29,17 +28,12 @@ class SwipingViewController: UIViewController {
     
     func updateViews() {
         
-        //        set up button and title label
-       // swipeRightLabel.textColor = Colors.dribbbleDarkGray
-        swipeRightLabel.text = "Swipe right or tap heart to like"
-        swipeRightLabel.font = UIFont(name: "ArialRounded", size: 28)
-        swipeRightImageView.image = UIImage(named: "likeImage")
+        descriptionLabel.textColor = Colors.dribbbleDarkGray
+        descriptionLabel.text = "Add to your collection of liked shots."
+        descriptionLabel.font = UIFont(name: "ArialRounded", size: 18)
+        illustrationImageView.image = UIImage(named: "likesIllustration")
+
         
-       // swipeLeftLabel.textColor = Colors.dribbbleDarkGray
-        swipeLeftLabel.text = "Swipe left or tap X to ignore"
-        swipeLeftLabel.font = UIFont(name: "ArialRounded", size: 28)
-        swipeLeftImageView.image = UIImage(named: "dislikeImage")
-        
-        self.view.backgroundColor = Colors.dribbbleGray
+        self.view.backgroundColor = .white
     }
 }
