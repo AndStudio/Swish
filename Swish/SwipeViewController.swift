@@ -216,8 +216,11 @@ class SwipeViewController: UIViewController {
         
         // make sure that the first card in the deck is at the front
         self.view.bringSubview(toFront: cards[0])
-        cards[0].updateViews()
         
+        cards[0].updateViews()
+        if cards[0].shot?.largeImage == nil {
+            cards[0].updateViews()
+        }
         if cards[0].shot?.user?.userAvatar == nil  {
             
             ImageController.image(forURL: (cards[0].shot?.user?.userAvatarURL)!) { (image) in
