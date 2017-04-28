@@ -41,7 +41,7 @@ class SwipeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        cards[0].becomeFirstResponder()
+        //        cards[0].becomeFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
         
@@ -245,6 +245,15 @@ class SwipeViewController: UIViewController {
         // make sure that the first card in the deck is at the front
         self.view.bringSubview(toFront: cards[0])
         cards[0].updateViews()
+        
+        if cards[0].shot?.user?.userAvatar == nil  {
+            
+            ImageController.image(forURL: (cards[0].shot?.user?.userAvatarURL)!) { (image) in
+                DispatchQueue.main.async {
+                    self.cards[0].shot?.user?.userAvatar = image
+                }
+            }
+        }
     }
     
     // UIKit dynamics variables that we need references to.
@@ -577,7 +586,7 @@ extension SwipeViewController {
         
         // animate card to slide off screen to the left
         
-//        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        //        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: -200, y: 400)
         var newTransform = CGAffineTransform.identity
@@ -603,7 +612,7 @@ extension SwipeViewController {
         emojiOptionsOverlay.showEmoji(for: .like1)
         dynamicAnimator.removeAllBehaviors()
         
-//        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
+        //        let currentAngle = CGFloat(atan2(Double(cards[0].transform.b), Double(cards[0].transform.a)))
         
         let offScreenTargetCenter = CGPoint(x: 600, y: 400)
         var newTransform = CGAffineTransform.identity
