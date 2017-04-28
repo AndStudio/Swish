@@ -17,12 +17,6 @@ class SwipeViewController: UIViewController {
     
     var doNotShowShots: [String] = []
     
-    var authenticatedUsersLikedShots: [Shot]? {
-        didSet {
-            
-        }
-    }
-    
     var cards = [ShotCard]()
     
     let threshold: CGFloat = 100
@@ -44,8 +38,6 @@ class SwipeViewController: UIViewController {
         //        cards[0].becomeFirstResponder()
         NotificationCenter.default.addObserver(self, selector: #selector(callRateLimitAlertController), name: presentAPIAlertControllerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(callBadCredentialsAlertController), name: presentBadCredentialsAlertControllerNotification, object: nil)
-        
-        fetchAuthenticatedUsersLikedShots()
         
         navigationController?.isNavigationBarHidden = true
         
@@ -98,49 +90,6 @@ class SwipeViewController: UIViewController {
     
     func callBadCredentialsAlertController() {
         DribbleApi.presentBadCredantialsAlertController(view: self)
-    }
-    
-    func fetchAuthenticatedUsersLikedShots() {
-        
-        guard let currentUser = DribbleApi.currentUser else { return }
-        
-        var shotsIDsArray: [Shot] = []
-        var page = 1
-        let maxPage: Int = Int(ceil(Double(currentUser.likeCount) / Double(DribbleApi.collectionShotsToLoad)))
-        
-        while page <= maxPage {
-            page += 1
-            ApiController.fetchLikedShots(page: String(page), completion: { (shots) in
-                shotsIDsArray.append(contentsOf:shots)
-                print(page)
-                
-            })
-        }
-        self.authenticatedUsersLikedShots = shotsIDsArray
-    }
-    
-    //MARK: - Pagination
-    
-    func incrementShotLoading() {
-        // when the number of cards in the arrays hits a certain number new API call will be made to append the next set of shots to the shot array
-        
-        if !isLoadingShots {
-            isLoadingShots = true
-            ApiController.loadShots(page: self.page, completion: { (shots) in
-                self.page += 1
-                for shot in shots {
-                    if !self.doNotShowShots.contains("\(shot.shotID)") {
-                        
-                        let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
-                        card.shot = shot
-                        self.shots.append(shot)
-                        self.cards.append(card)
-                        
-                    }
-                }
-                self.isLoadingShots = false
-            })
-        }
     }
     
     // Set the Gif
@@ -203,7 +152,30 @@ class SwipeViewController: UIViewController {
         guard cards.count > 0 else { return }
         
         if shots.count <= 6 {
-            incrementShotLoading()
+            self.page += 1
+            ApiController.loadShots(page: self.page, completion: { (shots) in
+                for shot in shots {
+                    if !self.doNotShowShots.contains("\(shot.shotID)") {
+                        self.shots.append(shot)
+                    }
+                }
+                
+                guard shots.count > 0 else { return }
+                
+                DispatchQueue.main.async {
+                    for i in 1...shots.count {
+                        
+                        let card = ShotCard(frame: CGRect(x: 0, y: 0, width: self.view.frame.width - 60, height: self.view.frame.height * 0.6))
+                        card.shot = shots[i - 1]
+                        self.cards.append(card)
+                    }
+                    
+                    self.setInitialCardImages()
+                    
+                    self.layoutCards()
+                    
+                }
+            })
         }
         
         
