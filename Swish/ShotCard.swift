@@ -14,6 +14,7 @@ class ShotCard: CardView {
     //MARK: - Properties
     
     var imageView: UIImageView?
+    var avatarImageView: UIImageView?
     var titleLabel: UILabel?
     var usernameLabel: UILabel?
     let view = UIView()
@@ -32,14 +33,26 @@ class ShotCard: CardView {
         }
     }
     
+    var user: User? {
+        didSet {
+        }
+    }
+    
     func updateViews() {
         
         guard let shot = shot,
-            let shotImage = shot.largeImage, let imageView = self.imageView, let titleLabel = self.titleLabel, let usernameLabel =  self.usernameLabel else {
+            let user = shot.user,
+            let shotImage = shot.largeImage,
+            
+            let imageView = self.imageView,
+            let titleLabel = self.titleLabel,
+            let usernameLabel =  self.usernameLabel else {
                 return
         }
         
         imageView.image = shotImage
+        
+        avatarImageView?.image = user.userAvatar
         
         // text labels
         
@@ -66,6 +79,8 @@ class ShotCard: CardView {
     }
 
     func setupSubviews() {
+        
+        // shot image
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = .white
@@ -77,20 +92,39 @@ class ShotCard: CardView {
         self.imageView = imageView
         self.addSubview(imageView)
         
+        
+        //user avatar
+        let avatarImageView = UIImageView()
+        avatarImageView.contentMode = .scaleAspectFill
+        avatarImageView.backgroundColor = .white
+        
+        avatarImageView.frame = CGRect(x: 16, y: imageView.frame.maxY + 24, width: 45, height: 45)
+        
+        avatarImageView.layer.cornerRadius = avatarImageView.frame.size.width/2
+        avatarImageView.clipsToBounds = true
+        
+        
+        self.avatarImageView = avatarImageView
+        self.addSubview(avatarImageView)
+        
+        
+        // title label
         let titleLabel = UILabel()
         
         titleLabel.font = UIFont(name: "ArialRoundedMTBold", size: 20)
         titleLabel.textColor = Colors.dribbbleDarkGray
         titleLabel.textAlignment = .left
-        titleLabel.frame = CGRect(x: 16, y: imageView.frame.maxY + 18, width: 300, height: 28)
+        titleLabel.frame = CGRect(x: 69, y: imageView.frame.maxY + 20, width: 300, height: 28)
         self.titleLabel = titleLabel
         self.addSubview(titleLabel)
         
+        
+        // username label
         let usernameLabel = UILabel()
         usernameLabel.font = UIFont(name: "AvenirHeavy", size: 13)
         usernameLabel.textColor = Colors.highlightBlue
         usernameLabel.textAlignment = .left
-        usernameLabel.frame = CGRect(x: 16, y: titleLabel.frame.maxY + 4, width: 300, height: 24)
+        usernameLabel.frame = CGRect(x: 69, y: titleLabel.frame.maxY, width: 300, height: 24)
         self.usernameLabel = usernameLabel
         self.addSubview(usernameLabel)
     }

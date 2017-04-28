@@ -150,7 +150,9 @@ class SwipeViewController: UIViewController {
         for i in 0...(cards.count-1) {
             if i == 3 {
                 guard shots.count > i else { return }
+                
                 let shot = self.shots[i]
+                let user = shot.user
                 
                 DispatchQueue.main.async {
                     
@@ -173,6 +175,17 @@ class SwipeViewController: UIViewController {
                             card.shot = shot
                             
                         })
+                    }
+                    
+                    // user user avatar here
+                    
+                    if user?.userAvatar == nil  {
+                        
+                        ImageController.image(forURL: (user?.userAvatarURL)!) { (image) in
+                            DispatchQueue.main.async {
+                                user?.userAvatar = image
+                            }
+                        }
                     }
                 }
             }
@@ -650,6 +663,7 @@ extension SwipeViewController {
             for i in 0...3 {
                 
                 let shot = self.shots[i]
+                let user = shot.user
                 
                 if shot.hiDpiImageURL == nil {
                     
@@ -670,6 +684,17 @@ extension SwipeViewController {
                         let card = self.cards[i]
                         card.shot = shot
                     })
+                }
+                
+                // user user avatar here
+                
+                if user?.userAvatar == nil  {
+                    
+                    ImageController.image(forURL: (user?.userAvatarURL)!) { (image) in
+                        DispatchQueue.main.async {
+                            user?.userAvatar = image
+                        }
+                    }
                 }
             }
         }
