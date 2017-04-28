@@ -17,7 +17,7 @@ class EmojiOptionsOverlay: UIView {
     
     let like1Emoji = UIImageView(image: UIImage(named: "like1"))
     
-    let dislike1Emoji = UIImageView(image: UIImage(named: "dislike1"))
+    let dislike1Emoji = UIImageView(image: UIImage(named: "poop"))
     
     let heartEmoji = UIImageView(image: UIImage(named: "heartSwish"))
     let darkHeartEmoji = UIImageView(image: UIImage(named: "likedCards"))

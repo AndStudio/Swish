@@ -9,11 +9,11 @@
 import UIKit
 
 public enum CardOption: String {
-    case like1 = "Swish! 😍"
+    case like1 = "SWISH"
     case like2 = "I do like it"
     case like3 = "It's fine"
     
-    case dislike1 = "Airball 💩"
+    case dislike1 = "NOPE"
     case dislike2 = "I do not"
     case dislike3 = "Not enough"
 }
@@ -35,11 +35,11 @@ class CardView: UIView {
         
         let padding: CGFloat = 20
         
-        greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: Colors.primaryPink)
+        greenLabel = CardViewLabel(origin: CGPoint(x: padding, y: padding), color: Colors.primaryPink, rotation: 270)
         greenLabel.isHidden = true
         self.addSubview(greenLabel)
         
-        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: Colors.highlightBlue)
+        redLabel = CardViewLabel(origin: CGPoint(x: frame.width - CardViewLabel.size.width - padding, y: padding), color: Colors.highlightBlue, rotation: -270)
         redLabel.isHidden = true
         self.addSubview(redLabel)
     }
@@ -124,27 +124,32 @@ class CardView: UIView {
     }
 }
 
+
 class CardViewLabel: UILabel {
-    fileprivate static let size = CGSize(width: 120, height: 36)
+    fileprivate static let size = CGSize(width: 150, height: 58)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.textColor = .white
-        self.font = UIFont.boldSystemFont(ofSize: 18)
+        self.font = UIFont(name: "ArialRoundedMTBold", size: 36)
         self.textAlignment = .center
         
-        self.layer.cornerRadius = frame.height / 2
+        self.layer.cornerRadius = 8
         self.layer.masksToBounds = true
         self.layer.zPosition = CGFloat(Float.greatestFiniteMagnitude)
         
 
     }
     
-    convenience init(origin: CGPoint, color: UIColor) {
+    convenience init(origin: CGPoint, color: UIColor, rotation: Int) {
         
         self.init(frame: CGRect(x: origin.x, y: origin.y, width: CardViewLabel.size.width, height: CardViewLabel.size.height))
-        self.backgroundColor = color
+        self.textColor = color
+        self.backgroundColor = .clear
+        self.layer.borderWidth = 4
+        self.layer.borderColor = color.cgColor
+        self.transform = CGAffineTransform(rotationAngle: CGFloat(rotation))
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
