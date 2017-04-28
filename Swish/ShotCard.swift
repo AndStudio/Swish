@@ -96,7 +96,7 @@ class ShotCard: CardView {
         //user avatar
         let avatarImageView = UIImageView()
         avatarImageView.contentMode = .scaleAspectFill
-        avatarImageView.backgroundColor = .white
+        avatarImageView.backgroundColor = Colors.backgroundGray
         
         avatarImageView.frame = CGRect(x: 16, y: imageView.frame.maxY + 24, width: 45, height: 45)
         
