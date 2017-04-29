@@ -38,9 +38,9 @@ class LikesViewController: UIViewController, UICollectionViewDelegate, UICollect
         // Do any additional setup after loading the view, typically from a nib.
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 16, left: 0, bottom: 16, right: 0)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: screenWidth / 2 - 22, height: screenWidth/2 - 65)
-        layout.minimumInteritemSpacing = 8
+        layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 8
         collectionView!.collectionViewLayout = layout
         
